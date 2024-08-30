@@ -1,0 +1,6 @@
+@ChronosApi_HostAddress = http://localhost:5027
+
+GET {{ChronosApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

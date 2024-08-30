@@ -1,0 +1,11 @@
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\ChronosApi.exe
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\appsettings.Development.json
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\appsettings.json
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\ChronosApi.dll
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\ChronosApi.deps.json
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\ChronosApi.runtimeconfig.json
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\ChronosApi.pdb
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\Microsoft.OpenApi.dll
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Cesar\Desktop\Projetos\ChronosApi\obj\Debug\net8.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
