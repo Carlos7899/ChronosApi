@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace ChronosApi.Controllers
 {
     [ApiController]
-    [Route("[Controller]")]
+    [Route("api/[Controller]")]
     public class EgressoController : ControllerBase
     {
 

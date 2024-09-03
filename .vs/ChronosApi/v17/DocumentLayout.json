@@ -1,0 +1,292 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\logradouro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\logradouro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\egressoendereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\egressoendereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\vagaendereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\vagaendereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\cursoendereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\cursoendereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\corporacaoendereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\corporacaoendereco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\vaga.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\vaga.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\candidatura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\candidatura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\controllers\\corporacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:controllers\\corporacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\controllers\\egressocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:controllers\\egressocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\corporacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\corporacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\egresso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\egresso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\enums\\tipocorporacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\enums\\tipocorporacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\enums\\tipopessoaegresso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\enums\\tipopessoaegresso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\curso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\curso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\publicacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\publicacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\users\\cesar\\desktop\\api\\chronosapi\\models\\comentario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\comentario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Logradouro.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Logradouro.cs",
+              "RelativeDocumentMoniker": "Models\\Logradouro.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Logradouro.cs",
+              "RelativeToolTip": "Models\\Logradouro.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T22:43:39.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CorporacaoEndereco.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\CorporacaoEndereco.cs",
+              "RelativeDocumentMoniker": "Models\\CorporacaoEndereco.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\CorporacaoEndereco.cs",
+              "RelativeToolTip": "Models\\CorporacaoEndereco.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T22:42:19.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EgressoEndereco.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\EgressoEndereco.cs",
+              "RelativeDocumentMoniker": "Models\\EgressoEndereco.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\EgressoEndereco.cs",
+              "RelativeToolTip": "Models\\EgressoEndereco.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T22:34:05.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VagaEndereco.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\VagaEndereco.cs",
+              "RelativeDocumentMoniker": "Models\\VagaEndereco.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\VagaEndereco.cs",
+              "RelativeToolTip": "Models\\VagaEndereco.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T22:26:09.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Vaga.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Vaga.cs",
+              "RelativeDocumentMoniker": "Models\\Vaga.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Vaga.cs",
+              "RelativeToolTip": "Models\\Vaga.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T22:17:15.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Candidatura.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Candidatura.cs",
+              "RelativeDocumentMoniker": "Models\\Candidatura.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Candidatura.cs",
+              "RelativeToolTip": "Models\\Candidatura.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T22:10:52.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CursoEndereco.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\CursoEndereco.cs",
+              "RelativeDocumentMoniker": "Models\\CursoEndereco.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\CursoEndereco.cs",
+              "RelativeToolTip": "Models\\CursoEndereco.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:20:46.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CorporacaoController.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Controllers\\CorporacaoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CorporacaoController.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Controllers\\CorporacaoController.cs",
+              "RelativeToolTip": "Controllers\\CorporacaoController.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAQwA0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:59:57.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EgressoController.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Controllers\\EgressoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EgressoController.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Controllers\\EgressoController.cs",
+              "RelativeToolTip": "Controllers\\EgressoController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:45:21.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TipoCorporacao.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Enums\\TipoCorporacao.cs",
+              "RelativeDocumentMoniker": "Models\\Enums\\TipoCorporacao.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Enums\\TipoCorporacao.cs",
+              "RelativeToolTip": "Models\\Enums\\TipoCorporacao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:36:41.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Curso.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Curso.cs",
+              "RelativeDocumentMoniker": "Models\\Curso.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Curso.cs",
+              "RelativeToolTip": "Models\\Curso.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAxwAcAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:19:10.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Corporacao.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Corporacao.cs",
+              "RelativeDocumentMoniker": "Models\\Corporacao.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Corporacao.cs",
+              "RelativeToolTip": "Models\\Corporacao.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAowA0AAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:17:08.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Publicacao.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Publicacao.cs",
+              "RelativeDocumentMoniker": "Models\\Publicacao.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Publicacao.cs",
+              "RelativeToolTip": "Models\\Publicacao.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:14:03.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Comentario.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Comentario.cs",
+              "RelativeDocumentMoniker": "Models\\Comentario.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Comentario.cs",
+              "RelativeToolTip": "Models\\Comentario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:09:34.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Egresso.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Egresso.cs",
+              "RelativeDocumentMoniker": "Models\\Egresso.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Egresso.cs",
+              "RelativeToolTip": "Models\\Egresso.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T19:58:34.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TipoPessoaEgresso.cs",
+              "DocumentMoniker": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Enums\\TipoPessoaEgresso.cs",
+              "RelativeDocumentMoniker": "Models\\Enums\\TipoPessoaEgresso.cs",
+              "ToolTip": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\Models\\Enums\\TipoPessoaEgresso.cs",
+              "RelativeToolTip": "Models\\Enums\\TipoPessoaEgresso.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T20:36:43.612Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

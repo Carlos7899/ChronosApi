@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ps7EEdgVpYo=",
+  "dgSpecHash": "WBVS1toVXrk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cesar\\Desktop\\Projetos\\ChronosApi\\ChronosApi.csproj",
+  "projectFilePath": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cesar\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Cesar\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cesar\\Desktop\\Projetos\\ChronosApi\\ChronosApi.csproj": {}
+    "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cesar\\Desktop\\Projetos\\ChronosApi\\ChronosApi.csproj": {
+    "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cesar\\Desktop\\Projetos\\ChronosApi\\ChronosApi.csproj",
+        "projectUniqueName": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj",
         "projectName": "ChronosApi",
-        "projectPath": "C:\\Users\\Cesar\\Desktop\\Projetos\\ChronosApi\\ChronosApi.csproj",
+        "projectPath": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj",
         "packagesPath": "C:\\Users\\Cesar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cesar\\Desktop\\Projetos\\ChronosApi\\obj\\",
+        "outputPath": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Cesar\\AppData\\Roaming\\NuGet\\NuGet.Config",

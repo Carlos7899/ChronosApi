@@ -1,6 +1,5 @@
 ﻿using ChronosApi.Models.Enums;
 
-
 namespace ChronosApi.Models
 {
     public class Egresso
