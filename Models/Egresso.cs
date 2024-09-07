@@ -1,9 +1,11 @@
 ﻿using ChronosApi.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace ChronosApi.Models
 {
     public class Egresso
     {
+        [Key]
         public int idEgresso { get; set; }
         public TipoPessoaEgresso tipoPessoaEgresso { get; set; }
         public string nomeEgresso { get; set; } = string.Empty;
