@@ -102,8 +102,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T20:39:07.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-07T20:39:07.282Z"
             },
             {
               "$type": "Document",
@@ -128,8 +127,7 @@
               "RelativeToolTip": "Data\\DataContext.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAswBYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T20:25:34.847Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-07T20:25:34.847Z"
             },
             {
               "$type": "Document",
@@ -141,8 +139,7 @@
               "RelativeToolTip": "Models\\Egresso.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T19:58:34.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T19:58:34.413Z"
             },
             {
               "$type": "Document",
@@ -154,8 +151,7 @@
               "RelativeToolTip": "Models\\Corporacao.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:17:08.572Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:17:08.572Z"
             },
             {
               "$type": "Document",
@@ -167,8 +163,7 @@
               "RelativeToolTip": "Models\\Logradouro.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAA3wAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T22:43:39.229Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T22:43:39.229Z"
             },
             {
               "$type": "Document",
@@ -180,8 +175,7 @@
               "RelativeToolTip": "Models\\Vaga.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T22:17:15.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T22:17:15.064Z"
             },
             {
               "$type": "Document",
@@ -193,8 +187,7 @@
               "RelativeToolTip": "Controllers\\EgressoController.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAgAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:45:21.293Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:45:21.293Z"
             },
             {
               "$type": "Document",
@@ -206,8 +199,7 @@
               "RelativeToolTip": "Controllers\\CorporacaoController.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:59:57.516Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:59:57.516Z"
             },
             {
               "$type": "Document",
@@ -219,8 +211,7 @@
               "RelativeToolTip": "Models\\VagaEndereco.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABLAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T22:26:09.28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T22:26:09.28Z"
             },
             {
               "$type": "Document",
@@ -232,8 +223,7 @@
               "RelativeToolTip": "Models\\EgressoEndereco.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T22:34:05.956Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T22:34:05.956Z"
             },
             {
               "$type": "Document",
@@ -245,8 +235,7 @@
               "RelativeToolTip": "Models\\CorporacaoEndereco.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T22:42:19.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T22:42:19.214Z"
             },
             {
               "$type": "Document",
@@ -258,8 +247,7 @@
               "RelativeToolTip": "Models\\Candidatura.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T22:10:52.771Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T22:10:52.771Z"
             },
             {
               "$type": "Document",
@@ -271,8 +259,7 @@
               "RelativeToolTip": "Models\\CursoEndereco.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:20:46.583Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:20:46.583Z"
             },
             {
               "$type": "Document",
@@ -284,8 +271,7 @@
               "RelativeToolTip": "Models\\Enums\\TipoCorporacao.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:36:41.33Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:36:41.33Z"
             },
             {
               "$type": "Document",
@@ -297,8 +283,7 @@
               "RelativeToolTip": "Models\\Curso.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAAxwAcAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:19:10.499Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:19:10.499Z"
             },
             {
               "$type": "Document",
@@ -310,8 +295,7 @@
               "RelativeToolTip": "Models\\Publicacao.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:14:03.344Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:14:03.344Z"
             },
             {
               "$type": "Document",
@@ -323,8 +307,7 @@
               "RelativeToolTip": "Models\\Comentario.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:09:34.922Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:09:34.922Z"
             },
             {
               "$type": "Document",
@@ -336,8 +319,7 @@
               "RelativeToolTip": "Models\\Enums\\TipoPessoaEgresso.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T20:36:43.612Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T20:36:43.612Z"
             }
           ]
         }
