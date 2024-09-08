@@ -1,7 +1,7 @@
-﻿using ChronosApi.Models;
-using ChronosApi.Models.Enums;
+﻿using ChronosApi.Data;
+using ChronosApi.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Controllers
 {
@@ -9,62 +9,56 @@ namespace ChronosApi.Controllers
     [Route("api/[Controller]")]
     public class EgressoController : ControllerBase
     {
+        private readonly DataContext _context;
 
-        private static List<Egresso> egresso = new List<Egresso>()
+        public EgressoController(DataContext context)
         {
-
-            new Egresso() { idEgresso = 1, nomeEgresso = "Pedro", email = "ops.gmail", numeroEgresso = "8922", cpfEgresso = "222", tipoPessoaEgresso = TipoPessoaEgresso.fisico}
-
-        };
-
-    
-
-        #region Get 
-
-       
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            return Ok(egresso);
+            _context = context;
         }
 
-      
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        #region GET
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
-            var item = egresso.FirstOrDefault(e => e.idEgresso == id);
-            if (item == null)
+            var egressos = await _context.TB_EGRESSO.ToListAsync();
+            return Ok(egressos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var egresso = await _context.TB_EGRESSO.FindAsync(id);
+            if (egresso == null)
                 return NotFound(new { message = "Egresso não encontrado" });
 
-            return Ok(item);
+            return Ok(egresso);
         }
 
         #endregion
 
-        #region Create 
+        #region CREATE
 
-       
         [HttpPost]
-        public IActionResult Create([FromBody] Egresso newEgresso)
+        public async Task<IActionResult> Create([FromBody] Egresso newEgresso)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            newEgresso.idEgresso = egresso.Count + 1;
-            egresso.Add(newEgresso);
+            _context.TB_EGRESSO.Add(newEgresso);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetById), new { id = newEgresso.idEgresso }, newEgresso);
         }
 
         #endregion
 
-        #region Update 
+        #region UPDATE
 
-       
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Egresso updatedEgresso)
+        public async Task<IActionResult> Update(int id, [FromBody] Egresso updatedEgresso)
         {
-            var existingEgresso = egresso.FirstOrDefault(e => e.idEgresso == id);
+            var existingEgresso = await _context.TB_EGRESSO.FindAsync(id);
             if (existingEgresso == null)
                 return NotFound(new { message = "Egresso não encontrado" });
 
@@ -74,22 +68,25 @@ namespace ChronosApi.Controllers
             existingEgresso.cpfEgresso = updatedEgresso.cpfEgresso;
             existingEgresso.tipoPessoaEgresso = updatedEgresso.tipoPessoaEgresso;
 
+            _context.TB_EGRESSO.Update(existingEgresso);
+            await _context.SaveChangesAsync();
+
             return NoContent();
         }
 
         #endregion
 
-        #region Delete 
+        #region DELETE
 
-        
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var existingEgresso = egresso.FirstOrDefault(e => e.idEgresso == id);
+            var existingEgresso = await _context.TB_EGRESSO.FindAsync(id);
             if (existingEgresso == null)
                 return NotFound(new { message = "Egresso não encontrado" });
 
-            egresso.Remove(existingEgresso);
+            _context.TB_EGRESSO.Remove(existingEgresso);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 

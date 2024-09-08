@@ -12,6 +12,5 @@ namespace ChronosApi.Models
         public string email { get; set; } = string.Empty;
         public string numeroEgresso { get; set; } = string.Empty;
         public string cpfEgresso { get; set; } = string.Empty;
-
     }
 }

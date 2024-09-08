@@ -1,7 +1,10 @@
-﻿namespace ChronosApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ChronosApi.Models.Enderecos
 {
     public class Logradouro
     {
+        [Key]
         public int idLogradouro { get; set; }
         public string cepLogradouro { get; set; } = string.Empty;
         public int tipoLogradouro { get; set; } //ENUM????????????????????????
