@@ -6083,11 +6083,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Samsung\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\Cesar\\.nuget\\packages\\": {}
+>>>>>>> 43e59729e8d660191f27d10b86a60e2163081f39
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\TCC\\ChronosApi\\ChronosApi.csproj",
       "projectName": "ChronosApi",
       "projectPath": "C:\\TCC\\ChronosApi\\ChronosApi.csproj",
@@ -6096,6 +6101,17 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Samsung\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\Cesar\\Desktop\\atividade\\ChronosApi\\ChronosApi.csproj",
+      "projectName": "ChronosApi",
+      "projectPath": "C:\\Users\\Cesar\\Desktop\\atividade\\ChronosApi\\ChronosApi.csproj",
+      "packagesPath": "C:\\Users\\Cesar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Cesar\\Desktop\\atividade\\ChronosApi\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Cesar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 43e59729e8d660191f27d10b86a60e2163081f39
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -6157,6 +6173,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+<<<<<<< HEAD
             "version": "[8.0.2, 8.0.2]"
           },
           {
@@ -6166,6 +6183,17 @@
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
             "version": "[8.0.2, 8.0.2]"
+=======
+            "version": "[8.0.8, 8.0.8]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "version": "[8.0.8, 8.0.8]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+            "version": "[8.0.8, 8.0.8]"
+>>>>>>> 43e59729e8d660191f27d10b86a60e2163081f39
           }
         ],
         "frameworkReferences": {
@@ -6176,7 +6204,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 43e59729e8d660191f27d10b86a60e2163081f39
       }
     },
     "runtimes": {
