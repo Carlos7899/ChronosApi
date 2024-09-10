@@ -17,7 +17,6 @@ namespace ChronosApi.Controllers
         }
 
         #region GET
-
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -34,11 +33,9 @@ namespace ChronosApi.Controllers
 
             return Ok(egresso);
         }
-
         #endregion
 
         #region CREATE
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Egresso newEgresso)
         {
@@ -50,11 +47,9 @@ namespace ChronosApi.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = newEgresso.idEgresso }, newEgresso);
         }
-
         #endregion
 
         #region UPDATE
-
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] Egresso updatedEgresso)
         {
@@ -73,11 +68,9 @@ namespace ChronosApi.Controllers
 
             return NoContent();
         }
-
         #endregion
 
         #region DELETE
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -89,7 +82,6 @@ namespace ChronosApi.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
-
         #endregion
     }
 }

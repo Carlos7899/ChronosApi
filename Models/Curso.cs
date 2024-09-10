@@ -8,11 +8,12 @@ namespace ChronosApi.Models
         [Key]
         public int idCurso { get; set; }
 
-        [ForeignKey("idCorporacaoEndereco")]
-        public int idCorporacaoEndereco { get; set; }
-
         [ForeignKey("idCorporacao")]
         public int idCorporacao { get; set; }
+
+        [ForeignKey("idCorporacaoEndereco")]
+        public int idCorporacaoEndereco { get; set; }
+        public string nomeCurso { get; set; } = string.Empty;
         public string descricaoCurso { get; set; } = string.Empty;
 
     }
