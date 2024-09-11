@@ -1,43 +1,32 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\TCC\\ChronosApi\\ChronosApi.csproj": {}
+    "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj": {}
   },
   "projects": {
-    "C:\\TCC\\ChronosApi\\ChronosApi.csproj": {
+    "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\TCC\\ChronosApi\\ChronosApi.csproj",
+        "projectUniqueName": "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj",
         "projectName": "ChronosApi",
-        "projectPath": "C:\\TCC\\ChronosApi\\ChronosApi.csproj",
-        "packagesPath": "C:\\Users\\Samsung\\.nuget\\packages\\",
-        "outputPath": "C:\\TCC\\ChronosApi\\obj\\",
+        "projectPath": "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj",
+        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pichau\\ChronosApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Samsung\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-    "C:\\Users\\Cesar\\Desktop\\atividade\\ChronosApi\\ChronosApi.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Cesar\\Desktop\\atividade\\ChronosApi\\ChronosApi.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Cesar\\Desktop\\atividade\\ChronosApi\\ChronosApi.csproj",
-        "projectName": "ChronosApi",
-        "projectPath": "C:\\Users\\Cesar\\Desktop\\atividade\\ChronosApi\\ChronosApi.csproj",
-        "packagesPath": "C:\\Users\\Cesar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cesar\\Desktop\\atividade\\ChronosApi\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Cesar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> 43e59729e8d660191f27d10b86a60e2163081f39
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -94,27 +83,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-<<<<<<< HEAD
-              "version": "[8.0.2, 8.0.2]"
+              "version": "[8.0.5, 8.0.5]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.2, 8.0.2]"
+              "version": "[8.0.5, 8.0.5]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.2, 8.0.2]"
-=======
-              "version": "[8.0.8, 8.0.8]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.8, 8.0.8]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.8, 8.0.8]"
->>>>>>> 43e59729e8d660191f27d10b86a60e2163081f39
+              "version": "[8.0.5, 8.0.5]"
             }
           ],
           "frameworkReferences": {
@@ -125,11 +102,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
->>>>>>> 43e59729e8d660191f27d10b86a60e2163081f39
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

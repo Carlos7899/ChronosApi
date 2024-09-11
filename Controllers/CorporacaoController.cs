@@ -1,5 +1,6 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models;
+using ChronosApi.Models.Enderecos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,7 @@ namespace ChronosApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var corporacoes = await _context.TB_CORPORACAO.ToListAsync();
+            var corporacoes = await _context.TB_CORPORACAO.Include(c => c.corporacaoEndereco).ToListAsync();
             return Ok(corporacoes);
         }
 
