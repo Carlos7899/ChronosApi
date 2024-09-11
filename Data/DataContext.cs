@@ -10,7 +10,7 @@ namespace ChronosApi.Data
         public DataContext(DbContextOptions<DataContext> options) : base (options) 
         {}
 
-        #region DbSet's
+        #region DbSet's 12
         public DbSet<Egresso> TB_EGRESSO { get; set; }
         public DbSet<Corporacao> TB_CORPORACAO { get; set; }
         public DbSet<Candidatura> TB_CANDIDATURA { get; set; }
@@ -27,40 +27,82 @@ namespace ChronosApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            #region Egresso
             modelBuilder.Entity<Egresso>().HasData
             (
                 new Egresso() { idEgresso = 1, nomeEgresso = "Pedro", email = "ops.gmail", numeroEgresso = "8922", cpfEgresso = "222", tipoPessoaEgresso = TipoPessoaEgresso.fisico }
             );
+            #endregion
 
+            #region Corporacao
             modelBuilder.Entity<Corporacao>().HasData
             (
                 new Corporacao() { idCorporacao = 1, idCorporacaoEndereco = 1, tipoCorporacao = TipoCorporacao.Empresa, nomeCorporacao = "Corporação Exemplo", emailCorporacao = "contato@exemplo.com", numeroCorporacao = "12345678", descricaoCorporacao = "Exemplo de corporação", cnpjCorporacao = "12.345.678/0001-99" }
             );
+            #endregion
 
+            #region Candidatura
             modelBuilder.Entity<Candidatura>().HasData
             (
                 new Candidatura() { idCandidatura = 1, idEgresso = 1, idVaga = 1, dataIncricao = DateTime.Now }
             );
+            #endregion
 
+            #region Comentario
             modelBuilder.Entity<Comentario>().HasData
             (
                 new Comentario() { idComentario = 1, idEgresso = 1, idPublicacao = 1, comentarioPublicacao = "Minha empresa esta contratando PCD para trabalharem"}
             );
+            #endregion
 
+            #region Curso
             modelBuilder.Entity<Curso>().HasData
             (
                 new Curso() { idCurso = 1, idCorporacao = 1, idCorporacaoEndereco = 1, nomeCurso = "Desenvolvimento de Sistemas", descricaoCurso = "Curso especializado no aprendizado de hardwares e códigos"}
             );
+            #endregion
 
+            #region Publicacao
             modelBuilder.Entity<Publicacao>().HasData
             (
                 new Publicacao() { idPublicacao = 1, idCorporacao = 1, títuloPublicacao = "Teste top", conteudoPublicacao = "Conteúdo top", avaliacaoPublicacao = 1}
             );
+            #endregion
 
+            #region Vaga
             modelBuilder.Entity<Vaga>().HasData
             (
                 new Vaga() { idVaga = 1, idCorporacao = 1, idVagaEndereco = 1, nomeVaga = "Desenvolvedor Júnior", tipoVaga = 1, descricaoVaga = "Vaga júnior desenvolvedor"}
             );
+            #endregion
+
+            #region CorporacaoEndereco
+            modelBuilder.Entity<CorporacaoEndereco>().HasData
+            (
+               new CorporacaoEndereco() { idCorporacaoEndereco = 1, idLogradouro = 1, complementoCorporacaoEndereco = "LogoAli", numeroCorporacaoEndereco = "0123"}
+            );
+            #endregion
+
+            #region CursoEndereco
+            modelBuilder.Entity<CursoEndereco>().HasData
+            (
+                new CursoEndereco() { idCursoEndereco = 1 , idLogradouro = 2, complementoCursoEndereco = "Opa", numeroCursoEndereco = "221"}
+            );
+            #endregion
+
+            #region VagaEndereco
+            modelBuilder.Entity<VagaEndereco>().HasData
+            (
+                new VagaEndereco() { idVagaEndereco = 1, idLogradouro = 3, complementoVagaEndereco = "epa", numeroVagaEndereco = "899" }
+            );
+            #endregion
+
+            #region EgressoEndereco
+            modelBuilder.Entity<EgressoEndereco>().HasData
+            (
+                new EgressoEndereco() { idEgressoEndereco = 1, idLogradouro = 4, complementoEgressoEndereco = "uiu", numeroEgressoEndereco = "787"}
+            );
+            #endregion
         }
     }
 }
