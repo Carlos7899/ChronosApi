@@ -13,5 +13,7 @@ namespace ChronosApi.Models.Enderecos
         public string numeroCursoEndereco { get; set; } = string.Empty;
         public string complementoCursoEndereco { get; set; } = string.Empty;
 
+        [NotMapped]
+        public Logradouro logradouro { get; set; }
     }
 }

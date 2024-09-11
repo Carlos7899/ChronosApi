@@ -21,7 +21,7 @@ namespace ChronosApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var corporacoes = await _context.TB_CORPORACAO.Include(c => c.corporacaoEndereco).ToListAsync();
+            var corporacoes = await _context.TB_CORPORACAO.ToListAsync();
             return Ok(corporacoes);
         }
 

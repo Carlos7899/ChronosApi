@@ -1,4 +1,5 @@
 ﻿using ChronosApi.Models;
+using ChronosApi.Models.Enderecos;
 using ChronosApi.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,9 +8,7 @@ namespace ChronosApi.Data
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base (options) 
-        { 
-        
-        }
+        {}
 
         #region DbSet's
         public DbSet<Egresso> TB_EGRESSO { get; set; }
@@ -19,6 +18,11 @@ namespace ChronosApi.Data
         public DbSet<Curso> TB_CURSO { get; set; }
         public DbSet<Publicacao> TB_PUBLICACAO { get; set; }
         public DbSet<Vaga> TB_VAGA { get; set; }
+        public DbSet<Logradouro> TB_LOGRADOURO { get; set; }
+        public DbSet<CorporacaoEndereco> TB_CORPORACAO_ENDERECO { get; set; }
+        public DbSet<CursoEndereco> TB_CURSO_ENDERECO { get; set; }
+        public DbSet<EgressoEndereco> TB_EGRESSO_ENDERECO { get; set; }
+        public DbSet<VagaEndereco> TB_VAGA_ENDERECO { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

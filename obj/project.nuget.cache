@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nMvPwHd4sMk=",
+  "dgSpecHash": "g4PxmNQFgFA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj",
+  "projectFilePath": "C:\\Users\\Pichau\\source\\ChronosApi\\ChronosApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pichau\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Pichau\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
@@ -92,12 +92,5 @@
     "C:\\Users\\Pichau\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.5\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.5.nupkg.sha512",
     "C:\\Users\\Pichau\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.5\\microsoft.netcore.app.runtime.win-x64.8.0.5.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Pichau\\ChronosApi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
