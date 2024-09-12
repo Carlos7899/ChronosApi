@@ -30,77 +30,195 @@ namespace ChronosApi.Data
             #region Egresso
             modelBuilder.Entity<Egresso>().HasData
             (
-                new Egresso() { idEgresso = 1, nomeEgresso = "Pedro", email = "ops.gmail", numeroEgresso = "8922", cpfEgresso = "222", tipoPessoaEgresso = TipoPessoaEgresso.fisico }
+                new Egresso() 
+                { 
+                    idEgresso = 1,
+                    nomeEgresso = "Pedro",
+                    email = "ops.gmail",
+                    numeroEgresso = "8922",
+                    cpfEgresso = "222",
+                    tipoPessoaEgresso = TipoPessoaEgresso.fisico 
+                }
             );
             #endregion
 
             #region Corporacao
             modelBuilder.Entity<Corporacao>().HasData
             (
-                new Corporacao() { idCorporacao = 1, idCorporacaoEndereco = 1, tipoCorporacao = TipoCorporacao.Empresa, nomeCorporacao = "Corporação Exemplo", emailCorporacao = "contato@exemplo.com", numeroCorporacao = "12345678", descricaoCorporacao = "Exemplo de corporação", cnpjCorporacao = "12.345.678/0001-99" }
+                new Corporacao() 
+                { 
+                    idCorporacao = 1, 
+                    idCorporacaoEndereco = 1, 
+                    tipoCorporacao = TipoCorporacao.Empresa, 
+                    nomeCorporacao = "Corporação Exemplo", 
+                    emailCorporacao = "contato@exemplo.com", 
+                    numeroCorporacao = "12345678", 
+                    descricaoCorporacao = "Exemplo de corporação", 
+                    cnpjCorporacao = "12.345.678/0001-99" 
+                }
             );
             #endregion
 
             #region Candidatura
             modelBuilder.Entity<Candidatura>().HasData
             (
-                new Candidatura() { idCandidatura = 1, idEgresso = 1, idVaga = 1, dataIncricao = DateTime.Now }
+                new Candidatura() 
+                {
+                    idCandidatura = 1, 
+                    idEgresso = 1, 
+                    idVaga = 1, 
+                    dataIncricao = DateTime.Now 
+                }
             );
             #endregion
 
             #region Comentario
             modelBuilder.Entity<Comentario>().HasData
             (
-                new Comentario() { idComentario = 1, idEgresso = 1, idPublicacao = 1, comentarioPublicacao = "Minha empresa esta contratando PCD para trabalharem"}
+                new Comentario() { 
+                    idComentario = 1, 
+                    idEgresso = 1, 
+                    idPublicacao = 1, 
+                    comentarioPublicacao = "Minha empresa esta contratando PCD para trabalharem"
+                }
             );
             #endregion
 
             #region Curso
             modelBuilder.Entity<Curso>().HasData
             (
-                new Curso() { idCurso = 1, idCorporacao = 1, idCorporacaoEndereco = 1, nomeCurso = "Desenvolvimento de Sistemas", descricaoCurso = "Curso especializado no aprendizado de hardwares e códigos"}
+                new Curso() 
+                { 
+                    idCurso = 1, 
+                    idCorporacao = 1, 
+                    idCorporacaoEndereco = 1, 
+                    nomeCurso = "Desenvolvimento de Sistemas", 
+                    descricaoCurso = "Curso especializado no aprendizado de hardwares e códigos"
+                }
             );
             #endregion
 
             #region Publicacao
             modelBuilder.Entity<Publicacao>().HasData
             (
-                new Publicacao() { idPublicacao = 1, idCorporacao = 1, títuloPublicacao = "Teste top", conteudoPublicacao = "Conteúdo top", avaliacaoPublicacao = 1}
+                new Publicacao() 
+                {
+                    idPublicacao = 1, 
+                    idCorporacao = 1, 
+                    títuloPublicacao = "Teste top", 
+                    conteudoPublicacao = "Conteúdo top", 
+                    avaliacaoPublicacao = 1
+                }
             );
             #endregion
 
             #region Vaga
             modelBuilder.Entity<Vaga>().HasData
             (
-                new Vaga() { idVaga = 1, idCorporacao = 1, idVagaEndereco = 1, nomeVaga = "Desenvolvedor Júnior", tipoVaga = 1, descricaoVaga = "Vaga júnior desenvolvedor"}
+                new Vaga() 
+                { 
+                    idVaga = 1, 
+                    idCorporacao = 1, 
+                    idVagaEndereco = 1,
+                    nomeVaga = "Desenvolvedor Júnior", 
+                    tipoVaga = 1, 
+                    descricaoVaga = "Vaga júnior desenvolvedor"
+                }
+            );
+            #endregion
+
+            #region Logradouro
+            modelBuilder.Entity<Logradouro>().HasData
+            (
+               new Logradouro()
+               {
+                   idLogradouro = 1,
+                   bairroLogradouro = "Pimentas",
+                   cepLogradouro = "332432",
+                   cidadeLogradouro = "Guarulhos",
+                   tipoLogradouro = 1,
+                   ufLogradouro = "34"
+               },
+               new Logradouro()
+               {
+                   idLogradouro = 2,
+                   bairroLogradouro = "Vila Maria",
+                   cepLogradouro = "33244232",
+                   cidadeLogradouro = "Sao Paulo",
+                   tipoLogradouro = 2,
+                   ufLogradouro = "44"
+               },
+               new Logradouro()
+               {
+                   idLogradouro = 3,
+                   bairroLogradouro = "Pimentas",
+                   cepLogradouro = "332432",
+                   cidadeLogradouro = "Guarulhos",
+                   tipoLogradouro = 2,
+                   ufLogradouro = "34"
+               },
+               new Logradouro()
+               {
+                   idLogradouro = 4,
+                   bairroLogradouro = "Pimentas",
+                   cepLogradouro = "332432",
+                   cidadeLogradouro = "Guarulhos",
+                   tipoLogradouro = 1,
+                   ufLogradouro = "364"
+               }
+
             );
             #endregion
 
             #region CorporacaoEndereco
             modelBuilder.Entity<CorporacaoEndereco>().HasData
             (
-               new CorporacaoEndereco() { idCorporacaoEndereco = 1, idLogradouro = 1, complementoCorporacaoEndereco = "LogoAli", numeroCorporacaoEndereco = "0123"}
+               new CorporacaoEndereco() 
+               { 
+                   idCorporacaoEndereco = 1,
+                   idLogradouro = 1,
+                   complementoCorporacaoEndereco = "LogoAli",
+                   numeroCorporacaoEndereco = "0123"
+               }
             );
             #endregion
 
             #region CursoEndereco
             modelBuilder.Entity<CursoEndereco>().HasData
             (
-                new CursoEndereco() { idCursoEndereco = 1 , idLogradouro = 2, complementoCursoEndereco = "Opa", numeroCursoEndereco = "221"}
+                new CursoEndereco() 
+                {
+                    idCursoEndereco = 1 , 
+                    idLogradouro = 2, 
+                    complementoCursoEndereco = "Opa", 
+                    numeroCursoEndereco = "221"
+                }
             );
             #endregion
 
             #region VagaEndereco
             modelBuilder.Entity<VagaEndereco>().HasData
             (
-                new VagaEndereco() { idVagaEndereco = 1, idLogradouro = 3, complementoVagaEndereco = "epa", numeroVagaEndereco = "899" }
+                new VagaEndereco() 
+                {
+                    idVagaEndereco = 1, 
+                    idLogradouro = 3, 
+                    complementoVagaEndereco = "epa", 
+                    numeroVagaEndereco = "899" 
+                }
             );
             #endregion
 
             #region EgressoEndereco
             modelBuilder.Entity<EgressoEndereco>().HasData
             (
-                new EgressoEndereco() { idEgressoEndereco = 1, idLogradouro = 4, complementoEgressoEndereco = "uiu", numeroEgressoEndereco = "787"}
+                new EgressoEndereco() 
+                {
+                    idEgressoEndereco = 1, 
+                    idLogradouro = 4, 
+                    complementoEgressoEndereco = "uiu",
+                    numeroEgressoEndereco = "787"
+                }
             );
             #endregion
         }
