@@ -105,7 +105,7 @@ namespace ChronosApi.Data
                 {
                     idPublicacao = 1, 
                     idCorporacao = 1, 
-                    títuloPublicacao = "Teste top", 
+                    títuloPublicacao = "Publicacao", 
                     conteudoPublicacao = "Conteúdo top", 
                     avaliacaoPublicacao = 1
                 }
@@ -136,7 +136,7 @@ namespace ChronosApi.Data
                    bairroLogradouro = "Pimentas",
                    cepLogradouro = "332432",
                    cidadeLogradouro = "Guarulhos",
-                   tipoLogradouro = 1,
+                   tipoLogradouro = TipoLogradouro.Publico,
                    ufLogradouro = "34"
                },
                new Logradouro()
@@ -145,7 +145,7 @@ namespace ChronosApi.Data
                    bairroLogradouro = "Vila Maria",
                    cepLogradouro = "33244232",
                    cidadeLogradouro = "Sao Paulo",
-                   tipoLogradouro = 2,
+                   tipoLogradouro = TipoLogradouro.Publico,
                    ufLogradouro = "44"
                },
                new Logradouro()
@@ -154,7 +154,7 @@ namespace ChronosApi.Data
                    bairroLogradouro = "Pimentas",
                    cepLogradouro = "332432",
                    cidadeLogradouro = "Guarulhos",
-                   tipoLogradouro = 2,
+                   tipoLogradouro = TipoLogradouro.Publico,
                    ufLogradouro = "34"
                },
                new Logradouro()
@@ -163,7 +163,7 @@ namespace ChronosApi.Data
                    bairroLogradouro = "Pimentas",
                    cepLogradouro = "332432",
                    cidadeLogradouro = "Guarulhos",
-                   tipoLogradouro = 1,
+                   tipoLogradouro = TipoLogradouro.Publico,
                    ufLogradouro = "364"
                }
 
@@ -177,8 +177,8 @@ namespace ChronosApi.Data
                { 
                    idCorporacaoEndereco = 1,
                    idLogradouro = 1,
-                   complementoCorporacaoEndereco = "LogoAli",
-                   numeroCorporacaoEndereco = "0123"
+                   complementoCorporacaoEndereco = "",
+                   numeroCorporacaoEndereco = "443"
                }
             );
             #endregion
@@ -190,7 +190,7 @@ namespace ChronosApi.Data
                 {
                     idCursoEndereco = 1 , 
                     idLogradouro = 2, 
-                    complementoCursoEndereco = "Opa", 
+                    complementoCursoEndereco = "", 
                     numeroCursoEndereco = "221"
                 }
             );
@@ -203,7 +203,7 @@ namespace ChronosApi.Data
                 {
                     idVagaEndereco = 1, 
                     idLogradouro = 3, 
-                    complementoVagaEndereco = "epa", 
+                    complementoVagaEndereco = "", 
                     numeroVagaEndereco = "899" 
                 }
             );
@@ -216,7 +216,7 @@ namespace ChronosApi.Data
                 {
                     idEgressoEndereco = 1, 
                     idLogradouro = 4, 
-                    complementoEgressoEndereco = "uiu",
+                    complementoEgressoEndereco = "",
                     numeroEgressoEndereco = "787"
                 }
             );

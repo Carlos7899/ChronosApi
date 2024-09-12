@@ -17,18 +17,26 @@ namespace ChronosApi.Controllers
             _context = context;
         }
 
-        #region GET
+       #region GET
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var corporacoes = await _context.TB_CORPORACAO.ToListAsync();
+            var corporacoes = await _context.TB_CORPORACAO
+                .Include(c => c.corporacaoEndereco)
+                .ThenInclude(e => e.logradouro)
+                .ToListAsync();
+
             return Ok(corporacoes);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var corporacao = await _context.TB_CORPORACAO.FindAsync(id);
+            var corporacao = await _context.TB_CORPORACAO
+                .Include(c => c.corporacaoEndereco)
+                .ThenInclude(e => e.logradouro)
+                .FirstOrDefaultAsync(c => c.idCorporacao == id);
+
             if (corporacao == null)
                 return NotFound(new { message = "Corporação não encontrada" });
 
@@ -41,7 +49,23 @@ namespace ChronosApi.Controllers
         public async Task<IActionResult> Create([FromBody] Corporacao newCorporacao)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);  
+                return BadRequest(ModelState);
+
+            // Adicionar Logradouro, se existir
+            if (newCorporacao.corporacaoEndereco?.logradouro != null)
+            {
+                _context.TB_LOGRADOURO.Add(newCorporacao.corporacaoEndereco.logradouro);
+                await _context.SaveChangesAsync();
+                newCorporacao.corporacaoEndereco.idLogradouro = newCorporacao.corporacaoEndereco.logradouro.idLogradouro;
+            }
+
+            // Adicionar CorporacaoEndereco, se existir
+            if (newCorporacao.corporacaoEndereco != null)
+            {
+                _context.TB_CORPORACAO_ENDERECO.Add(newCorporacao.corporacaoEndereco);
+                await _context.SaveChangesAsync();
+                newCorporacao.idCorporacaoEndereco = newCorporacao.corporacaoEndereco.idCorporacaoEndereco;
+            }
 
             _context.TB_CORPORACAO.Add(newCorporacao);
             await _context.SaveChangesAsync();
@@ -54,19 +78,52 @@ namespace ChronosApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] Corporacao updatedCorporacao)
         {
-            var existingCorporacao = await _context.TB_CORPORACAO.FindAsync(id);
+            var existingCorporacao = await _context.TB_CORPORACAO
+                .Include(c => c.corporacaoEndereco)
+                .ThenInclude(e => e.logradouro)
+                .FirstOrDefaultAsync(c => c.idCorporacao == id);
+
             if (existingCorporacao == null)
                 return NotFound(new { message = "Corporação não encontrada" });
 
-            existingCorporacao.idCorporacaoEndereco = updatedCorporacao.idCorporacaoEndereco;
-            existingCorporacao.tipoCorporacao = updatedCorporacao.tipoCorporacao;
-            existingCorporacao.nomeCorporacao = updatedCorporacao.nomeCorporacao;
-            existingCorporacao.emailCorporacao = updatedCorporacao.emailCorporacao;
-            existingCorporacao.numeroCorporacao = updatedCorporacao.numeroCorporacao;
-            existingCorporacao.descricaoCorporacao = updatedCorporacao.descricaoCorporacao;
-            existingCorporacao.cnpjCorporacao = updatedCorporacao.cnpjCorporacao;
+            // Atualizar logradouro, se existir
+            if (updatedCorporacao.corporacaoEndereco?.logradouro != null)
+            {
+                var existingLogradouro = await _context.TB_LOGRADOURO
+                    .FindAsync(updatedCorporacao.corporacaoEndereco.logradouro.idLogradouro);
 
-            _context.TB_CORPORACAO.Update(existingCorporacao);
+                if (existingLogradouro == null)
+                {
+                    _context.TB_LOGRADOURO.Add(updatedCorporacao.corporacaoEndereco.logradouro);
+                    await _context.SaveChangesAsync();
+                    updatedCorporacao.corporacaoEndereco.idLogradouro = updatedCorporacao.corporacaoEndereco.logradouro.idLogradouro;
+                }
+                else
+                {
+                    _context.Entry(existingLogradouro).CurrentValues.SetValues(updatedCorporacao.corporacaoEndereco.logradouro);
+                }
+            }
+
+            // Atualizar CorporacaoEndereco, se existir
+            if (updatedCorporacao.corporacaoEndereco != null)
+            {
+                var existingEndereco = await _context.TB_CORPORACAO_ENDERECO
+                    .FindAsync(updatedCorporacao.corporacaoEndereco.idCorporacaoEndereco);
+
+                if (existingEndereco == null)
+                {
+                    _context.TB_CORPORACAO_ENDERECO.Add(updatedCorporacao.corporacaoEndereco);
+                    await _context.SaveChangesAsync();
+                    updatedCorporacao.idCorporacaoEndereco = updatedCorporacao.corporacaoEndereco.idCorporacaoEndereco;
+                }
+                else
+                {
+                    _context.Entry(existingEndereco).CurrentValues.SetValues(updatedCorporacao.corporacaoEndereco);
+                }
+            }
+
+            // Atualizar Corporacao
+            _context.Entry(existingCorporacao).CurrentValues.SetValues(updatedCorporacao);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -77,9 +134,33 @@ namespace ChronosApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var existingCorporacao = await _context.TB_CORPORACAO.FindAsync(id);
+            var existingCorporacao = await _context.TB_CORPORACAO
+                .Include(c => c.corporacaoEndereco)
+                .ThenInclude(e => e.logradouro)
+                .FirstOrDefaultAsync(c => c.idCorporacao == id);
+
             if (existingCorporacao == null)
                 return NotFound(new { message = "Corporação não encontrada" });
+
+            // Remover CorporacaoEndereco e Logradouro associados
+            if (existingCorporacao.corporacaoEndereco != null)
+            {
+                var existingEndereco = await _context.TB_CORPORACAO_ENDERECO
+                    .FindAsync(existingCorporacao.corporacaoEndereco.idCorporacaoEndereco);
+
+                if (existingEndereco != null)
+                {
+                    _context.TB_CORPORACAO_ENDERECO.Remove(existingEndereco);
+
+                    var existingLogradouro = await _context.TB_LOGRADOURO
+                        .FindAsync(existingEndereco.idLogradouro);
+
+                    if (existingLogradouro != null)
+                    {
+                        _context.TB_LOGRADOURO.Remove(existingLogradouro);
+                    }
+                }
+            }
 
             _context.TB_CORPORACAO.Remove(existingCorporacao);
             await _context.SaveChangesAsync();
