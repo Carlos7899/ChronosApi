@@ -47,7 +47,7 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idCandidatura = 1,
-                            dataIncricao = new DateTime(2024, 9, 11, 14, 55, 38, 846, DateTimeKind.Local).AddTicks(6425),
+                            dataIncricao = new DateTime(2024, 9, 16, 20, 13, 58, 522, DateTimeKind.Local).AddTicks(7892),
                             idEgresso = 1,
                             idVaga = 1
                         });
@@ -116,6 +116,10 @@ namespace ChronosApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("tipoCorporacao")
                         .HasColumnType("int");
 
@@ -133,6 +137,7 @@ namespace ChronosApi.Migrations
                             idCorporacaoEndereco = 1,
                             nomeCorporacao = "Corporação Exemplo",
                             numeroCorporacao = "12345678",
+                            senha = "123456",
                             tipoCorporacao = 0
                         });
                 });
@@ -198,6 +203,10 @@ namespace ChronosApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("senha")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("tipoPessoaEgresso")
                         .HasColumnType("int");
 
@@ -213,6 +222,7 @@ namespace ChronosApi.Migrations
                             email = "ops.gmail",
                             nomeEgresso = "Pedro",
                             numeroEgresso = "8922",
+                            senha = "123456",
                             tipoPessoaEgresso = 1
                         });
                 });
@@ -239,6 +249,15 @@ namespace ChronosApi.Migrations
                     b.HasKey("idCorporacaoEndereco");
 
                     b.ToTable("TB_CORPORACAO_ENDERECO");
+
+                    b.HasData(
+                        new
+                        {
+                            idCorporacaoEndereco = 1,
+                            complementoCorporacaoEndereco = "",
+                            idLogradouro = 1,
+                            numeroCorporacaoEndereco = "443"
+                        });
                 });
 
             modelBuilder.Entity("ChronosApi.Models.Enderecos.CursoEndereco", b =>
@@ -263,6 +282,15 @@ namespace ChronosApi.Migrations
                     b.HasKey("idCursoEndereco");
 
                     b.ToTable("TB_CURSO_ENDERECO");
+
+                    b.HasData(
+                        new
+                        {
+                            idCursoEndereco = 1,
+                            complementoCursoEndereco = "",
+                            idLogradouro = 2,
+                            numeroCursoEndereco = "221"
+                        });
                 });
 
             modelBuilder.Entity("ChronosApi.Models.Enderecos.EgressoEndereco", b =>
@@ -287,6 +315,15 @@ namespace ChronosApi.Migrations
                     b.HasKey("idEgressoEndereco");
 
                     b.ToTable("TB_EGRESSO_ENDERECO");
+
+                    b.HasData(
+                        new
+                        {
+                            idEgressoEndereco = 1,
+                            complementoEgressoEndereco = "",
+                            idLogradouro = 4,
+                            numeroEgressoEndereco = "787"
+                        });
                 });
 
             modelBuilder.Entity("ChronosApi.Models.Enderecos.Logradouro", b =>
@@ -319,6 +356,44 @@ namespace ChronosApi.Migrations
                     b.HasKey("idLogradouro");
 
                     b.ToTable("TB_LOGRADOURO");
+
+                    b.HasData(
+                        new
+                        {
+                            idLogradouro = 1,
+                            bairroLogradouro = "Pimentas",
+                            cepLogradouro = "332432",
+                            cidadeLogradouro = "Guarulhos",
+                            tipoLogradouro = 0,
+                            ufLogradouro = "34"
+                        },
+                        new
+                        {
+                            idLogradouro = 2,
+                            bairroLogradouro = "Vila Maria",
+                            cepLogradouro = "33244232",
+                            cidadeLogradouro = "Sao Paulo",
+                            tipoLogradouro = 0,
+                            ufLogradouro = "44"
+                        },
+                        new
+                        {
+                            idLogradouro = 3,
+                            bairroLogradouro = "Pimentas",
+                            cepLogradouro = "332432",
+                            cidadeLogradouro = "Guarulhos",
+                            tipoLogradouro = 0,
+                            ufLogradouro = "34"
+                        },
+                        new
+                        {
+                            idLogradouro = 4,
+                            bairroLogradouro = "Pimentas",
+                            cepLogradouro = "332432",
+                            cidadeLogradouro = "Guarulhos",
+                            tipoLogradouro = 0,
+                            ufLogradouro = "364"
+                        });
                 });
 
             modelBuilder.Entity("ChronosApi.Models.Enderecos.VagaEndereco", b =>
@@ -343,6 +418,15 @@ namespace ChronosApi.Migrations
                     b.HasKey("idVagaEndereco");
 
                     b.ToTable("TB_VAGA_ENDERECO");
+
+                    b.HasData(
+                        new
+                        {
+                            idVagaEndereco = 1,
+                            complementoVagaEndereco = "",
+                            idLogradouro = 3,
+                            numeroVagaEndereco = "899"
+                        });
                 });
 
             modelBuilder.Entity("ChronosApi.Models.Publicacao", b =>
@@ -378,7 +462,7 @@ namespace ChronosApi.Migrations
                             avaliacaoPublicacao = 1,
                             conteudoPublicacao = "Conteúdo top",
                             idCorporacao = 1,
-                            títuloPublicacao = "Teste top"
+                            títuloPublicacao = "Publicacao"
                         });
                 });
 

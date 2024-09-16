@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ChronosApi.Migrations
 {
     /// <inheritdoc />
@@ -53,7 +55,8 @@ namespace ChronosApi.Migrations
                     emailCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     numeroCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     descricaoCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cnpjCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    cnpjCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -116,7 +119,8 @@ namespace ChronosApi.Migrations
                     nomeEgresso = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     numeroEgresso = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cpfEgresso = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    cpfEgresso = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,7 +210,7 @@ namespace ChronosApi.Migrations
             migrationBuilder.InsertData(
                 table: "TB_CANDIDATURA",
                 columns: new[] { "idCandidatura", "dataIncricao", "idEgresso", "idVaga" },
-                values: new object[] { 1, new DateTime(2024, 9, 11, 14, 55, 38, 846, DateTimeKind.Local).AddTicks(6425), 1, 1 });
+                values: new object[] { 1, new DateTime(2024, 9, 16, 20, 13, 58, 522, DateTimeKind.Local).AddTicks(7892), 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "TB_COMENTARIOS",
@@ -215,8 +219,13 @@ namespace ChronosApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "TB_CORPORACAO",
-                columns: new[] { "idCorporacao", "cnpjCorporacao", "descricaoCorporacao", "emailCorporacao", "idCorporacaoEndereco", "nomeCorporacao", "numeroCorporacao", "tipoCorporacao" },
-                values: new object[] { 1, "12.345.678/0001-99", "Exemplo de corporação", "contato@exemplo.com", 1, "Corporação Exemplo", "12345678", 0 });
+                columns: new[] { "idCorporacao", "cnpjCorporacao", "descricaoCorporacao", "emailCorporacao", "idCorporacaoEndereco", "nomeCorporacao", "numeroCorporacao", "senha", "tipoCorporacao" },
+                values: new object[] { 1, "12.345.678/0001-99", "Exemplo de corporação", "contato@exemplo.com", 1, "Corporação Exemplo", "12345678", "123456", 0 });
+
+            migrationBuilder.InsertData(
+                table: "TB_CORPORACAO_ENDERECO",
+                columns: new[] { "idCorporacaoEndereco", "complementoCorporacaoEndereco", "idLogradouro", "numeroCorporacaoEndereco" },
+                values: new object[] { 1, "", 1, "443" });
 
             migrationBuilder.InsertData(
                 table: "TB_CURSO",
@@ -224,19 +233,45 @@ namespace ChronosApi.Migrations
                 values: new object[] { 1, "Curso especializado no aprendizado de hardwares e códigos", 1, 1, "Desenvolvimento de Sistemas" });
 
             migrationBuilder.InsertData(
+                table: "TB_CURSO_ENDERECO",
+                columns: new[] { "idCursoEndereco", "complementoCursoEndereco", "idLogradouro", "numeroCursoEndereco" },
+                values: new object[] { 1, "", 2, "221" });
+
+            migrationBuilder.InsertData(
                 table: "TB_EGRESSO",
-                columns: new[] { "idEgresso", "cpfEgresso", "email", "nomeEgresso", "numeroEgresso", "tipoPessoaEgresso" },
-                values: new object[] { 1, "222", "ops.gmail", "Pedro", "8922", 1 });
+                columns: new[] { "idEgresso", "cpfEgresso", "email", "nomeEgresso", "numeroEgresso", "senha", "tipoPessoaEgresso" },
+                values: new object[] { 1, "222", "ops.gmail", "Pedro", "8922", "123456", 1 });
+
+            migrationBuilder.InsertData(
+                table: "TB_EGRESSO_ENDERECO",
+                columns: new[] { "idEgressoEndereco", "complementoEgressoEndereco", "idLogradouro", "numeroEgressoEndereco" },
+                values: new object[] { 1, "", 4, "787" });
+
+            migrationBuilder.InsertData(
+                table: "TB_LOGRADOURO",
+                columns: new[] { "idLogradouro", "bairroLogradouro", "cepLogradouro", "cidadeLogradouro", "tipoLogradouro", "ufLogradouro" },
+                values: new object[,]
+                {
+                    { 1, "Pimentas", "332432", "Guarulhos", 0, "34" },
+                    { 2, "Vila Maria", "33244232", "Sao Paulo", 0, "44" },
+                    { 3, "Pimentas", "332432", "Guarulhos", 0, "34" },
+                    { 4, "Pimentas", "332432", "Guarulhos", 0, "364" }
+                });
 
             migrationBuilder.InsertData(
                 table: "TB_PUBLICACAO",
                 columns: new[] { "idPublicacao", "avaliacaoPublicacao", "conteudoPublicacao", "idCorporacao", "títuloPublicacao" },
-                values: new object[] { 1, 1, "Conteúdo top", 1, "Teste top" });
+                values: new object[] { 1, 1, "Conteúdo top", 1, "Publicacao" });
 
             migrationBuilder.InsertData(
                 table: "TB_VAGA",
                 columns: new[] { "idVaga", "descricaoVaga", "idCorporacao", "idVagaEndereco", "nomeVaga", "tipoVaga" },
                 values: new object[] { 1, "Vaga júnior desenvolvedor", 1, 1, "Desenvolvedor Júnior", 1 });
+
+            migrationBuilder.InsertData(
+                table: "TB_VAGA_ENDERECO",
+                columns: new[] { "idVagaEndereco", "complementoVagaEndereco", "idLogradouro", "numeroVagaEndereco" },
+                values: new object[] { 1, "", 3, "899" });
         }
 
         /// <inheritdoc />
