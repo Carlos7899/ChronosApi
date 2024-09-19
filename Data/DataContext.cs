@@ -37,7 +37,8 @@ namespace ChronosApi.Data
                     email = "ops.gmail",
                     numeroEgresso = "8922",
                     cpfEgresso = "222",
-                    tipoPessoaEgresso = TipoPessoaEgresso.fisico 
+                    tipoPessoaEgresso = TipoPessoaEgresso.fisico ,
+                    senha = "123456"
                 }
             );
             #endregion
@@ -54,7 +55,8 @@ namespace ChronosApi.Data
                     emailCorporacao = "contato@exemplo.com", 
                     numeroCorporacao = "12345678", 
                     descricaoCorporacao = "Exemplo de corporação", 
-                    cnpjCorporacao = "12.345.678/0001-99" 
+                    cnpjCorporacao = "12.345.678/0001-99" ,
+                    senha = "123456"                   
                 }
             );
             #endregion

@@ -18,6 +18,7 @@ namespace ChronosApi.Models
         public string numeroCorporacao { get; set; } = string.Empty;
         public string descricaoCorporacao { get; set; } = string.Empty;
         public string cnpjCorporacao { get; set; } = string.Empty;
+        public string senha { get; set; } = string.Empty;
 
         [NotMapped]
         public CorporacaoEndereco? corporacaoEndereco { get; }
