@@ -821,3 +821,4 @@ D:\DSIII - Dangoto e Carlos\TCC\OPA\ChronosApi\obj\Debug\net8.0\refint\ChronosAp
 D:\DSIII - Dangoto e Carlos\TCC\OPA\ChronosApi\obj\Debug\net8.0\ChronosApi.pdb
 D:\DSIII - Dangoto e Carlos\TCC\OPA\ChronosApi\obj\Debug\net8.0\ChronosApi.genruntimeconfig.cache
 D:\DSIII - Dangoto e Carlos\TCC\OPA\ChronosApi\obj\Debug\net8.0\ref\ChronosApi.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Newtonsoft.Json.dll

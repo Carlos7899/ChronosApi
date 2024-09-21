@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DSIII - Dangoto e Carlos\\TCC\\OPA\\ChronosApi\\ChronosApi.csproj": {}
+    "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj": {}
   },
   "projects": {
-    "D:\\DSIII - Dangoto e Carlos\\TCC\\OPA\\ChronosApi\\ChronosApi.csproj": {
+    "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DSIII - Dangoto e Carlos\\TCC\\OPA\\ChronosApi\\ChronosApi.csproj",
+        "projectUniqueName": "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj",
         "projectName": "ChronosApi",
-        "projectPath": "D:\\DSIII - Dangoto e Carlos\\TCC\\OPA\\ChronosApi\\ChronosApi.csproj",
-        "packagesPath": "C:\\Users\\etechas\\.nuget\\packages\\",
-        "outputPath": "D:\\DSIII - Dangoto e Carlos\\TCC\\OPA\\ChronosApi\\obj\\",
+        "projectPath": "C:\\Users\\Pichau\\ChronosApi\\ChronosApi.csproj",
+        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pichau\\ChronosApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\etechas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[8.0.8, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.7.3, )"
@@ -83,15 +87,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[8.0.7, 8.0.7]"
+              "version": "[8.0.5, 8.0.5]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.7, 8.0.7]"
+              "version": "[8.0.5, 8.0.5]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.7, 8.0.7]"
+              "version": "[8.0.5, 8.0.5]"
             }
           ],
           "frameworkReferences": {
@@ -102,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ChronosApi.Models
 {
-    public class Egresso
+    public class EgressoModel
     {
         [Key]
         public int idEgresso { get; set; }

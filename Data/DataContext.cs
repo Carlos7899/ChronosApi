@@ -11,13 +11,13 @@ namespace ChronosApi.Data
         {}
 
         #region DbSet's 12
-        public DbSet<Egresso> TB_EGRESSO { get; set; }
-        public DbSet<Corporacao> TB_CORPORACAO { get; set; }
-        public DbSet<Candidatura> TB_CANDIDATURA { get; set; }
-        public DbSet<Comentario> TB_COMENTARIOS { get; set; }
-        public DbSet<Curso> TB_CURSO { get; set; }
-        public DbSet<Publicacao> TB_PUBLICACAO { get; set; }
-        public DbSet<Vaga> TB_VAGA { get; set; }
+        public DbSet<EgressoModel> TB_EGRESSO { get; set; }
+        public DbSet<CorporacaoModel> TB_CORPORACAO { get; set; }
+        public DbSet<CandidaturaModel> TB_CANDIDATURA { get; set; }
+        public DbSet<ComentarioModel> TB_COMENTARIOS { get; set; }
+        public DbSet<CursoModel> TB_CURSO { get; set; }
+        public DbSet<PublicacaoModel> TB_PUBLICACAO { get; set; }
+        public DbSet<VagaModel> TB_VAGA { get; set; }
         public DbSet<Logradouro> TB_LOGRADOURO { get; set; }
         public DbSet<CorporacaoEndereco> TB_CORPORACAO_ENDERECO { get; set; }
         public DbSet<CursoEndereco> TB_CURSO_ENDERECO { get; set; }
@@ -28,9 +28,9 @@ namespace ChronosApi.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Egresso
-            modelBuilder.Entity<Egresso>().HasData
+            modelBuilder.Entity<EgressoModel>().HasData
             (
-                new Egresso() 
+                new EgressoModel() 
                 { 
                     idEgresso = 1,
                     nomeEgresso = "Pedro",
@@ -44,9 +44,9 @@ namespace ChronosApi.Data
             #endregion
 
             #region Corporacao
-            modelBuilder.Entity<Corporacao>().HasData
+            modelBuilder.Entity<CorporacaoModel>().HasData
             (
-                new Corporacao() 
+                new CorporacaoModel() 
                 { 
                     idCorporacao = 1, 
                     idCorporacaoEndereco = 1, 
@@ -55,16 +55,15 @@ namespace ChronosApi.Data
                     emailCorporacao = "contato@exemplo.com", 
                     numeroCorporacao = "12345678", 
                     descricaoCorporacao = "Exemplo de corporação", 
-                    cnpjCorporacao = "12.345.678/0001-99" ,
-                    senha = "123456"                   
+                    cnpjCorporacao = "12.345.678/0001-99" 
                 }
             );
             #endregion
 
             #region Candidatura
-            modelBuilder.Entity<Candidatura>().HasData
+            modelBuilder.Entity<CandidaturaModel>().HasData
             (
-                new Candidatura() 
+                new CandidaturaModel() 
                 {
                     idCandidatura = 1, 
                     idEgresso = 1, 
@@ -75,9 +74,9 @@ namespace ChronosApi.Data
             #endregion
 
             #region Comentario
-            modelBuilder.Entity<Comentario>().HasData
+            modelBuilder.Entity<ComentarioModel>().HasData
             (
-                new Comentario() { 
+                new ComentarioModel() { 
                     idComentario = 1, 
                     idEgresso = 1, 
                     idPublicacao = 1, 
@@ -87,9 +86,9 @@ namespace ChronosApi.Data
             #endregion
 
             #region Curso
-            modelBuilder.Entity<Curso>().HasData
+            modelBuilder.Entity<CursoModel>().HasData
             (
-                new Curso() 
+                new CursoModel() 
                 { 
                     idCurso = 1, 
                     idCorporacao = 1, 
@@ -101,9 +100,9 @@ namespace ChronosApi.Data
             #endregion
 
             #region Publicacao
-            modelBuilder.Entity<Publicacao>().HasData
+            modelBuilder.Entity<PublicacaoModel>().HasData
             (
-                new Publicacao() 
+                new PublicacaoModel() 
                 {
                     idPublicacao = 1, 
                     idCorporacao = 1, 
@@ -115,9 +114,9 @@ namespace ChronosApi.Data
             #endregion
 
             #region Vaga
-            modelBuilder.Entity<Vaga>().HasData
+            modelBuilder.Entity<VagaModel>().HasData
             (
-                new Vaga() 
+                new VagaModel() 
                 { 
                     idVaga = 1, 
                     idCorporacao = 1, 

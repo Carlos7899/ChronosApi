@@ -37,7 +37,7 @@ namespace ChronosApi.Controllers
 
         #region CREATE
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Egresso newEgresso)
+        public async Task<IActionResult> Create([FromBody] EgressoModel newEgresso)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -51,7 +51,7 @@ namespace ChronosApi.Controllers
 
         #region UPDATE
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Egresso updatedEgresso)
+        public async Task<IActionResult> Update(int id, [FromBody] EgressoModel updatedEgresso)
         {
             var existingEgresso = await _context.TB_EGRESSO.FindAsync(id);
             if (existingEgresso == null)

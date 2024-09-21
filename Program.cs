@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ChronosApi.Data;
-using Microsoft.Extensions.Options;
+using ChronosApi.Services.Corporacao;
+using ChronosApi.Repository.Corporacao;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICorporacaoService, CorporacaoService>();
+builder.Services.AddScoped<ICorporacaoRepository, CorporacaoRepository>();
 
 var app = builder.Build();
 

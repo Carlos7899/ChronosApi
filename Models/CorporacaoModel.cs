@@ -2,10 +2,11 @@
 using ChronosApi.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ChronosApi.Models
 {
-    public class Corporacao
+    public class CorporacaoModel
     {
         [Key]
         public int idCorporacao { get; set; }
@@ -18,9 +19,8 @@ namespace ChronosApi.Models
         public string numeroCorporacao { get; set; } = string.Empty;
         public string descricaoCorporacao { get; set; } = string.Empty;
         public string cnpjCorporacao { get; set; } = string.Empty;
-        public string senha { get; set; } = string.Empty;
 
-        [NotMapped]
+        [JsonIgnore]
         public CorporacaoEndereco? corporacaoEndereco { get; }
     }
 }

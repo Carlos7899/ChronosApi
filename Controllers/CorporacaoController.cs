@@ -1,6 +1,8 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models;
 using ChronosApi.Models.Enderecos;
+using ChronosApi.Repository.Corporacao;
+using ChronosApi.Services.Corporacao;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,97 +12,65 @@ namespace ChronosApi.Controllers
     [Route("api/[controller]")]
     public class CorporacaoController : ControllerBase
     {
+        private readonly ILogger<CorporacaoController> _logger;
         private readonly DataContext _context;
+        private readonly ICorporacaoRepository _corporacaoRepository;
+        private readonly ICorporacaoService _corporacaoService;
 
-        public CorporacaoController(DataContext context)
+        public CorporacaoController(ILogger<CorporacaoController> logger, ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository, DataContext context)
         {
+            _logger = logger;
             _context = context;
+            _corporacaoRepository = CorporacaoRepository;
+            _corporacaoService = CorporacaoService;
         }
 
-       #region GET
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        #region GET
+        [HttpGet("GetAll")]
+        public async Task<ActionResult<CorporacaoModel>> GetAll()
         {
-            var corporacoes = await _context.TB_CORPORACAO
-              .ToListAsync();
-
+            var corporacoes = await _corporacaoRepository.GetAllAsync();
             return Ok(corporacoes);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("GetID")]
+        public async Task<ActionResult<CorporacaoModel>> GetById(int id)
         {
-            var corporacao = await _context.TB_CORPORACAO
-                .FirstOrDefaultAsync(c => c.idCorporacao == id);
-
-            if (corporacao == null)
-                return NotFound(new { message = "Corporação não encontrada" });
+            var corporacao = await _corporacaoRepository.GetIdAsync(id);
+            await _corporacaoService.GetAsync(id);
 
             return Ok(corporacao);
         }
         #endregion
 
         #region CREATE
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Corporacao newCorporacao)
+        [HttpPost("POST")]
+        public async Task<ActionResult<CorporacaoModel>> Post(CorporacaoModel corporacao)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            // Adicionar Logradouro, se existir
-            if (newCorporacao.corporacaoEndereco?.logradouro != null)
-            {
-                _context.TB_LOGRADOURO.Add(newCorporacao.corporacaoEndereco.logradouro);
-                await _context.SaveChangesAsync();
-                newCorporacao.corporacaoEndereco.idLogradouro = newCorporacao.corporacaoEndereco.logradouro.idLogradouro;
-            }
-
-            // Adicionar CorporacaoEndereco, se existir
-            if (newCorporacao.corporacaoEndereco != null)
-            {
-                _context.TB_CORPORACAO_ENDERECO.Add(newCorporacao.corporacaoEndereco);
-                await _context.SaveChangesAsync();
-                newCorporacao.idCorporacaoEndereco = newCorporacao.corporacaoEndereco.idCorporacaoEndereco;
-            }
-
-            _context.TB_CORPORACAO.Add(newCorporacao);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetById), new { id = newCorporacao.idCorporacao }, newCorporacao);
+            var newCorporacao = await _corporacaoRepository.PostAsync(corporacao);
+            return Ok(newCorporacao);
         }
         #endregion
 
         #region UPDATE
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Corporacao updatedCorporacao)
+        [HttpPut("PUT")]
+        public async Task<ActionResult<CorporacaoModel>> Put(int id, CorporacaoModel updatedCorporacao)
         {
-            var existingCorporacao = await _context.TB_CORPORACAO
-                .FirstOrDefaultAsync(c => c.idCorporacao == id);
+            await _corporacaoRepository.PutAsync(id, updatedCorporacao);
+            await _corporacaoService.PutAsync(id);
 
-            if (existingCorporacao == null)
-                return NotFound(new { message = "Corporação não encontrada" });
-
-            // Atualizar Corporacao
-            _context.Entry(existingCorporacao).CurrentValues.SetValues(updatedCorporacao);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok("Corporação atualizada com sucesso.");
         }
         #endregion
 
         #region DELETE
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("DELETE")]
+        public async Task<ActionResult> Delete(int id)
         {
-            var existingCorporacao = await _context.TB_CORPORACAO
-                .FirstOrDefaultAsync(c => c.idCorporacao == id);
+            await _corporacaoRepository.DeleteAsync(id);
+            await _corporacaoService.DeleteAsync(id);
 
-            if (existingCorporacao == null)
-                return NotFound(new { message = "Corporação não encontrada" });
-
-            _context.TB_CORPORACAO.Remove(existingCorporacao);
-            await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok("Corporação deletada com sucesso.");
         }
         #endregion
     }
