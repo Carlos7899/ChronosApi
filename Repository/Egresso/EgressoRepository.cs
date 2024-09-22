@@ -3,7 +3,7 @@ using ChronosApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChronosApi.Repository.Corporacao
+namespace ChronosApi.Repository.Egresso
 {
     public class EgressoRepository : IEgressoRepository
     {

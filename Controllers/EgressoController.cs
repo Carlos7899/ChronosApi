@@ -1,6 +1,6 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models;
-using ChronosApi.Repository.Corporacao;
+using ChronosApi.Repository.Egresso;
 using ChronosApi.Services.Egresso;
 using Microsoft.AspNetCore.Mvc;
 

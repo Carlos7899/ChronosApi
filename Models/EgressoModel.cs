@@ -1,6 +1,5 @@
 ﻿using ChronosApi.Models.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace ChronosApi.Models
 {

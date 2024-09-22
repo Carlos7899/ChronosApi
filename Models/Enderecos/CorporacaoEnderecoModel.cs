@@ -13,8 +13,5 @@ namespace ChronosApi.Models.Enderecos
         public int idLogradouro { get; set; }
         public string numeroCorporacaoEndereco { get; set; } = string.Empty;
         public string complementoCorporacaoEndereco { get; set; } = string.Empty;
-
-        [JsonIgnore]
-        public Logradouro logradouro { get; set; }
     }
 }
