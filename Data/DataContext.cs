@@ -18,7 +18,7 @@ namespace ChronosApi.Data
         public DbSet<CursoModel> TB_CURSO { get; set; }
         public DbSet<PublicacaoModel> TB_PUBLICACAO { get; set; }
         public DbSet<VagaModel> TB_VAGA { get; set; }
-        public DbSet<Logradouro> TB_LOGRADOURO { get; set; }
+        public DbSet<LogradouroModel> TB_LOGRADOURO { get; set; }
         public DbSet<CorporacaoEnderecoModel> TB_CORPORACAO_ENDERECO { get; set; }
         public DbSet<CursoEndereco> TB_CURSO_ENDERECO { get; set; }
         public DbSet<EgressoEndereco> TB_EGRESSO_ENDERECO { get; set; }
@@ -128,9 +128,9 @@ namespace ChronosApi.Data
             #endregion
 
             #region Logradouro
-            modelBuilder.Entity<Logradouro>().HasData
+            modelBuilder.Entity<LogradouroModel>().HasData
             (
-               new Logradouro()
+               new LogradouroModel()
                {
                    idLogradouro = 1,
                    bairroLogradouro = "Pimentas",
@@ -139,7 +139,7 @@ namespace ChronosApi.Data
                    tipoLogradouro = TipoLogradouro.Publico,
                    ufLogradouro = "34"
                },
-               new Logradouro()
+               new LogradouroModel()
                {
                    idLogradouro = 2,
                    bairroLogradouro = "Vila Maria",
@@ -148,7 +148,7 @@ namespace ChronosApi.Data
                    tipoLogradouro = TipoLogradouro.Publico,
                    ufLogradouro = "44"
                },
-               new Logradouro()
+               new LogradouroModel()
                {
                    idLogradouro = 3,
                    bairroLogradouro = "Pimentas",
@@ -157,7 +157,7 @@ namespace ChronosApi.Data
                    tipoLogradouro = TipoLogradouro.Publico,
                    ufLogradouro = "34"
                },
-               new Logradouro()
+               new LogradouroModel()
                {
                    idLogradouro = 4,
                    bairroLogradouro = "Pimentas",

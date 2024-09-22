@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ChronosApi.Models.Enderecos
 {
-    public class Logradouro
+    public class LogradouroModel
     {
         [Key]
         public int idLogradouro { get; set; }

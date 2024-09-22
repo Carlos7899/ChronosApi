@@ -14,6 +14,6 @@ namespace ChronosApi.Models.Enderecos
         public string complementoVagaEndereco { get; set; } = string.Empty;
 
         [NotMapped]
-        public Logradouro logradouro { get; set; }
+        public LogradouroModel logradouro { get; set; }
     }
 }

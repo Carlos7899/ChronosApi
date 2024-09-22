@@ -6,13 +6,16 @@ using ChronosApi.Services.Egresso;
 using ChronosApi.Repository.Egresso;
 using ChronosApi.Services.CorporacaoEndereco;
 using ChronosApi.Repository.CorporacaoEndereco;
+using ChronosApi.Services.Logradouro;
+using ChronosApi.Repository.Enderecos.Logradouro;
+using ChronosApi.Repository.Logradouro;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(Options =>
 {
-    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"));
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal2"));
 });
 
 // Add services to the container.
@@ -31,6 +34,9 @@ builder.Services.AddScoped<IEgressoRepository, EgressoRepository>();
 
 builder.Services.AddScoped<ICorporacaoEnderecoService, CorporacaoEnderecoService>();
 builder.Services.AddScoped<ICorporacaoEnderecoRepository, CorporacaoEnderecoRepository>();
+
+builder.Services.AddScoped<ILogradouroService, LogradouroService>();
+builder.Services.AddScoped<ILogradouroRepository, LogradouroRepository>();
 #endregion
 
 var app = builder.Build();
