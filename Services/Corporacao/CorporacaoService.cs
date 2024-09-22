@@ -11,8 +11,10 @@ namespace ChronosApi.Services.Corporacao
         public CorporacaoService(DataContext context)
         {
             _context = context;
+
         }
-        public async Task GetAsync(int id)
+        #region GET
+        public async Task GetCorporacaoAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
             if (corporacao == null)
@@ -20,7 +22,10 @@ namespace ChronosApi.Services.Corporacao
                 throw new NotFoundException("Corporação não encontrada.");
             }
         }
-        public async Task PutAsync(int id)
+        #endregion
+
+        #region PUT
+        public async Task PutCorporacaoAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
             if (corporacao == null)
@@ -29,7 +34,10 @@ namespace ChronosApi.Services.Corporacao
             }
 
         }
-        public async Task DeleteAsync(int id)
+        #endregion
+       
+       #region DELETE
+        public async Task DeleteCorporacaoAsync(int id)
         {
             var existingCorporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
             if (existingCorporacao == null)
@@ -37,5 +45,6 @@ namespace ChronosApi.Services.Corporacao
                 throw new NotFoundException("Corporação não encontrada."); 
             }
         }
+        #endregion
     }
 }
