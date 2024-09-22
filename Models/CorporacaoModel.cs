@@ -21,6 +21,6 @@ namespace ChronosApi.Models
         public string cnpjCorporacao { get; set; } = string.Empty;
 
         [JsonIgnore]
-        public CorporacaoEndereco? corporacaoEndereco { get; }
+        public CorporacaoEnderecoModel? corporacaoEnderecoModel { get; }
     }
 }

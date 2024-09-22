@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ChronosApi.Models.Enderecos
 {
-    public class CorporacaoEndereco
+    public class CorporacaoEnderecoModel
     {
         [Key]
         public int idCorporacaoEndereco { get; set; }
@@ -13,7 +14,7 @@ namespace ChronosApi.Models.Enderecos
         public string numeroCorporacaoEndereco { get; set; } = string.Empty;
         public string complementoCorporacaoEndereco { get; set; } = string.Empty;
 
-        [NotMapped]
+        [JsonIgnore]
         public Logradouro logradouro { get; set; }
     }
 }

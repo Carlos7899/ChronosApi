@@ -29,15 +29,15 @@ namespace ChronosApi.Controllers
         [HttpGet("GetAll")]
         public async Task<ActionResult<CorporacaoModel>> GetAll()
         {
-            var corporacoes = await _corporacaoRepository.GetAllAsync();
+            var corporacoes = await _corporacaoRepository.GetAllCorporacaoAsync();
             return Ok(corporacoes);
         }
 
         [HttpGet("GetID")]
         public async Task<ActionResult<CorporacaoModel>> GetById(int id)
         {
-            var corporacao = await _corporacaoRepository.GetIdAsync(id);
-            await _corporacaoService.GetAsync(id);
+            var corporacao = await _corporacaoRepository.GetIdCorporacaoAsync(id);
+            await _corporacaoService.GetCorporacaoAsync(id);
 
             return Ok(corporacao);
         }
@@ -47,7 +47,7 @@ namespace ChronosApi.Controllers
         [HttpPost("POST")]
         public async Task<ActionResult<CorporacaoModel>> Post(CorporacaoModel corporacao)
         {
-            var newCorporacao = await _corporacaoRepository.PostAsync(corporacao);
+            var newCorporacao = await _corporacaoRepository.PostCorporacaoAsync(corporacao);
             return Ok(newCorporacao);
         }
         #endregion
@@ -56,8 +56,8 @@ namespace ChronosApi.Controllers
         [HttpPut("PUT")]
         public async Task<ActionResult<CorporacaoModel>> Put(int id, CorporacaoModel updatedCorporacao)
         {
-            await _corporacaoRepository.PutAsync(id, updatedCorporacao);
-            await _corporacaoService.PutAsync(id);
+            await _corporacaoRepository.PutCorporacaoAsync(id, updatedCorporacao);
+            await _corporacaoService.PutCorporacaoAsync(id);
 
             return Ok("Corporação atualizada com sucesso.");
         }
@@ -67,8 +67,7 @@ namespace ChronosApi.Controllers
         [HttpDelete("DELETE")]
         public async Task<ActionResult> Delete(int id)
         {
-            await _corporacaoRepository.DeleteAsync(id);
-            await _corporacaoService.DeleteAsync(id);
+            await _corporacaoRepository.DeleteCorporacaoAsync(id);
 
             return Ok("Corporação deletada com sucesso.");
         }

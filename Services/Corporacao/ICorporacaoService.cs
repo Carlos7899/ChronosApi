@@ -2,8 +2,8 @@
 {
     public interface ICorporacaoService
     {
-        public Task GetAsync(int id);
-        public Task PutAsync(int id);
-        public Task DeleteAsync(int id);
+        public Task GetCorporacaoAsync(int id);
+        public Task PutCorporacaoAsync(int id);
+        public Task DeleteCorporacaoAsync(int id);
     }
 }

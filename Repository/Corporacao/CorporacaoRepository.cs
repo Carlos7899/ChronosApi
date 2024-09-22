@@ -13,27 +13,32 @@ namespace ChronosApi.Repository.Corporacao
             _context = context;
         }
 
-        public async Task<List<CorporacaoModel>> GetAllAsync()
+        #region GET
+        public async Task<List<CorporacaoModel>> GetAllCorporacaoAsync()
         {
             var corporacao = await _context.TB_CORPORACAO.ToListAsync();
             return corporacao;
         }
 
-        public async Task<ActionResult<CorporacaoModel>> GetIdAsync(int id)
+        public async Task<ActionResult<CorporacaoModel>> GetIdCorporacaoAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
             return corporacao;
         }
+        #endregion
 
-        public async Task<ActionResult<CorporacaoModel>> PostAsync(CorporacaoModel corporacao)
+        #region POST
+        public async Task<ActionResult<CorporacaoModel>> PostCorporacaoAsync(CorporacaoModel corporacao)
         {
             corporacao.idCorporacao = 0;
             _context.TB_CORPORACAO.Add(corporacao);
             await _context.SaveChangesAsync();
             return corporacao;
         }
+        #endregion
 
-        public async Task<ActionResult<CorporacaoModel>> PutAsync(int id, CorporacaoModel updatedCorporacao)
+        #region PUT
+        public async Task<ActionResult<CorporacaoModel>> PutCorporacaoAsync(int id, CorporacaoModel updatedCorporacao)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
 
@@ -49,8 +54,10 @@ namespace ChronosApi.Repository.Corporacao
             await _context.SaveChangesAsync();
             return corporacao;
         }
-            
-        public async Task<ActionResult<CorporacaoModel>> DeleteAsync(int id)
+        #endregion
+
+        #region DELETE        
+        public async Task<ActionResult<CorporacaoModel>> DeleteCorporacaoAsync(int id)
         {
 
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
@@ -59,5 +66,6 @@ namespace ChronosApi.Repository.Corporacao
 
             return corporacao;
         }
+        #endregion
     }
 }
