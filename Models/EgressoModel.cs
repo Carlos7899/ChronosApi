@@ -1,5 +1,6 @@
 ﻿using ChronosApi.Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ChronosApi.Models
 {
@@ -12,6 +13,5 @@ namespace ChronosApi.Models
         public string email { get; set; } = string.Empty;
         public string numeroEgresso { get; set; } = string.Empty;
         public string cpfEgresso { get; set; } = string.Empty;
-        public string senha { get; set; } = string.Empty;
     }
 }

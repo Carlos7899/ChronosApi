@@ -10,7 +10,7 @@ namespace ChronosApi.Data
         public DataContext(DbContextOptions<DataContext> options) : base (options) 
         {}
 
-        #region DbSet's 12
+        #region DBSets
         public DbSet<EgressoModel> TB_EGRESSO { get; set; }
         public DbSet<CorporacaoModel> TB_CORPORACAO { get; set; }
         public DbSet<CandidaturaModel> TB_CANDIDATURA { get; set; }
@@ -37,8 +37,7 @@ namespace ChronosApi.Data
                     email = "ops.gmail",
                     numeroEgresso = "8922",
                     cpfEgresso = "222",
-                    tipoPessoaEgresso = TipoPessoaEgresso.fisico ,
-                    senha = "123456"
+                    tipoPessoaEgresso = TipoPessoaEgresso.fisico
                 }
             );
             #endregion

@@ -1,7 +1,8 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models;
+using ChronosApi.Repository.Corporacao;
+using ChronosApi.Services.Egresso;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Controllers
 {
@@ -10,77 +11,63 @@ namespace ChronosApi.Controllers
     public class EgressoController : ControllerBase
     {
         private readonly DataContext _context;
+        private readonly ILogger _logger;
+        private readonly IEgressoService _egressoService;
+        private readonly IEgressoRepository _egressoRepository;
 
-        public EgressoController(DataContext context)
+        public EgressoController(ILogger<EgressoController> logger, IEgressoService EgressoService, IEgressoRepository EgressoRepository, DataContext context)
         {
             _context = context;
+            _logger = logger;
+            _egressoRepository = EgressoRepository;
+            _egressoService = EgressoService;
         }
 
         #region GET
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("GetAll")]
+        public async Task<ActionResult<EgressoModel>> GetAll()
         {
-            var egressos = await _context.TB_EGRESSO.ToListAsync();
+            var egressos = await _egressoRepository.GetAllAsync();
             return Ok(egressos);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("GetID")]
+        public async Task<ActionResult<EgressoModel>> GetById(int id)
         {
-            var egresso = await _context.TB_EGRESSO.FindAsync(id);
-            if (egresso == null)
-                return NotFound(new { message = "Egresso não encontrado" });
+            var egresso = await _egressoRepository.GetIdAsync(id);
+            await _egressoService.GetAsync(id);
 
             return Ok(egresso);
         }
         #endregion
 
         #region CREATE
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] EgressoModel newEgresso)
+        [HttpPost("POST")]
+        public async Task<ActionResult<EgressoModel>> Post(EgressoModel egresso)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            _context.TB_EGRESSO.Add(newEgresso);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetById), new { id = newEgresso.idEgresso }, newEgresso);
+            var newEgresso = await _egressoRepository.PostAsync(egresso);
+            return Ok(newEgresso);
         }
         #endregion
 
         #region UPDATE
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] EgressoModel updatedEgresso)
+        [HttpPut("PUT")]
+        public async Task<ActionResult<EgressoModel>> Put(int id, EgressoModel updatedEgresso)
         {
-            var existingEgresso = await _context.TB_EGRESSO.FindAsync(id);
-            if (existingEgresso == null)
-                return NotFound(new { message = "Egresso não encontrado" });
+            await _egressoRepository.PutAsync(id, updatedEgresso);
+            await _egressoService.PutAsync(id);
 
-            existingEgresso.nomeEgresso = updatedEgresso.nomeEgresso;
-            existingEgresso.email = updatedEgresso.email;
-            existingEgresso.numeroEgresso = updatedEgresso.numeroEgresso;
-            existingEgresso.cpfEgresso = updatedEgresso.cpfEgresso;
-            existingEgresso.tipoPessoaEgresso = updatedEgresso.tipoPessoaEgresso;
-
-            _context.TB_EGRESSO.Update(existingEgresso);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok("Egresso atualizado com sucesso.");
         }
         #endregion
 
         #region DELETE
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("DELETE")]
+        public async Task<ActionResult> Delete(int id)
         {
-            var existingEgresso = await _context.TB_EGRESSO.FindAsync(id);
-            if (existingEgresso == null)
-                return NotFound(new { message = "Egresso não encontrado" });
+            await _egressoRepository.DeleteAsync(id);
 
-            _context.TB_EGRESSO.Remove(existingEgresso);
-            await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok("Egresso deletado com sucesso.");
         }
         #endregion
     }

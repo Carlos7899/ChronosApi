@@ -68,7 +68,6 @@ namespace ChronosApi.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             await _corporacaoRepository.DeleteAsync(id);
-            await _corporacaoService.DeleteAsync(id);
 
             return Ok("Corporação deletada com sucesso.");
         }

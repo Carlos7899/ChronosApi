@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ChronosApi.Data;
 using ChronosApi.Services.Corporacao;
 using ChronosApi.Repository.Corporacao;
+using ChronosApi.Services.Egresso;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +18,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#region Scoped
 builder.Services.AddScoped<ICorporacaoService, CorporacaoService>();
 builder.Services.AddScoped<ICorporacaoRepository, CorporacaoRepository>();
+
+builder.Services.AddScoped<IEgressoService, EgressoService>();
+builder.Services.AddScoped<IEgressoRepository, EgressoRepository>();
+#endregion
 
 var app = builder.Build();
 
