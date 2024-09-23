@@ -21,7 +21,7 @@ namespace ChronosApi.Data
         public DbSet<LogradouroModel> TB_LOGRADOURO { get; set; }
         public DbSet<CorporacaoEnderecoModel> TB_CORPORACAO_ENDERECO { get; set; }
         public DbSet<CursoEndereco> TB_CURSO_ENDERECO { get; set; }
-        public DbSet<EgressoEndereco> TB_EGRESSO_ENDERECO { get; set; }
+        public DbSet<EgressoEnderecoModel> TB_EGRESSO_ENDERECO { get; set; }
         public DbSet<VagaEndereco> TB_VAGA_ENDERECO { get; set; }
         #endregion
 
@@ -210,9 +210,9 @@ namespace ChronosApi.Data
             #endregion
 
             #region EgressoEndereco
-            modelBuilder.Entity<EgressoEndereco>().HasData
+            modelBuilder.Entity<EgressoEnderecoModel>().HasData
             (
-                new EgressoEndereco() 
+                new EgressoEnderecoModel() 
                 {
                     idEgressoEndereco = 1, 
                     idLogradouro = 4, 
