@@ -22,7 +22,7 @@ namespace ChronosApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ChronosApi.Models.Candidatura", b =>
+            modelBuilder.Entity("ChronosApi.Models.CandidaturaModel", b =>
                 {
                     b.Property<int>("idCandidatura")
                         .ValueGeneratedOnAdd()
@@ -47,13 +47,13 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idCandidatura = 1,
-                            dataIncricao = new DateTime(2024, 9, 16, 20, 13, 58, 522, DateTimeKind.Local).AddTicks(7892),
+                            dataIncricao = new DateTime(2024, 10, 2, 15, 0, 1, 196, DateTimeKind.Local).AddTicks(8201),
                             idEgresso = 1,
                             idVaga = 1
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Comentario", b =>
+            modelBuilder.Entity("ChronosApi.Models.ComentarioModel", b =>
                 {
                     b.Property<int>("idComentario")
                         .ValueGeneratedOnAdd()
@@ -85,7 +85,7 @@ namespace ChronosApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Corporacao", b =>
+            modelBuilder.Entity("ChronosApi.Models.CorporacaoModel", b =>
                 {
                     b.Property<int>("idCorporacao")
                         .ValueGeneratedOnAdd()
@@ -116,10 +116,6 @@ namespace ChronosApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("tipoCorporacao")
                         .HasColumnType("int");
 
@@ -137,12 +133,11 @@ namespace ChronosApi.Migrations
                             idCorporacaoEndereco = 1,
                             nomeCorporacao = "Corporação Exemplo",
                             numeroCorporacao = "12345678",
-                            senha = "123456",
                             tipoCorporacao = 0
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Curso", b =>
+            modelBuilder.Entity("ChronosApi.Models.CursoModel", b =>
                 {
                     b.Property<int>("idCurso")
                         .ValueGeneratedOnAdd()
@@ -179,7 +174,7 @@ namespace ChronosApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Egresso", b =>
+            modelBuilder.Entity("ChronosApi.Models.EgressoModel", b =>
                 {
                     b.Property<int>("idEgresso")
                         .ValueGeneratedOnAdd()
@@ -203,10 +198,6 @@ namespace ChronosApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("senha")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("tipoPessoaEgresso")
                         .HasColumnType("int");
 
@@ -222,12 +213,11 @@ namespace ChronosApi.Migrations
                             email = "ops.gmail",
                             nomeEgresso = "Pedro",
                             numeroEgresso = "8922",
-                            senha = "123456",
                             tipoPessoaEgresso = 1
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Enderecos.CorporacaoEndereco", b =>
+            modelBuilder.Entity("ChronosApi.Models.Enderecos.CorporacaoEnderecoModel", b =>
                 {
                     b.Property<int>("idCorporacaoEndereco")
                         .ValueGeneratedOnAdd()
@@ -293,7 +283,7 @@ namespace ChronosApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Enderecos.EgressoEndereco", b =>
+            modelBuilder.Entity("ChronosApi.Models.Enderecos.EgressoEnderecoModel", b =>
                 {
                     b.Property<int>("idEgressoEndereco")
                         .ValueGeneratedOnAdd()
@@ -301,9 +291,15 @@ namespace ChronosApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idEgressoEndereco"));
 
+                    b.Property<int?>("EgressoidEgresso")
+                        .HasColumnType("int");
+
                     b.Property<string>("complementoEgressoEndereco")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idEgresso")
+                        .HasColumnType("int");
 
                     b.Property<int>("idLogradouro")
                         .HasColumnType("int");
@@ -314,6 +310,8 @@ namespace ChronosApi.Migrations
 
                     b.HasKey("idEgressoEndereco");
 
+                    b.HasIndex("EgressoidEgresso");
+
                     b.ToTable("TB_EGRESSO_ENDERECO");
 
                     b.HasData(
@@ -321,12 +319,13 @@ namespace ChronosApi.Migrations
                         {
                             idEgressoEndereco = 1,
                             complementoEgressoEndereco = "",
+                            idEgresso = 0,
                             idLogradouro = 4,
                             numeroEgressoEndereco = "787"
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Enderecos.Logradouro", b =>
+            modelBuilder.Entity("ChronosApi.Models.Enderecos.LogradouroModel", b =>
                 {
                     b.Property<int>("idLogradouro")
                         .ValueGeneratedOnAdd()
@@ -429,7 +428,7 @@ namespace ChronosApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Publicacao", b =>
+            modelBuilder.Entity("ChronosApi.Models.PublicacaoModel", b =>
                 {
                     b.Property<int>("idPublicacao")
                         .ValueGeneratedOnAdd()
@@ -466,7 +465,7 @@ namespace ChronosApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Vaga", b =>
+            modelBuilder.Entity("ChronosApi.Models.VagaModel", b =>
                 {
                     b.Property<int>("idVaga")
                         .ValueGeneratedOnAdd()
@@ -505,6 +504,15 @@ namespace ChronosApi.Migrations
                             nomeVaga = "Desenvolvedor Júnior",
                             tipoVaga = 1
                         });
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Enderecos.EgressoEnderecoModel", b =>
+                {
+                    b.HasOne("ChronosApi.Models.EgressoModel", "Egresso")
+                        .WithMany()
+                        .HasForeignKey("EgressoidEgresso");
+
+                    b.Navigation("Egresso");
                 });
 #pragma warning restore 612, 618
         }

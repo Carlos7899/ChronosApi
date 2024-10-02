@@ -10,10 +10,13 @@ namespace ChronosApi.Models.Enderecos
 
         [ForeignKey("idLogradouro")]
         public int idLogradouro { get; set; }
+
+        [ForeignKey("EgressoModel")]
+        public int idEgresso { get; set; }
         public string numeroEgressoEndereco { get; set; } = string.Empty;
         public string complementoEgressoEndereco { get; set; } = string.Empty;
 
-        [NotMapped]
-        public LogradouroModel logradouro { get; set; }
+
+        public EgressoModel? Egresso { get; set; }
     }
 }

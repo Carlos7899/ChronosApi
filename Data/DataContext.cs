@@ -220,6 +220,11 @@ namespace ChronosApi.Data
                     numeroEgressoEndereco = "787"
                 }
             );
+
+            modelBuilder.Entity<EgressoEnderecoModel>()
+             .HasOne(ee => ee.Egresso) // Um endereço pertence a um egresso
+             .WithOne() // Um egresso tem um endereço
+             .HasForeignKey<EgressoEnderecoModel>(ee => ee.idEgresso);
             #endregion
         }
     }

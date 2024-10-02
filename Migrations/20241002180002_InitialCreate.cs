@@ -55,8 +55,7 @@ namespace ChronosApi.Migrations
                     emailCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     numeroCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     descricaoCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cnpjCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    cnpjCorporacao = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -119,27 +118,11 @@ namespace ChronosApi.Migrations
                     nomeEgresso = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     numeroEgresso = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cpfEgresso = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    cpfEgresso = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TB_EGRESSO", x => x.idEgresso);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TB_EGRESSO_ENDERECO",
-                columns: table => new
-                {
-                    idEgressoEndereco = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    idLogradouro = table.Column<int>(type: "int", nullable: false),
-                    numeroEgressoEndereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    complementoEgressoEndereco = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TB_EGRESSO_ENDERECO", x => x.idEgressoEndereco);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,10 +190,32 @@ namespace ChronosApi.Migrations
                     table.PrimaryKey("PK_TB_VAGA_ENDERECO", x => x.idVagaEndereco);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TB_EGRESSO_ENDERECO",
+                columns: table => new
+                {
+                    idEgressoEndereco = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idLogradouro = table.Column<int>(type: "int", nullable: false),
+                    idEgresso = table.Column<int>(type: "int", nullable: false),
+                    numeroEgressoEndereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    complementoEgressoEndereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EgressoidEgresso = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TB_EGRESSO_ENDERECO", x => x.idEgressoEndereco);
+                    table.ForeignKey(
+                        name: "FK_TB_EGRESSO_ENDERECO_TB_EGRESSO_EgressoidEgresso",
+                        column: x => x.EgressoidEgresso,
+                        principalTable: "TB_EGRESSO",
+                        principalColumn: "idEgresso");
+                });
+
             migrationBuilder.InsertData(
                 table: "TB_CANDIDATURA",
                 columns: new[] { "idCandidatura", "dataIncricao", "idEgresso", "idVaga" },
-                values: new object[] { 1, new DateTime(2024, 9, 16, 20, 13, 58, 522, DateTimeKind.Local).AddTicks(7892), 1, 1 });
+                values: new object[] { 1, new DateTime(2024, 10, 2, 15, 0, 1, 196, DateTimeKind.Local).AddTicks(8201), 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "TB_COMENTARIOS",
@@ -219,8 +224,8 @@ namespace ChronosApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "TB_CORPORACAO",
-                columns: new[] { "idCorporacao", "cnpjCorporacao", "descricaoCorporacao", "emailCorporacao", "idCorporacaoEndereco", "nomeCorporacao", "numeroCorporacao", "senha", "tipoCorporacao" },
-                values: new object[] { 1, "12.345.678/0001-99", "Exemplo de corporação", "contato@exemplo.com", 1, "Corporação Exemplo", "12345678", "123456", 0 });
+                columns: new[] { "idCorporacao", "cnpjCorporacao", "descricaoCorporacao", "emailCorporacao", "idCorporacaoEndereco", "nomeCorporacao", "numeroCorporacao", "tipoCorporacao" },
+                values: new object[] { 1, "12.345.678/0001-99", "Exemplo de corporação", "contato@exemplo.com", 1, "Corporação Exemplo", "12345678", 0 });
 
             migrationBuilder.InsertData(
                 table: "TB_CORPORACAO_ENDERECO",
@@ -239,13 +244,13 @@ namespace ChronosApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "TB_EGRESSO",
-                columns: new[] { "idEgresso", "cpfEgresso", "email", "nomeEgresso", "numeroEgresso", "senha", "tipoPessoaEgresso" },
-                values: new object[] { 1, "222", "ops.gmail", "Pedro", "8922", "123456", 1 });
+                columns: new[] { "idEgresso", "cpfEgresso", "email", "nomeEgresso", "numeroEgresso", "tipoPessoaEgresso" },
+                values: new object[] { 1, "222", "ops.gmail", "Pedro", "8922", 1 });
 
             migrationBuilder.InsertData(
                 table: "TB_EGRESSO_ENDERECO",
-                columns: new[] { "idEgressoEndereco", "complementoEgressoEndereco", "idLogradouro", "numeroEgressoEndereco" },
-                values: new object[] { 1, "", 4, "787" });
+                columns: new[] { "idEgressoEndereco", "EgressoidEgresso", "complementoEgressoEndereco", "idEgresso", "idLogradouro", "numeroEgressoEndereco" },
+                values: new object[] { 1, null, "", 0, 4, "787" });
 
             migrationBuilder.InsertData(
                 table: "TB_LOGRADOURO",
@@ -272,6 +277,11 @@ namespace ChronosApi.Migrations
                 table: "TB_VAGA_ENDERECO",
                 columns: new[] { "idVagaEndereco", "complementoVagaEndereco", "idLogradouro", "numeroVagaEndereco" },
                 values: new object[] { 1, "", 3, "899" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TB_EGRESSO_ENDERECO_EgressoidEgresso",
+                table: "TB_EGRESSO_ENDERECO",
+                column: "EgressoidEgresso");
         }
 
         /// <inheritdoc />
@@ -296,9 +306,6 @@ namespace ChronosApi.Migrations
                 name: "TB_CURSO_ENDERECO");
 
             migrationBuilder.DropTable(
-                name: "TB_EGRESSO");
-
-            migrationBuilder.DropTable(
                 name: "TB_EGRESSO_ENDERECO");
 
             migrationBuilder.DropTable(
@@ -312,6 +319,9 @@ namespace ChronosApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "TB_VAGA_ENDERECO");
+
+            migrationBuilder.DropTable(
+                name: "TB_EGRESSO");
         }
     }
 }
