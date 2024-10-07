@@ -1,5 +1,6 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models;
+using ChronosApi.Services.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,10 +39,9 @@ namespace ChronosApi.Repository.Egresso
             var egresso = await _context.TB_EGRESSO.FirstOrDefaultAsync((EgressoModel e) => e.idEgresso == id);
 
             egresso.nomeEgresso = updatedEgresso.nomeEgresso;
-            egresso.tipoPessoaEgresso = updatedEgresso.tipoPessoaEgresso;
+            egresso.tipoEgresso = updatedEgresso.tipoEgresso;
             egresso.numeroEgresso = updatedEgresso.numeroEgresso;
             egresso.cpfEgresso = updatedEgresso.cpfEgresso;
-            egresso.email = updatedEgresso.email;
 
             _context.Entry(egresso).State = EntityState.Modified;
 
@@ -58,5 +58,63 @@ namespace ChronosApi.Repository.Egresso
 
             return egresso;
         }
+
+        public async Task RegistrarEgressoAsync(string email, string passwordString)
+        {
+            Criptografia.CriarPasswordHash(passwordString, out byte[] hash, out byte[] salt);
+
+            EgressoModel egresso = new EgressoModel
+            {
+                emailEgresso = email,
+                PasswordString = string.Empty,
+                PasswordHash = hash,
+                PasswordSalt = salt
+            };
+
+
+            await _context.TB_EGRESSO.AddAsync(egresso);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> AutenticarEgressoAsync(string email, string passwordString)
+        {
+            EgressoModel? usuario = await _context.TB_EGRESSO.FirstOrDefaultAsync(x => x.emailEgresso.ToLower().Equals(email.ToLower()));
+
+            if (usuario != null)
+            {
+
+                bool senhaValida = Criptografia.VerificarPasswordHash(passwordString, usuario.PasswordHash, usuario.PasswordSalt);
+
+                if (senhaValida)
+                {
+
+                    usuario.DataAcesso = System.DateTime.Now;
+                    _context.TB_EGRESSO.Update(usuario);
+                    await _context.SaveChangesAsync();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public async Task AlterarSenhaEgressoAsync(string email, string novaSenha)
+        {
+            EgressoModel usuario = await _context.TB_EGRESSO
+                .FirstOrDefaultAsync(x => x.emailEgresso == email);
+
+            Criptografia.CriarPasswordHash(novaSenha, out byte[] novoHash, out byte[] novoSal);
+
+            usuario.PasswordHash = novoHash;
+            usuario.PasswordSalt = novoSal;
+
+            var attach = _context.Attach(usuario);
+            attach.Property(x => x.PasswordHash).IsModified = true;
+            attach.Property(x => x.PasswordSalt).IsModified = true;
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

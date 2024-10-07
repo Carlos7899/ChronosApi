@@ -47,7 +47,7 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idCandidatura = 1,
-                            dataIncricao = new DateTime(2024, 10, 2, 15, 0, 1, 196, DateTimeKind.Local).AddTicks(8201),
+                            dataIncricao = new DateTime(2024, 10, 7, 12, 39, 18, 342, DateTimeKind.Local).AddTicks(9202),
                             idEgresso = 1,
                             idVaga = 1
                         });
@@ -182,11 +182,20 @@ namespace ChronosApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idEgresso"));
 
+                    b.Property<DateTime?>("DataAcesso")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("cpfEgresso")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("email")
+                    b.Property<string>("emailEgresso")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -198,7 +207,7 @@ namespace ChronosApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("tipoPessoaEgresso")
+                    b.Property<int>("tipoEgresso")
                         .HasColumnType("int");
 
                     b.HasKey("idEgresso");
@@ -208,12 +217,26 @@ namespace ChronosApi.Migrations
                     b.HasData(
                         new
                         {
+                            idEgresso = 3,
+                            DataAcesso = new DateTime(2024, 10, 7, 12, 39, 18, 342, DateTimeKind.Local).AddTicks(8456),
+                            PasswordHash = new byte[] { 138, 164, 232, 183, 173, 251, 42, 66, 20, 156, 204, 43, 189, 7, 81, 32, 26, 145, 8, 196, 172, 120, 49, 146, 31, 179, 255, 199, 254, 149, 254, 115, 214, 125, 167, 174, 84, 180, 200, 189, 46, 186, 169, 186, 83, 197, 207, 224, 123, 253, 33, 201, 52, 253, 205, 110, 71, 216, 32, 224, 121, 169, 123, 50 },
+                            PasswordSalt = new byte[] { 7, 166, 247, 30, 197, 121, 172, 53, 227, 51, 98, 82, 6, 31, 212, 72, 40, 64, 99, 174, 161, 69, 44, 14, 83, 11, 152, 59, 234, 127, 233, 105, 236, 146, 119, 219, 22, 56, 183, 80, 114, 121, 62, 115, 195, 108, 123, 102, 137, 174, 7, 255, 236, 198, 106, 205, 56, 229, 169, 23, 89, 173, 188, 69, 208, 195, 158, 176, 248, 22, 67, 112, 39, 234, 214, 54, 198, 25, 8, 49, 16, 124, 157, 42, 133, 45, 133, 142, 159, 80, 67, 84, 75, 14, 195, 211, 115, 120, 211, 17, 115, 43, 103, 132, 64, 3, 75, 191, 186, 72, 233, 225, 161, 11, 249, 121, 112, 187, 197, 230, 25, 214, 13, 206, 94, 63, 107, 150 },
+                            cpfEgresso = "22222222222",
+                            emailEgresso = "admin@example.com",
+                            nomeEgresso = "Admin",
+                            numeroEgresso = "40028922",
+                            tipoEgresso = 0
+                        },
+                        new
+                        {
                             idEgresso = 1,
+                            PasswordHash = new byte[] { 138, 164, 232, 183, 173, 251, 42, 66, 20, 156, 204, 43, 189, 7, 81, 32, 26, 145, 8, 196, 172, 120, 49, 146, 31, 179, 255, 199, 254, 149, 254, 115, 214, 125, 167, 174, 84, 180, 200, 189, 46, 186, 169, 186, 83, 197, 207, 224, 123, 253, 33, 201, 52, 253, 205, 110, 71, 216, 32, 224, 121, 169, 123, 50 },
+                            PasswordSalt = new byte[] { 7, 166, 247, 30, 197, 121, 172, 53, 227, 51, 98, 82, 6, 31, 212, 72, 40, 64, 99, 174, 161, 69, 44, 14, 83, 11, 152, 59, 234, 127, 233, 105, 236, 146, 119, 219, 22, 56, 183, 80, 114, 121, 62, 115, 195, 108, 123, 102, 137, 174, 7, 255, 236, 198, 106, 205, 56, 229, 169, 23, 89, 173, 188, 69, 208, 195, 158, 176, 248, 22, 67, 112, 39, 234, 214, 54, 198, 25, 8, 49, 16, 124, 157, 42, 133, 45, 133, 142, 159, 80, 67, 84, 75, 14, 195, 211, 115, 120, 211, 17, 115, 43, 103, 132, 64, 3, 75, 191, 186, 72, 233, 225, 161, 11, 249, 121, 112, 187, 197, 230, 25, 214, 13, 206, 94, 63, 107, 150 },
                             cpfEgresso = "222",
-                            email = "ops.gmail",
+                            emailEgresso = "ops.gmail",
                             nomeEgresso = "Pedro",
                             numeroEgresso = "8922",
-                            tipoPessoaEgresso = 1
+                            tipoEgresso = 1
                         });
                 });
 
@@ -291,9 +314,6 @@ namespace ChronosApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idEgressoEndereco"));
 
-                    b.Property<int?>("EgressoidEgresso")
-                        .HasColumnType("int");
-
                     b.Property<string>("complementoEgressoEndereco")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -310,7 +330,8 @@ namespace ChronosApi.Migrations
 
                     b.HasKey("idEgressoEndereco");
 
-                    b.HasIndex("EgressoidEgresso");
+                    b.HasIndex("idEgresso")
+                        .IsUnique();
 
                     b.ToTable("TB_EGRESSO_ENDERECO");
 
@@ -319,7 +340,7 @@ namespace ChronosApi.Migrations
                         {
                             idEgressoEndereco = 1,
                             complementoEgressoEndereco = "",
-                            idEgresso = 0,
+                            idEgresso = 1,
                             idLogradouro = 4,
                             numeroEgressoEndereco = "787"
                         });
@@ -509,8 +530,10 @@ namespace ChronosApi.Migrations
             modelBuilder.Entity("ChronosApi.Models.Enderecos.EgressoEnderecoModel", b =>
                 {
                     b.HasOne("ChronosApi.Models.EgressoModel", "Egresso")
-                        .WithMany()
-                        .HasForeignKey("EgressoidEgresso");
+                        .WithOne()
+                        .HasForeignKey("ChronosApi.Models.Enderecos.EgressoEnderecoModel", "idEgresso")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Egresso");
                 });

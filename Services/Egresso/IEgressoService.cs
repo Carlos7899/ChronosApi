@@ -5,5 +5,9 @@
         public Task GetAsync(int id);
         public Task PutAsync(int id);
         public Task DeleteAsync(int id);
+        public Task RegistrarEgressoExistente(string email);
+        public Task AutenticarEgressoAsync(string email, string passwordString);
+        public Task GetEgressoAsync(string email);
+        public Task<bool> EgressoExisteAsync(int id);
     }
 }

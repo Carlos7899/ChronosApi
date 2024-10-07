@@ -1,6 +1,7 @@
 ﻿using ChronosApi.Models;
 using ChronosApi.Models.Enderecos;
 using ChronosApi.Models.Enums;
+using ChronosApi.Services.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Data
@@ -27,6 +28,24 @@ namespace ChronosApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            byte[] passwordHash, passwordSalt;
+
+            Criptografia.CriarPasswordHash("123456", out passwordHash, out passwordSalt);
+
+            var adminUser = new EgressoModel
+            {
+                idEgresso = 3,
+                nomeEgresso = "Admin",
+                emailEgresso = "admin@example.com",
+                numeroEgresso = "40028922",
+                cpfEgresso = "22222222222",
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                DataAcesso = DateTime.Now
+            };
+            modelBuilder.Entity<EgressoModel>().HasData(adminUser);
+
             #region Egresso
             modelBuilder.Entity<EgressoModel>().HasData
             (
@@ -34,10 +53,12 @@ namespace ChronosApi.Data
                 { 
                     idEgresso = 1,
                     nomeEgresso = "Pedro",
-                    email = "ops.gmail",
+                    emailEgresso = "ops.gmail",
                     numeroEgresso = "8922",
                     cpfEgresso = "222",
-                    tipoPessoaEgresso = TipoPessoaEgresso.fisico
+                    tipoEgresso = TipoEgresso.fisico,
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt
                 }
             );
             #endregion
@@ -215,6 +236,7 @@ namespace ChronosApi.Data
                 new EgressoEnderecoModel() 
                 {
                     idEgressoEndereco = 1, 
+                    idEgresso = 1,
                     idLogradouro = 4, 
                     complementoEgressoEndereco = "",
                     numeroEgressoEndereco = "787"

@@ -13,6 +13,7 @@ namespace ChronosApi.Models
 
         [ForeignKey("idCorporacaoEndereco")]
         public int idCorporacaoEndereco { get; set; }
+
         public TipoCorporacao tipoCorporacao { get; set; }
         public string nomeCorporacao { get; set; } = string.Empty;
         public string emailCorporacao { get; set; } = string.Empty;

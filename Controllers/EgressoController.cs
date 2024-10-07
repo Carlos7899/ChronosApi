@@ -11,64 +11,208 @@ namespace ChronosApi.Controllers
     public class EgressoController : ControllerBase
     {
         private readonly DataContext _context;
-        private readonly ILogger _logger;
         private readonly IEgressoService _egressoService;
         private readonly IEgressoRepository _egressoRepository;
 
-        public EgressoController(ILogger<EgressoController> logger, IEgressoService EgressoService, IEgressoRepository EgressoRepository, DataContext context)
+        public EgressoController(DataContext context, IEgressoService egressoService, IEgressoRepository egressoRepository)
         {
+
             _context = context;
-            _logger = logger;
-            _egressoRepository = EgressoRepository;
-            _egressoService = EgressoService;
+            _egressoService = egressoService;
+            _egressoRepository = egressoRepository;
         }
+
+
+        //Controller Pronta
 
         #region GET
         [HttpGet("GetAll")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<EgressoModel>> GetAll()
         {
-            var egressos = await _egressoRepository.GetAllAsync();
-            return Ok(egressos);
+            try
+            {
+                var egressos = await _egressoRepository.GetAllAsync();
+                return StatusCode(200, egressos);
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
-        [HttpGet("GetID")]
-        public async Task<ActionResult<EgressoModel>> GetById(int id)
+        [HttpGet("GetbyId/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<EgressoModel>> Get(int id)
         {
-            var egresso = await _egressoRepository.GetIdAsync(id);
-            await _egressoService.GetAsync(id);
+            try
+            {
+                var egresso = await _egressoRepository.GetIdAsync(id);
 
-            return Ok(egresso);
+                await _egressoService.GetAsync(id);
+
+                return Ok(egresso);
+
+            }
+
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+
+            }
         }
         #endregion
 
         #region CREATE
         [HttpPost("POST")]
-        public async Task<ActionResult<EgressoModel>> Post(EgressoModel egresso)
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<EgressoModel>> Post([FromBody] EgressoModel egresso)
         {
-            var newEgresso = await _egressoRepository.PostAsync(egresso);
-            return Ok(newEgresso);
+            try
+            {
+                var novoegresso = await _egressoRepository.PostAsync(egresso);
+                return StatusCode(201, novoegresso);
+
+            }
+
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+
+            }
+
         }
+
+
+
+
         #endregion
 
         #region UPDATE
-        [HttpPut("PUT")]
-        public async Task<ActionResult<EgressoModel>> Put(int id, EgressoModel updatedEgresso)
+        [HttpPut("Put/{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<EgressoModel>> Put(int id, [FromBody] EgressoModel egresso)
         {
-            await _egressoRepository.PutAsync(id, updatedEgresso);
-            await _egressoService.PutAsync(id);
+            try
+            {
+                // Valida se o Egresso existe no Service
+                var egressoExists = await _egressoService.EgressoExisteAsync(id);
+                if (!egressoExists)
+                {
+                    return NotFound("Egresso não encontrado.");
+                }
 
-            return Ok("Egresso atualizado com sucesso.");
+                // Atualiza os dados permitidos no Repository
+                var updatedEgresso = await _egressoRepository.PutAsync(id, egresso);
+
+                if (updatedEgresso == null)
+                {
+                    return Conflict("Não foi possível atualizar o egresso.");
+                }
+
+                return Ok("Dados do Egresso atualizados com sucesso!");
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
+
         #endregion
 
         #region DELETE
-        [HttpDelete("DELETE")]
+        [HttpDelete("Delete/{id}")]
+
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<ActionResult> Delete(int id)
         {
-            await _egressoRepository.DeleteAsync(id);
+            try
+            {
+                await _egressoService.DeleteAsync(id);
+                await _egressoRepository.DeleteAsync(id);
 
-            return Ok("Egresso deletado com sucesso.");
+                return Ok("Egresso Deletado com sucesso!");
+
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
         #endregion
+
+        #region REGISTRAR
+        [HttpPost("Registrar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> RegistrarUsuario(string email, string passwordString)
+        {
+            try
+            {
+                await _egressoService.RegistrarEgressoExistente(email);
+                await _egressoRepository.RegistrarEgressoAsync(email, passwordString);
+
+                return StatusCode(200);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
+
+        #region AUTENTICAR
+        [HttpPost("Autenticar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AutenticarEgresso(string email, string passwordString)
+        {
+            try
+            {
+                await _egressoService.AutenticarEgressoAsync(email, passwordString);
+                await _egressoRepository.AutenticarEgressoAsync(email, passwordString);
+
+                return StatusCode(200);
+
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        #endregion
+
+        #region ALTERAR-SENHA
+        [HttpPut("AlterarSenha")]
+        public async Task<IActionResult> AlterarSenhaEgresso(string email, string novaSenha)
+        {
+            try
+            {
+                await _egressoService.GetEgressoAsync(email);
+                await _egressoRepository.AlterarSenhaEgressoAsync(email, novaSenha);
+
+                return Ok(200);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
+
+
     }
 }

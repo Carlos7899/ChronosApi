@@ -1,6 +1,6 @@
 ﻿namespace ChronosApi.Models.Enums
 {
-    public enum TipoPessoaEgresso
+    public enum TipoEgresso
     {
         juridico,
         fisico
