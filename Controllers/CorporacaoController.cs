@@ -10,14 +10,13 @@ namespace ChronosApi.Controllers
     [Route("api/[controller]")]
     public class CorporacaoController : ControllerBase
     {
-        private readonly ILogger<CorporacaoController> _logger;
+  
         private readonly DataContext _context;
         private readonly ICorporacaoRepository _corporacaoRepository;
         private readonly ICorporacaoService _corporacaoService;
 
-        public CorporacaoController(ILogger<CorporacaoController> logger, ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository, DataContext context)
+        public CorporacaoController( ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository, DataContext context)
         {
-            _logger = logger;
             _context = context;
             _corporacaoRepository = CorporacaoRepository;
             _corporacaoService = CorporacaoService;
@@ -25,50 +24,192 @@ namespace ChronosApi.Controllers
 
         #region GET
         [HttpGet("GetAll")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<CorporacaoModel>> GetAll()
         {
-            var corporacoes = await _corporacaoRepository.GetAllCorporacaoAsync();
-            return Ok(corporacoes);
+            try
+            {
+                var corporacoes = await _corporacaoRepository.GetAllAsync();
+                return StatusCode(200, corporacoes);
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
-        [HttpGet("GetID")]
-        public async Task<ActionResult<CorporacaoModel>> GetById(int id)
+        [HttpGet("GetbyId/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<CorporacaoModel>> Get(int id)
         {
-            var corporacao = await _corporacaoRepository.GetIdCorporacaoAsync(id);
-            await _corporacaoService.GetCorporacaoAsync(id);
+            try
+            {
+                var egresso = await _corporacaoRepository.GetIdAsync(id);
 
-            return Ok(corporacao);
+                await _corporacaoService.GetAsync(id);
+
+                return Ok(egresso);
+
+            }
+
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+
+            }
         }
         #endregion
 
+        //Nao e´ necessario, basta registrar e depois update, possivelmente vou remover
         #region CREATE
         [HttpPost("POST")]
-        public async Task<ActionResult<CorporacaoModel>> Post(CorporacaoModel corporacao)
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<CorporacaoModel>> Post([FromBody] CorporacaoModel corporacao)
         {
-            var newCorporacao = await _corporacaoRepository.PostCorporacaoAsync(corporacao);
-            return Ok(newCorporacao);
+            try
+            {
+                var novoegresso = await _corporacaoRepository.PostAsync(corporacao);
+                return StatusCode(201, novoegresso);
+
+            }
+
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+
+            }
+
         }
+
+
+
+
         #endregion
 
         #region UPDATE
-        [HttpPut("PUT")]
-        public async Task<ActionResult<CorporacaoModel>> Put(int id, CorporacaoModel updatedCorporacao)
+        [HttpPut("Put/{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<CorporacaoModel>> Put(int id, [FromBody] CorporacaoModel corporacao)
         {
-            await _corporacaoRepository.PutCorporacaoAsync(id, updatedCorporacao);
-            await _corporacaoService.PutCorporacaoAsync(id);
+            try
+            {
+                // Valida se o Egresso existe no Service
+                var egressoExists = await _corporacaoService.CorporacaoExisteAsync(id);
+                if (!egressoExists)
+                {
+                    return NotFound("Egresso não encontrado.");
+                }
 
-            return Ok("Corporação atualizada com sucesso.");
+                // Atualiza os dados permitidos no Repository
+                var updatedEgresso = await _corporacaoRepository.PutAsync(id, corporacao);
+
+                if (updatedEgresso == null)
+                {
+                    return Conflict("Não foi possível atualizar o egresso.");
+                }
+
+                return Ok("Dados do Egresso atualizados com sucesso!");
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
+
         #endregion
 
         #region DELETE
-        [HttpDelete("DELETE")]
+        [HttpDelete("Delete/{id}")]
+
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<ActionResult> Delete(int id)
         {
-            await _corporacaoRepository.DeleteCorporacaoAsync(id);
+            try
+            {
+                await _corporacaoService.DeleteAsync(id);
+                await _corporacaoRepository.DeleteAsync(id);
 
-            return Ok("Corporação deletada com sucesso.");
+                return Ok("Egresso Deletado com sucesso!");
+
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
         #endregion
+
+        #region REGISTRAR
+        [HttpPost("Registrar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> RegistrarUsuario(string email, string passwordString)
+        {
+            try
+            {
+                await _corporacaoService.RegistrarCorporacaoExistente(email);
+                await _corporacaoRepository.RegistrarCorporacaoAsync(email, passwordString);
+
+                return StatusCode(200);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
+
+        #region AUTENTICAR
+        [HttpPost("Autenticar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AutenticarCorporacao(string email, string passwordString)
+        {
+            try
+            {
+                await _corporacaoService.AutenticarCorporacaoAsync(email, passwordString);
+                await _corporacaoRepository.AutenticarCorporacaoAsync(email, passwordString);
+
+                return StatusCode(200);
+
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        #endregion
+
+        #region ALTERAR-SENHA
+        [HttpPut("AlterarSenha")]
+        public async Task<IActionResult> AlterarSenhaCorporacao(string email, string novaSenha)
+        {
+            try
+            {
+                await _corporacaoService.GetCorporacaoAsync(email);
+                await _corporacaoRepository.AlterarSenhaCorporacaoAsync(email, novaSenha);
+
+                return Ok(200);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
+
     }
 }

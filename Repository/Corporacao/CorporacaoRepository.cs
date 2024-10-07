@@ -1,5 +1,6 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models;
+using ChronosApi.Services.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,51 +14,43 @@ namespace ChronosApi.Repository.Corporacao
             _context = context;
         }
 
-        #region GET
-        public async Task<List<CorporacaoModel>> GetAllCorporacaoAsync()
+        public async Task<List<CorporacaoModel>> GetAllAsync()
         {
             var corporacao = await _context.TB_CORPORACAO.ToListAsync();
             return corporacao;
         }
 
-        public async Task<ActionResult<CorporacaoModel>> GetIdCorporacaoAsync(int id)
+        public async Task<ActionResult<CorporacaoModel>> GetIdAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
             return corporacao;
         }
-        #endregion
 
-        #region POST
-        public async Task<ActionResult<CorporacaoModel>> PostCorporacaoAsync(CorporacaoModel corporacao)
+        public async Task<ActionResult<CorporacaoModel>> PostAsync(CorporacaoModel corporacao)
         {
             corporacao.idCorporacao = 0;
             _context.TB_CORPORACAO.Add(corporacao);
             await _context.SaveChangesAsync();
             return corporacao;
         }
-        #endregion
 
-        #region PUT
-        public async Task<ActionResult<CorporacaoModel>> PutCorporacaoAsync(int id, CorporacaoModel updatedCorporacao)
+        public async Task<ActionResult<CorporacaoModel>> PutAsync(int id, CorporacaoModel updatedCorporacao)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
 
             corporacao.nomeCorporacao = updatedCorporacao.nomeCorporacao;
-            corporacao.descricaoCorporacao = updatedCorporacao.descricaoCorporacao;
             corporacao.tipoCorporacao = updatedCorporacao.tipoCorporacao;
             corporacao.numeroCorporacao = updatedCorporacao.numeroCorporacao;
-            corporacao.emailCorporacao = updatedCorporacao.emailCorporacao;
             corporacao.cnpjCorporacao = updatedCorporacao.cnpjCorporacao;
+            corporacao.descricaoCorporacao = updatedCorporacao.descricaoCorporacao;
 
             _context.Entry(corporacao).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
             return corporacao;
         }
-        #endregion
 
-        #region DELETE        
-        public async Task<ActionResult<CorporacaoModel>> DeleteCorporacaoAsync(int id)
+        public async Task<ActionResult<CorporacaoModel>> DeleteAsync(int id)
         {
 
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
@@ -66,6 +59,63 @@ namespace ChronosApi.Repository.Corporacao
 
             return corporacao;
         }
-        #endregion
+
+        public async Task RegistrarCorporacaoAsync(string email, string passwordString)
+        {
+            Criptografia.CriarPasswordHash(passwordString, out byte[] hash, out byte[] salt);
+
+            CorporacaoModel corporacao = new CorporacaoModel
+            {
+                emailCorporacao = email,
+                PasswordString = string.Empty,
+                PasswordHash = hash,
+                PasswordSalt = salt
+            };
+
+
+            await _context.TB_CORPORACAO.AddAsync(corporacao);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> AutenticarCorporacaoAsync(string email, string passwordString)
+        {
+            CorporacaoModel? usuario = await _context.TB_CORPORACAO.FirstOrDefaultAsync(x => x.emailCorporacao.ToLower().Equals(email.ToLower()));
+
+            if (usuario != null)
+            {
+
+                bool senhaValida = Criptografia.VerificarPasswordHash(passwordString, usuario.PasswordHash, usuario.PasswordSalt);
+
+                if (senhaValida)
+                {
+
+                    usuario.DataAcesso = System.DateTime.Now;
+                    _context.TB_CORPORACAO.Update(usuario);
+                    await _context.SaveChangesAsync();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public async Task AlterarSenhaCorporacaoAsync(string email, string novaSenha)
+        {
+            CorporacaoModel usuario = await _context.TB_CORPORACAO
+                .FirstOrDefaultAsync(x => x.emailCorporacao == email);
+
+            Criptografia.CriarPasswordHash(novaSenha, out byte[] novoHash, out byte[] novoSal);
+
+            usuario.PasswordHash = novoHash;
+            usuario.PasswordSalt = novoSal;
+
+            var attach = _context.Attach(usuario);
+            attach.Property(x => x.PasswordHash).IsModified = true;
+            attach.Property(x => x.PasswordSalt).IsModified = true;
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

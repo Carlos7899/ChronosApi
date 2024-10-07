@@ -11,9 +11,6 @@ namespace ChronosApi.Models
         [Key]
         public int idCorporacao { get; set; }
 
-        [ForeignKey("idCorporacaoEndereco")]
-        public int idCorporacaoEndereco { get; set; }
-
         public TipoCorporacao tipoCorporacao { get; set; }
         public string nomeCorporacao { get; set; } = string.Empty;
         public string emailCorporacao { get; set; } = string.Empty;
@@ -21,7 +18,12 @@ namespace ChronosApi.Models
         public string descricaoCorporacao { get; set; } = string.Empty;
         public string cnpjCorporacao { get; set; } = string.Empty;
 
-        [JsonIgnore]
-        public CorporacaoEnderecoModel? corporacaoEnderecoModel { get; }
+
+        public byte[]? PasswordHash { get; set; }
+        public byte[]? PasswordSalt { get; set; }
+        public DateTime? DataAcesso { get; set; }
+
+        [NotMapped]
+        public string PasswordString { get; set; } = string.Empty;
     }
 }

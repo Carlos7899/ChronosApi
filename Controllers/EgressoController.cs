@@ -68,6 +68,7 @@ namespace ChronosApi.Controllers
         }
         #endregion
 
+        //Nao e´ necessario, basta registrar e depois update, possivelmente vou remover
         #region CREATE
         [HttpPost("POST")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

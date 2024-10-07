@@ -58,7 +58,8 @@ namespace ChronosApi.Data
                     cpfEgresso = "222",
                     tipoEgresso = TipoEgresso.fisico,
                     PasswordHash = passwordHash,
-                    PasswordSalt = passwordSalt
+                    PasswordSalt = passwordSalt,
+                    DataAcesso = DateTime.Now
                 }
             );
             #endregion
@@ -69,13 +70,15 @@ namespace ChronosApi.Data
                 new CorporacaoModel() 
                 { 
                     idCorporacao = 1, 
-                    idCorporacaoEndereco = 1, 
                     tipoCorporacao = TipoCorporacao.Empresa, 
                     nomeCorporacao = "Corporação Exemplo", 
                     emailCorporacao = "contato@exemplo.com", 
                     numeroCorporacao = "12345678", 
                     descricaoCorporacao = "Exemplo de corporação", 
-                    cnpjCorporacao = "12.345.678/0001-99" 
+                    cnpjCorporacao = "12.345.678/0001-99",
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
+                    DataAcesso = DateTime.Now
                 }
             );
             #endregion
