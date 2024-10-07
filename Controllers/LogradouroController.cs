@@ -3,7 +3,6 @@ using ChronosApi.Models.Enderecos;
 using ChronosApi.Repository.Enderecos.Logradouro;
 using ChronosApi.Services.Logradouro;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Controllers
 {
@@ -12,71 +11,120 @@ namespace ChronosApi.Controllers
     [Route("api/[Controller]")]
     public class LogradouroController : ControllerBase
     {
-
-        private readonly DataContext _context;
-        private readonly ILogger<LogradouroController> _logger;
-        private readonly ILogradouroRepository _logradouroRepository;
         private readonly ILogradouroService _logradouroService;
-    
+        private readonly ILogradouroRepository _logradouroRepository;
 
-        public LogradouroController(ILogger<LogradouroController> logger, ILogradouroRepository logradouroRepository, ILogradouroService logradouroService)
+        public LogradouroController(ILogradouroService logradouroService, ILogradouroRepository logradouroRepository)
         {
-            _logger = logger;
-            _logradouroRepository = logradouroRepository;
             _logradouroService = logradouroService;
+            _logradouroRepository = logradouroRepository;
         }
+
+
+        // CRUD pronto
+
 
         #region GET
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<LogradouroModel>>> GetAllLogradouros()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<LogradouroModel>>> GetAll()
         {
-            var logradouros = await _logradouroRepository.GetAllLogradouroAsync();
-            return Ok(logradouros);
-        }
-
-        [HttpGet("GetById/{id}")]
-        public async Task<ActionResult<LogradouroModel>> GetLogradouroById(int id)
-        {
-            var logradouro = await _logradouroRepository.GetIdLogradouroAsync(id);
-            await _logradouroService.GetLogradouroAsync(id);
-
-            if (logradouro == null)
+            try
             {
-                return NotFound("Logradouro não encontrado.");
+                var logradouros = await _logradouroRepository.GetAllAsync();
+                return Ok(logradouros);
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
-            return Ok(logradouro);
+        [HttpGet("GetbyId/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<LogradouroModel>> Get(int id)
+        {
+            try
+            {
+                var logradouro = await _logradouroRepository.GetIdAsync(id);
+                if (logradouro == null)
+                {
+                    return NotFound("Logradouro não encontrado.");
+                }
+                return Ok(logradouro);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         #endregion
 
-        #region POST
-        [HttpPost("Create")]
-        public async Task<ActionResult<LogradouroModel>> CreateLogradouro(LogradouroModel logradouro)
+        #region CREATE
+        [HttpPost("POST")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<LogradouroModel>> Post([FromBody] LogradouroModel logradouro)
         {
-            var newLogradouro = await _logradouroRepository.PostLogradouroAsync(logradouro);
-            return Ok(newLogradouro);
+            try
+            {
+                var novoLogradouro = await _logradouroRepository.PostAsync(logradouro);
+                return StatusCode(201, novoLogradouro);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         #endregion
 
-        #region PUT
-        [HttpPut("Update/{id}")]
-        public async Task<ActionResult<LogradouroModel>> UpdateLogradouro(int id, LogradouroModel updatedLogradouro)
+        #region UPDATE
+        [HttpPut("Put/{id}")]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<LogradouroModel>> Put(int id, [FromBody] LogradouroModel logradouro)
         {
-            await _logradouroRepository.PutLogradouroAsync(id, updatedLogradouro);
-            await _logradouroService.PutLogradouroAsync(id);
+            try
+            {
+                var logradouroExists = await _logradouroService.LogradouroExisteAsync(id);
+                if (!logradouroExists)
+                {
+                    return NotFound("Logradouro não encontrado.");
+                }
 
-            return Ok("Logradouro atualizado com sucesso.");
+                var updatedLogradouro = await _logradouroRepository.PutAsync(id, logradouro);
+                return Ok(updatedLogradouro);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         #endregion
 
         #region DELETE
         [HttpDelete("Delete/{id}")]
-        public async Task<ActionResult> DeleteLogradouro(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> Delete(int id)
         {
-            await _logradouroRepository.DeleteLogradouroAsync(id);
-            await _logradouroService.DeleteLogradouroAsync(id);
+            try
+            {
+                var logradouroExists = await _logradouroService.LogradouroExisteAsync(id);
+                if (!logradouroExists)
+                {
+                    return NotFound("Logradouro não encontrado.");
+                }
 
-            return Ok("Logradouro deletado com sucesso.");
+                await _logradouroRepository.DeleteAsync(id);
+                return Ok("Logradouro deletado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         #endregion
     }

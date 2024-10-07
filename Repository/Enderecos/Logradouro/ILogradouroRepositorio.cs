@@ -5,10 +5,10 @@ namespace ChronosApi.Repository.Enderecos.Logradouro
 {
     public interface ILogradouroRepository
     {
-        Task<List<LogradouroModel>> GetAllLogradouroAsync();
-        Task<ActionResult<LogradouroModel>> GetIdLogradouroAsync(int id);
-        Task<ActionResult<LogradouroModel>> PostLogradouroAsync(LogradouroModel logradouro);
-        Task<ActionResult<LogradouroModel>> PutLogradouroAsync(int id, LogradouroModel updatedLogradouro);
-        Task<ActionResult<LogradouroModel>> DeleteLogradouroAsync(int id);
+        Task<List<LogradouroModel>> GetAllAsync();
+        Task<ActionResult<LogradouroModel>> GetIdAsync(int id);
+        Task<ActionResult<LogradouroModel>> PostAsync(LogradouroModel logradouro);
+        Task<ActionResult<LogradouroModel>> PutAsync(int id, LogradouroModel updatedLogradouro);
+        Task<ActionResult<LogradouroModel>> DeleteAsync(int id);
     }
 }

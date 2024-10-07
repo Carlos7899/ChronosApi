@@ -13,45 +13,18 @@ namespace ChronosApi.Services.Logradouro
             _context = context;
         }
 
-        #region GET
-        public async Task GetLogradouroAsync(int id)
+        public async Task GetAsync(int id)
         {
-            var logradouro = await _context.TB_LOGRADOURO.FirstOrDefaultAsync(l => l.idLogradouro == id);
-
+            var logradouro = await _context.TB_LOGRADOURO.FindAsync(id);
             if (logradouro == null)
             {
                 throw new NotFoundException("Logradouro não encontrado.");
             }
         }
-        #endregion
 
-        #region PUT
-        public async Task PutLogradouroAsync(int id)
+        public async Task<bool> LogradouroExisteAsync(int id)
         {
-            var logradouro = await _context.TB_LOGRADOURO.FirstOrDefaultAsync(l => l.idLogradouro == id);
-
-            if (logradouro == null)
-            {
-                throw new ConflictException("Dados inválidos");
-            }
-
-           
+            return await _context.TB_LOGRADOURO.AnyAsync(l => l.idLogradouro == id);
         }
-        #endregion
-
-        #region DELETE
-        public async Task DeleteLogradouroAsync(int id)
-        {
-            var existingLogradouro = await _context.TB_LOGRADOURO.FirstOrDefaultAsync(l => l.idLogradouro == id);
-
-            if (existingLogradouro == null)
-            {
-                throw new NotFoundException("Logradouro não encontrado.");
-            }
-
-            _context.TB_LOGRADOURO.Remove(existingLogradouro);
-            await _context.SaveChangesAsync();
-        }
-        #endregion
     }
 }

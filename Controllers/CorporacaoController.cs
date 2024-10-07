@@ -22,6 +22,8 @@ namespace ChronosApi.Controllers
             _corporacaoService = CorporacaoService;
         }
 
+        //CRUD pronto
+
         #region GET
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

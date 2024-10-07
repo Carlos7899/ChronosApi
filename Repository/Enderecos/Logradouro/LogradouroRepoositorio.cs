@@ -15,38 +15,28 @@ namespace ChronosApi.Repository.Logradouro
             _context = context;
         }
 
-        #region GET
-        public async Task<List<LogradouroModel>> GetAllLogradouroAsync()
+        public async Task<List<LogradouroModel>> GetAllAsync()
         {
-            var logradouros = await _context.TB_LOGRADOURO.ToListAsync();
-            return logradouros;
+            return await _context.TB_LOGRADOURO.ToListAsync();
         }
 
-        public async Task<ActionResult<LogradouroModel>> GetIdLogradouroAsync(int id)
+        public async Task<ActionResult<LogradouroModel>> GetIdAsync(int id)
         {
-            var logradouro = await _context.TB_LOGRADOURO.FirstOrDefaultAsync(l => l.idLogradouro == id);
-            return logradouro;
+            return await _context.TB_LOGRADOURO.FirstOrDefaultAsync(l => l.idLogradouro == id);
         }
-        #endregion
 
-        #region POST
-        public async Task<ActionResult<LogradouroModel>> PostLogradouroAsync(LogradouroModel logradouro)
+        public async Task<ActionResult<LogradouroModel>> PostAsync(LogradouroModel logradouro)
         {
-            _context.TB_LOGRADOURO.Add(logradouro);
+            logradouro.idLogradouro = 0; // Para garantir que o ID seja gerado pelo banco
+            await _context.TB_LOGRADOURO.AddAsync(logradouro);
             await _context.SaveChangesAsync();
             return logradouro;
         }
-        #endregion
 
-        #region PUT
-        public async Task<ActionResult<LogradouroModel>> PutLogradouroAsync(int id, LogradouroModel updatedLogradouro)
+        public async Task<ActionResult<LogradouroModel>> PutAsync(int id, LogradouroModel updatedLogradouro)
         {
-            var logradouro = await _context.TB_LOGRADOURO.FirstOrDefaultAsync(l => l.idLogradouro == id);
-
-            if (logradouro == null)
-            {
-                return null;
-            }
+            var logradouro = await _context.TB_LOGRADOURO.FindAsync(id);
+            if (logradouro == null) return null;
 
             logradouro.cepLogradouro = updatedLogradouro.cepLogradouro;
             logradouro.tipoLogradouro = updatedLogradouro.tipoLogradouro;
@@ -58,23 +48,15 @@ namespace ChronosApi.Repository.Logradouro
             await _context.SaveChangesAsync();
             return logradouro;
         }
-        #endregion
 
-        #region DELETE
-        public async Task<ActionResult<LogradouroModel>> DeleteLogradouroAsync(int id)
+        public async Task<ActionResult<LogradouroModel>> DeleteAsync(int id)
         {
-            var logradouro = await _context.TB_LOGRADOURO.FirstOrDefaultAsync(l => l.idLogradouro == id);
-
-            if (logradouro == null)
-            {
-                return null;
-            }
+            var logradouro = await _context.TB_LOGRADOURO.FindAsync(id);
+            if (logradouro == null) return null;
 
             _context.TB_LOGRADOURO.Remove(logradouro);
             await _context.SaveChangesAsync();
-
             return logradouro;
         }
-        #endregion
     }
 }
