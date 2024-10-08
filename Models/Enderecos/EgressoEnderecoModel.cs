@@ -18,5 +18,6 @@ namespace ChronosApi.Models.Enderecos
 
 
         public EgressoModel? Egresso { get; set; }
+        public LogradouroModel? Logradouro { get; set;}
     }
 }
