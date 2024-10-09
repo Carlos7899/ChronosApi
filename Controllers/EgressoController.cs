@@ -2,6 +2,7 @@
 using ChronosApi.Models;
 using ChronosApi.Repository.Egresso;
 using ChronosApi.Services.Egresso;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChronosApi.Controllers
@@ -20,6 +21,7 @@ namespace ChronosApi.Controllers
             _context = context;
             _egressoService = egressoService;
             _egressoRepository = egressoRepository;
+         
         }
 
 
@@ -131,7 +133,6 @@ namespace ChronosApi.Controllers
 
         #region DELETE
         [HttpDelete("Delete/{id}")]
-
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -181,10 +182,14 @@ namespace ChronosApi.Controllers
         {
             try
             {
-                await _egressoService.AutenticarEgressoAsync(email, passwordString);
+                // Autenticar e gerar o token via service
+                string token = await _egressoService.AutenticarEgressoAsync(email, passwordString);
+
+                // Armazenar no banco via repository, se necessário
                 await _egressoRepository.AutenticarEgressoAsync(email, passwordString);
 
-                return StatusCode(200);
+                // Retornar o token ao cliente
+                return Ok(new { Token = token });
 
             }
             catch (System.Exception ex)
@@ -213,6 +218,8 @@ namespace ChronosApi.Controllers
             }
         }
         #endregion
+
+    
 
 
     }

@@ -3,16 +3,22 @@ using ChronosApi.Models;
 using ChronosApi.Services.Exceptions;
 using ChronosApi.Services.Utils;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace ChronosApi.Services.Corporacao
 {
     public class CorporacaoService : ICorporacaoService
     {
         private readonly DataContext _context;
-        public CorporacaoService(DataContext context)
+        private readonly IConfiguration _configuration;
+        public CorporacaoService(DataContext context, IConfiguration configuration)
         {
             _context = context;
-
+            _configuration = configuration;
         }
         public async Task GetAsync(int id)
         {
@@ -61,7 +67,7 @@ namespace ChronosApi.Services.Corporacao
 
         }
 
-        public async Task AutenticarCorporacaoAsync(string email, string passwordString)
+        public async Task<String> AutenticarCorporacaoAsync(string email, string passwordString)
         {
             CorporacaoModel? usuario = await _context.TB_CORPORACAO.FirstOrDefaultAsync(x => x.emailCorporacao.ToLower().Equals(email.ToLower()));
 
@@ -75,6 +81,30 @@ namespace ChronosApi.Services.Corporacao
             {
                 throw new System.Exception("Senha incorreta.");
             }
+            return CriarToken(usuario);
+        }
+
+        private string CriarToken(CorporacaoModel usuario)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                 new Claim(ClaimTypes.NameIdentifier, usuario.idCorporacao.ToString()),
+                 new Claim(ClaimTypes.Email, usuario.emailCorporacao)
+            };
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
+             .GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value));
+
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
         public async Task GetCorporacaoAsync(string email)

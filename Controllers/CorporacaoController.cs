@@ -2,10 +2,12 @@
 using ChronosApi.Models;
 using ChronosApi.Repository.Corporacao;
 using ChronosApi.Services.Corporacao;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChronosApi.Controllers
 {
+    
     [ApiController]
     [Route("api/[controller]")]
     public class CorporacaoController : ControllerBase
@@ -180,10 +182,10 @@ namespace ChronosApi.Controllers
         {
             try
             {
-                await _corporacaoService.AutenticarCorporacaoAsync(email, passwordString);
+                string token = await _corporacaoService.AutenticarCorporacaoAsync(email, passwordString);
                 await _corporacaoRepository.AutenticarCorporacaoAsync(email, passwordString);
 
-                return StatusCode(200);
+                return Ok(new { Token = token });
 
             }
             catch (System.Exception ex)

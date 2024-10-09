@@ -21,5 +21,8 @@ namespace ChronosApi.Models
 
         [NotMapped] 
         public string PasswordString { get; set; } = string.Empty;
+
+        [NotMapped]
+        public string Token { get; set; }
     }
 }
