@@ -7,10 +7,11 @@ namespace ChronosApi.Repository.CorporacaoEndereco
 {
     public interface ICorporacaoEnderecoRepository
     {
-        Task<List<CorporacaoEnderecoModel>> GetAllCorporacaoEnderecoAsync();
-        Task<ActionResult<CorporacaoEnderecoModel>> GetIdCorporacaoEnderecoAsync(int id);
-        Task<ActionResult<CorporacaoEnderecoModel>> PostCorporacaoEnderecoAsync(CorporacaoEnderecoModel corporacaoEndereco);
-        Task<ActionResult<CorporacaoEnderecoModel>> PutCorporacaoEnderecoAsync(int id, CorporacaoEnderecoModel updatedCorporacaoEndereco);
-        Task<ActionResult<CorporacaoEnderecoModel>> DeleteCorporacaoEnderecoAsync(int id);
+        Task<CorporacaoEnderecoModel?> GetCorporacaoEnderecoByIdAsync(int id);
+        Task<bool> CorporacaoExistsAsync(int idCorporacao);
+        Task<bool> LogradouroExistsAsync(int idLogradouro);
+        Task<CorporacaoEnderecoModel> AddCorporacaoEnderecoAsync(CorporacaoEnderecoModel endereco);
+        Task<CorporacaoEnderecoModel> UpdateCorporacaoEnderecoAsync(CorporacaoEnderecoModel endereco);
+        Task DeleteCorporacaoEnderecoAsync(CorporacaoEnderecoModel endereco);
     }
 }

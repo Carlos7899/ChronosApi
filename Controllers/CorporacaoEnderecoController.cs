@@ -1,6 +1,8 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models.Enderecos;
 using ChronosApi.Repository.CorporacaoEndereco;
+using ChronosApi.Services.CorporacaoEndereco;
+using ChronosApi.Services.Exceptions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,74 +14,132 @@ namespace ChronosApi.Controllers
     [Route("api/[Controller]")]
     public class CorporacaoEnderecoController : ControllerBase
     {
-        private readonly ILogger<CorporacaoEnderecoController> _logger;
-        private readonly DataContext _context;
+
+        private readonly ICorporacaoEnderecoService _corporacaoEnderecoService;
         private readonly ICorporacaoEnderecoRepository _corporacaoEnderecoRepository;
 
-        public CorporacaoEnderecoController(ILogger<CorporacaoEnderecoController> logger, ICorporacaoEnderecoRepository corporacaoEnderecoRepository, DataContext context)
+        public CorporacaoEnderecoController(ICorporacaoEnderecoService corporacaoEnderecoService, ICorporacaoEnderecoRepository corporacaoEnderecoRepository)
         {
-            _logger = logger;
-            _context = context;
+            _corporacaoEnderecoService = corporacaoEnderecoService;
             _corporacaoEnderecoRepository = corporacaoEnderecoRepository;
         }
 
         #region GET
+
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<CorporacaoEnderecoModel>>> GetAll()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<CorporacaoEnderecoModel>>> GetAll()
         {
-            var corporacaoEnderecos = await _corporacaoEnderecoRepository.GetAllCorporacaoEnderecoAsync();
-            return Ok(corporacaoEnderecos);
+            try
+            {
+                var enderecos = await _corporacaoEnderecoService.GetAllCorporacoesEnderecosAsync();
+                return Ok(enderecos);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
-        [HttpGet("GetID")]
-        public async Task<ActionResult<CorporacaoEnderecoModel>> GetById(int id)
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<CorporacaoEnderecoModel>> GetByIdCorporacaoEndereco(int id)
         {
-            var corporacaoEndereco = await _corporacaoEnderecoRepository.GetIdCorporacaoEnderecoAsync(id);
-            if (corporacaoEndereco == null)
+            try
             {
-                return NotFound("Endereço de corporação não encontrado.");
+                var endereco = await _corporacaoEnderecoService.GetCorporacaoEnderecoAsync(id);
+                return Ok(endereco);
             }
-
-            return Ok(corporacaoEndereco);
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
         #endregion
 
         #region CREATE
-        [HttpPost("POST")]
-        public async Task<ActionResult<CorporacaoEnderecoModel>> Post(CorporacaoEnderecoModel corporacaoEndereco)
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<CorporacaoEnderecoModel>> CreateCorporacaoEndereco([FromBody] CorporacaoEnderecoModel endereco)
         {
-            var newCorporacaoEndereco = await _corporacaoEnderecoRepository.PostCorporacaoEnderecoAsync(corporacaoEndereco);
-            return Ok(newCorporacaoEndereco);
+            try
+            {
+                // Verifica se a corporação e o logradouro existem
+                await _corporacaoEnderecoService.CreateCorporacaoEnderecoAsync(endereco);
+
+                // Adiciona o novo endereço ao repositório
+                var novoEndereco = await _corporacaoEnderecoRepository.AddCorporacaoEnderecoAsync(endereco);
+                return CreatedAtAction(nameof(GetByIdCorporacaoEndereco), new { id = novoEndereco.idCorporacaoEndereco }, novoEndereco);
+            }
+            catch (NotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
         #endregion
 
         #region UPDATE
-        [HttpPut("PUT")]
-        public async Task<ActionResult> Put(int id, CorporacaoEnderecoModel updatedCorporacaoEndereco)
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<CorporacaoEnderecoModel>> Put(int id, [FromBody] CorporacaoEnderecoModel updatedEndereco)
         {
-            var existingCorporacaoEndereco = await _corporacaoEnderecoRepository.GetIdCorporacaoEnderecoAsync(id);
-            if (existingCorporacaoEndereco == null)
+            try
             {
-                return NotFound("Endereço de corporação não encontrado.");
-            }
+                var existingEndereco = await _corporacaoEnderecoService.UpdateCorporacaoEnderecoAsync(id, updatedEndereco);
 
-            await _corporacaoEnderecoRepository.PutCorporacaoEnderecoAsync(id, updatedCorporacaoEndereco);
-            return Ok("Endereço de corporação atualizado com sucesso.");
+                await _corporacaoEnderecoRepository.UpdateCorporacaoEnderecoAsync(existingEndereco);
+
+                return Ok(existingEndereco);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         #endregion
 
         #region DELETE
-        [HttpDelete("DELETE")]
-        public async Task<ActionResult> Delete(int id)
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> DeleteCorporacaoEndereco(int id)
         {
-            var existingCorporacaoEndereco = await _corporacaoEnderecoRepository.GetIdCorporacaoEnderecoAsync(id);
-            if (existingCorporacaoEndereco == null)
+            try
             {
-                return NotFound("Endereço de corporação não encontrado.");
-            }
+                var existingEndereco = await _corporacaoEnderecoRepository.GetCorporacaoEnderecoByIdAsync(id);
+                if (existingEndereco == null)
+                {
+                    return NotFound("Endereço não encontrado.");
+                }
 
-            await _corporacaoEnderecoRepository.DeleteCorporacaoEnderecoAsync(id);
-            return Ok("Endereço de corporação deletado com sucesso.");
+                await _corporacaoEnderecoRepository.DeleteCorporacaoEnderecoAsync(existingEndereco);
+                return Ok("Endereço deletado com sucesso!");
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
         #endregion
     }

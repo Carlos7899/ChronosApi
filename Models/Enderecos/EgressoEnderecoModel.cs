@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ChronosApi.Models.Enderecos
 {
@@ -16,8 +17,14 @@ namespace ChronosApi.Models.Enderecos
         public string numeroEgressoEndereco { get; set; } = string.Empty;
         public string complementoEgressoEndereco { get; set; } = string.Empty;
 
-
+        [NotMapped]
+        [JsonIgnore]
         public EgressoModel? Egresso { get; set; }
-        public LogradouroModel? Logradouro { get; set;}
+
+        [NotMapped]
+        [JsonIgnore]
+        public LogradouroModel? Logradouro { get; set; }
+
+
     }
 }

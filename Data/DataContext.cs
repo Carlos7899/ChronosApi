@@ -200,11 +200,23 @@ namespace ChronosApi.Data
                new CorporacaoEnderecoModel() 
                { 
                    idCorporacaoEndereco = 1,
+                   idCorporacao = 1,
                    idLogradouro = 1,
-                   complementoCorporacaoEndereco = "",
+                   complementoCorporacaoEndereco = "bloco",
                    numeroCorporacaoEndereco = "443"
                }
+
             );
+
+            modelBuilder.Entity<CorporacaoEnderecoModel>()
+            .HasOne(cc => cc.Corporacao) // Um endereço pertence a um egresso
+            .WithOne() // Um egresso tem um endereço
+            .HasForeignKey<CorporacaoEnderecoModel>(ee => ee.idCorporacao);
+
+            modelBuilder.Entity<CorporacaoEnderecoModel>()
+             .HasOne(cc => cc.Logradouro) // Um endereço pertence a um logradouro
+             .WithMany() // Um logradouro pode ter vários endereços
+             .HasForeignKey(cc => cc.idLogradouro);
             #endregion
 
             #region CursoEndereco
@@ -250,7 +262,13 @@ namespace ChronosApi.Data
              .HasOne(ee => ee.Egresso) // Um endereço pertence a um egresso
              .WithOne() // Um egresso tem um endereço
              .HasForeignKey<EgressoEnderecoModel>(ee => ee.idEgresso);
+
+            modelBuilder.Entity<EgressoEnderecoModel>()
+             .HasOne(ee => ee.Logradouro) // Um endereço pertence a um logradouro
+             .WithMany() // Um logradouro pode ter vários endereços
+             .HasForeignKey(ee => ee.idLogradouro);
             #endregion
+
         }
     }
 }

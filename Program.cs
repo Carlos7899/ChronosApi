@@ -22,7 +22,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(Options =>
 {
-    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal2"));
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal5"));
 });
 
 // Add services to the container.
@@ -62,7 +62,7 @@ builder.Services.AddScoped<ILogradouroService, LogradouroService>();
 builder.Services.AddScoped<ILogradouroRepository, LogradouroRepository>();
 
 builder.Services.AddScoped<IEgressoEnderecoService, EgressoEnderecoService>();
-builder.Services.AddScoped<IEgressoEnderecoRepositorio, EgressoEnderecoRepositorio>();
+builder.Services.AddScoped<IEgressoEnderecoRepository, EgressoEnderecoRepository>();
 
 builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
 builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();

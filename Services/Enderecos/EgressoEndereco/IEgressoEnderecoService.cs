@@ -6,11 +6,11 @@ namespace ChronosApi.Services.EgressoEndereco
 {
     public interface IEgressoEnderecoService
     {
-        Task<EgressoEnderecoModel> GetAsync(int id);
-        Task<List<EgressoEnderecoModel>> GetAllAsync();
-        Task<EgressoEnderecoModel> CreateAsync(EgressoEnderecoModel endereco);
-        Task<EgressoEnderecoModel> UpdateAsync(int id, EgressoEnderecoModel updatedEndereco);
-        Task DeleteAsync(int id);
+        Task<IEnumerable<EgressoEnderecoModel>> GetAllEgressosEnderecosAsync();
+        Task<EgressoEnderecoModel> GetEgressoEnderecoAsync(int id);
+        Task<EgressoEnderecoModel> CreateEgressoEnderecoAsync(EgressoEnderecoModel endereco);
+        Task<EgressoEnderecoModel> UpdateEgressoEnderecoAsync(int id, EgressoEnderecoModel updatedEndereco);
+        Task DeleteEgressoEnderecoAsync(int id);
 
     }
 }

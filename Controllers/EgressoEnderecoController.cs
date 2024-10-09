@@ -11,74 +11,130 @@ namespace ChronosApi.Controllers
     [ApiController]
     public class EgressoEnderecoController : ControllerBase
     {
-        private readonly IEgressoEnderecoService _enderecoService;
+        private readonly IEgressoEnderecoService _egressoEnderecoService;
+        private readonly IEgressoEnderecoRepository _egressoEnderecoRepository;
 
-        public EgressoEnderecoController( IEgressoEnderecoService egressoEnderecoService)
+        public EgressoEnderecoController(IEgressoEnderecoService egressoEnderecoService, IEgressoEnderecoRepository egressoEnderecoRepository)
         {
-            _enderecoService = egressoEnderecoService;
+            _egressoEnderecoService = egressoEnderecoService;
+            _egressoEnderecoRepository = egressoEnderecoRepository;
         }
-
-        //SITUAÇAO: revisar e alterar Services e Repository
 
         #region GET
-        [HttpGet]
-        public async Task<ActionResult<List<EgressoEnderecoModel>>> GetAll()
-        {
-            return Ok(await _enderecoService.GetAllAsync());
-        }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<EgressoEnderecoModel>> Get(int id)
+        [HttpGet("GetAll")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<EgressoEnderecoModel>>> GetAll()
         {
             try
             {
-                var endereco = await _enderecoService.GetAsync(id);
+                var enderecos = await _egressoEnderecoService.GetAllEgressosEnderecosAsync();
+                return Ok(enderecos);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<EgressoEnderecoModel>> GetByIdEgressoEndereco(int id)
+        {
+            try
+            {
+                var endereco = await _egressoEnderecoService.GetEgressoEnderecoAsync(id);
                 return Ok(endereco);
             }
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
         #endregion
 
-        #region POST
+        #region CREATE
         [HttpPost]
-        public async Task<ActionResult<EgressoEnderecoModel>> Post([FromBody] EgressoEnderecoModel endereco)
-        {
-            var createdEndereco = await _enderecoService.CreateAsync(endereco);
-            return CreatedAtAction(nameof(Get), new { id = createdEndereco.idEgressoEndereco }, createdEndereco);
-        }
-        #endregion
-
-        #region PUT
-        [HttpPut("{id}")]
-        public async Task<ActionResult<EgressoEnderecoModel>> Put(int id, [FromBody] EgressoEnderecoModel endereco)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<EgressoEnderecoModel>> CreateEgressoEndereco([FromBody] EgressoEnderecoModel endereco)
         {
             try
             {
-                var updatedEndereco = await _enderecoService.UpdateAsync(id, endereco);
-                return Ok(updatedEndereco);
+                // Verifica se o egresso e o logradouro existem
+                await _egressoEnderecoService.CreateEgressoEnderecoAsync(endereco);
+
+                // Adiciona o novo endereço ao repositório
+                var novoEndereco = await _egressoEnderecoRepository.AddEgressoEnderecoAsync(endereco);
+                return CreatedAtAction(nameof(GetByIdEgressoEndereco), new { id = novoEndereco.idEgressoEndereco }, novoEndereco);
+            }
+            catch (NotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+        #endregion
+
+        #region UPDATE
+        [HttpPut("Put/{id}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<EgressoEnderecoModel>> Put(int id, [FromBody] EgressoEnderecoModel updatedEndereco)
+        {
+            try
+            {
+                var existingEndereco = await _egressoEnderecoService.UpdateEgressoEnderecoAsync(id, updatedEndereco);
+
+                await _egressoEnderecoRepository.UpdateEgressoEnderecoAsync(existingEndereco);
+
+                return Ok(existingEndereco);
             }
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
         }
         #endregion
 
         #region DELETE
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> DeleteEgressoEndereco(int id)
         {
             try
             {
-                await _enderecoService.DeleteAsync(id);
-                return NoContent();
+                var existingEndereco = await _egressoEnderecoRepository.GetEgressoEnderecoByIdAsync(id);
+                if (existingEndereco == null)
+                {
+                    return NotFound("Endereço não encontrado.");
+                }
+
+                await _egressoEnderecoRepository.DeleteEgressoEnderecoAsync(existingEndereco);
+                return Ok("Endereço deletado com sucesso!");
             }
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
             }
         }
         #endregion

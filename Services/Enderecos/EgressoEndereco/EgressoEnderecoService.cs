@@ -16,64 +16,64 @@ namespace ChronosApi.Services.EgressoEndereco
             _context = context;
         }
 
-
-        public async Task<EgressoEnderecoModel> GetAsync(int id)
+        public async Task<IEnumerable<EgressoEnderecoModel>> GetAllEgressosEnderecosAsync()
         {
-            var endereco = await _context.TB_EGRESSO_ENDERECO
-                .Include(e => e.Egresso)
-                .Include(e => e.Logradouro)
+            return await _context.TB_EGRESSO_ENDERECO.Include(e => e.Logradouro).ToListAsync();
+        }
+
+
+        public async Task<EgressoEnderecoModel> GetEgressoEnderecoAsync(int id)
+        {
+            var endereco = await _context.TB_EGRESSO_ENDERECO.Include(e => e.Logradouro)
                 .FirstOrDefaultAsync(e => e.idEgressoEndereco == id);
-            if (endereco == null)
-            {
-                throw new NotFoundException("Endereço não encontrado.");
-            }
-            return endereco;
-        }
 
-        public async Task<List<EgressoEnderecoModel>> GetAllAsync()
-        {
-            return await _context.TB_EGRESSO_ENDERECO
-                .Include(e => e.Egresso)
-                .Include(e => e.Logradouro)
-                .ToListAsync();
-        }
-
-        public async Task<EgressoEnderecoModel> CreateAsync(EgressoEnderecoModel endereco)
-        {
-            await _context.TB_EGRESSO_ENDERECO.AddAsync(endereco);
-            await _context.SaveChangesAsync();
-            return endereco;
-        }
-
-        public async Task<EgressoEnderecoModel> UpdateAsync(int id, EgressoEnderecoModel updatedEndereco)
-        {
-            var endereco = await GetAsync(id);
             if (endereco == null)
             {
                 throw new NotFoundException("Endereço não encontrado.");
             }
 
-            endereco.idLogradouro = updatedEndereco.idLogradouro;
-            endereco.idEgresso = updatedEndereco.idEgresso;
+            return endereco;
+        }
+
+        public async Task<EgressoEnderecoModel> CreateEgressoEnderecoAsync(EgressoEnderecoModel endereco)
+        {
+            // Verifica se o egresso existe
+            var egressoExists = await _context.TB_EGRESSO.AnyAsync(e => e.idEgresso == endereco.idEgresso);
+            if (!egressoExists)
+            {
+                throw new NotFoundException("Egresso não encontrado.");
+            }
+
+            // Verifica se o logradouro existe
+            var logradouroExists = await _context.TB_LOGRADOURO.AnyAsync(l => l.idLogradouro == endereco.idLogradouro);
+            if (!logradouroExists)
+            {
+                throw new NotFoundException("Logradouro não encontrado.");
+            }
+
+            return endereco;
+        }
+
+        public async Task<EgressoEnderecoModel> UpdateEgressoEnderecoAsync(int id, EgressoEnderecoModel updatedEndereco)
+        {
+            var endereco = await GetEgressoEnderecoAsync(id);
+
+            // Atualiza apenas os campos permitidos
             endereco.numeroEgressoEndereco = updatedEndereco.numeroEgressoEndereco;
             endereco.complementoEgressoEndereco = updatedEndereco.complementoEgressoEndereco;
 
-            _context.Entry(endereco).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
             return endereco;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteEgressoEnderecoAsync(int id)
         {
-            var endereco = await GetAsync(id);
-            if (endereco == null)
+            var existingEndereco = await _context.TB_EGRESSO_ENDERECO.FirstOrDefaultAsync((EgressoEnderecoModel e) => e.idEgressoEndereco == id);
+            if (existingEndereco == null)
             {
-                throw new NotFoundException("Endereço não encontrado.");
+                throw new NotFoundException("Egresso não encontrado.");
             }
-
-            _context.TB_EGRESSO_ENDERECO.Remove(endereco);
-            await _context.SaveChangesAsync();
         }
+
+
     }
 }
-    

@@ -11,14 +11,13 @@ namespace ChronosApi.Controllers
     [Route("api/[Controller]")]
     public class EgressoController : ControllerBase
     {
-        private readonly DataContext _context;
         private readonly IEgressoService _egressoService;
         private readonly IEgressoRepository _egressoRepository;
 
-        public EgressoController(DataContext context, IEgressoService egressoService, IEgressoRepository egressoRepository)
+        public EgressoController( IEgressoService egressoService, IEgressoRepository egressoRepository)
         {
 
-            _context = context;
+           
             _egressoService = egressoService;
             _egressoRepository = egressoRepository;
          

@@ -13,47 +13,64 @@ namespace ChronosApi.Services.CorporacaoEndereco
             _context = context;
         }
 
-        #region GET
-        public async Task GetCorporacaoEnderecoAsync(int id)
+        public async Task<IEnumerable<CorporacaoEnderecoModel>> GetAllCorporacoesEnderecosAsync()
         {
-           var corporacaoEndereco = await _context.TB_CORPORACAO_ENDERECO
-           .FirstOrDefaultAsync(ce => ce.idCorporacaoEndereco == id);
-
-            if (corporacaoEndereco == null)
-            {
-                throw new NotFoundException("Endereço de corporação não encontrado.");
-            }
+            return await _context.TB_CORPORACAO_ENDERECO.Include(e => e.Logradouro).ToListAsync();
         }
-        #endregion
 
-        #region PUT
-        public async Task PutCorporacaoEnderecoAsync(int id)
+        public async Task<CorporacaoEnderecoModel> GetCorporacaoEnderecoAsync(int id)
         {
-             var corporacaoEndereco = await _context.TB_CORPORACAO_ENDERECO
-           .FirstOrDefaultAsync(ce => ce.idCorporacaoEndereco == id);
+            var endereco = await _context.TB_CORPORACAO_ENDERECO.Include(e => e.Logradouro)
+                .FirstOrDefaultAsync(e => e.idCorporacaoEndereco == id);
 
-            if (corporacaoEndereco == null)
+            if (endereco == null)
             {
-                throw new ConflictException("Dados inválidos");
+                throw new NotFoundException("Endereço não encontrado.");
             }
 
-            
+            return endereco;
         }
-        #endregion
 
-        #region DELETE
+        public async Task<CorporacaoEnderecoModel> CreateCorporacaoEnderecoAsync(CorporacaoEnderecoModel endereco)
+        {
+            // Verifica se a corporação existe
+            var corporacaoExists = await _context.TB_CORPORACAO.AnyAsync(c => c.idCorporacao == endereco.idCorporacao);
+            if (!corporacaoExists)
+            {
+                throw new NotFoundException("Corporação não encontrada.");
+            }
+
+            // Verifica se o logradouro existe
+            var logradouroExists = await _context.TB_LOGRADOURO.AnyAsync(l => l.idLogradouro == endereco.idLogradouro);
+            if (!logradouroExists)
+            {
+                throw new NotFoundException("Logradouro não encontrado.");
+            }
+
+            return endereco;
+        }
+
+        public async Task<CorporacaoEnderecoModel> UpdateCorporacaoEnderecoAsync(int id, CorporacaoEnderecoModel updatedEndereco)
+        {
+            var endereco = await GetCorporacaoEnderecoAsync(id);
+
+            // Atualiza apenas os campos permitidos
+            endereco.numeroCorporacaoEndereco = updatedEndereco.numeroCorporacaoEndereco;
+            endereco.complementoCorporacaoEndereco = updatedEndereco.complementoCorporacaoEndereco;
+
+            return endereco;
+        }
+
         public async Task DeleteCorporacaoEnderecoAsync(int id)
         {
-            var existingCorporacaoEndereco = await _context.TB_CORPORACAO_ENDERECO.FirstOrDefaultAsync(ce => ce.idCorporacaoEndereco == id);
-
-            if (existingCorporacaoEndereco == null)
+            var existingEndereco = await _context.TB_CORPORACAO_ENDERECO.FirstOrDefaultAsync(e => e.idCorporacaoEndereco == id);
+            if (existingEndereco == null)
             {
-                throw new NotFoundException("Endereço de corporação não encontrado.");
+                throw new NotFoundException("Corporação não encontrada.");
             }
 
-            _context.TB_CORPORACAO_ENDERECO.Remove(existingCorporacaoEndereco);
-            await _context.SaveChangesAsync();
         }
-        #endregion
+
+
     }
 }

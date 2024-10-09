@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj": {}
+    "C:\\API\\ChronosApi\\ChronosApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj": {
+    "C:\\API\\ChronosApi\\ChronosApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj",
+        "projectUniqueName": "C:\\API\\ChronosApi\\ChronosApi.csproj",
         "projectName": "ChronosApi",
-        "projectPath": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\ChronosApi.csproj",
-        "packagesPath": "C:\\Users\\Cesar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cesar\\Desktop\\api\\ChronosApi\\obj\\",
+        "projectPath": "C:\\API\\ChronosApi\\ChronosApi.csproj",
+        "packagesPath": "C:\\Users\\Michele Cristina\\.nuget\\packages\\",
+        "outputPath": "C:\\API\\ChronosApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Cesar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Michele Cristina\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -95,15 +95,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[8.0.8, 8.0.8]"
+              "version": "[8.0.10, 8.0.10]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.8, 8.0.8]"
+              "version": "[8.0.10, 8.0.10]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.8, 8.0.8]"
+              "version": "[8.0.10, 8.0.10]"
             }
           ],
           "frameworkReferences": {
@@ -114,7 +114,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

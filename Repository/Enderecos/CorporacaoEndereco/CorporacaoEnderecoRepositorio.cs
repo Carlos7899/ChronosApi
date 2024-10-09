@@ -13,64 +13,40 @@ namespace ChronosApi.Repository.CorporacaoEndereco
             _context = context;
         }
 
-        #region GET
-        public async Task<List<CorporacaoEnderecoModel>> GetAllCorporacaoEnderecoAsync()
+        public async Task<CorporacaoEnderecoModel?> GetCorporacaoEnderecoByIdAsync(int id)
         {
-            var corporacaoEnderecos = await _context.TB_CORPORACAO_ENDERECO.ToListAsync();
-            return corporacaoEnderecos;
+            return await _context.TB_CORPORACAO_ENDERECO.Include(e => e.Logradouro)
+                .FirstOrDefaultAsync(e => e.idCorporacaoEndereco == id);
         }
 
-        public async Task<ActionResult<CorporacaoEnderecoModel>> GetIdCorporacaoEnderecoAsync(int id)
+        public async Task<bool> CorporacaoExistsAsync(int idCorporacao)
         {
-            var corporacaoEndereco = await _context.TB_CORPORACAO_ENDERECO.FirstOrDefaultAsync(ce => ce.idCorporacaoEndereco == id);
-            return corporacaoEndereco;
-        }
-        #endregion
-
-        #region POST
-        public async Task<ActionResult<CorporacaoEnderecoModel>> PostCorporacaoEnderecoAsync(CorporacaoEnderecoModel corporacaoEndereco)
-        {
-          _context.TB_CORPORACAO_ENDERECO.Add(corporacaoEndereco);
-          await _context.SaveChangesAsync();
-          return corporacaoEndereco;
+            return await _context.TB_CORPORACAO.AnyAsync(e => e.idCorporacao == idCorporacao);
         }
 
-        #endregion
-
-        #region PUT
-        public async Task<ActionResult<CorporacaoEnderecoModel>> PutCorporacaoEnderecoAsync(int id, CorporacaoEnderecoModel updatedCorporacaoEndereco)
+        public async Task<bool> LogradouroExistsAsync(int idLogradouro)
         {
-            var corporacaoEndereco = await _context.TB_CORPORACAO_ENDERECO.FirstOrDefaultAsync(ce => ce.idCorporacaoEndereco == id);
+            return await _context.TB_LOGRADOURO.AnyAsync(l => l.idLogradouro == idLogradouro);
+        }
 
-            if (corporacaoEndereco == null)
-            {
-                return null;
-            }
-
-            corporacaoEndereco.numeroCorporacaoEndereco = updatedCorporacaoEndereco.numeroCorporacaoEndereco;
-            corporacaoEndereco.complementoCorporacaoEndereco = updatedCorporacaoEndereco.complementoCorporacaoEndereco;
-
-            _context.Entry(corporacaoEndereco).State = EntityState.Modified;
+        public async Task<CorporacaoEnderecoModel> AddCorporacaoEnderecoAsync(CorporacaoEnderecoModel endereco)
+        {
+            _context.TB_CORPORACAO_ENDERECO.Add(endereco);
             await _context.SaveChangesAsync();
-            return corporacaoEndereco;
+            return endereco;
         }
-        #endregion
 
-        #region DELETE        
-        public async Task<ActionResult<CorporacaoEnderecoModel>> DeleteCorporacaoEnderecoAsync(int id)
+        public async Task<CorporacaoEnderecoModel> UpdateCorporacaoEnderecoAsync(CorporacaoEnderecoModel endereco)
         {
-            var corporacaoEndereco = await _context.TB_CORPORACAO_ENDERECO.FirstOrDefaultAsync(ce => ce.idCorporacaoEndereco == id);
-
-            if (corporacaoEndereco == null)
-            {
-                return null;
-            }
-
-            _context.TB_CORPORACAO_ENDERECO.Remove(corporacaoEndereco);
+            _context.Entry(endereco).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-
-            return corporacaoEndereco;
+            return endereco;
         }
-        #endregion
+
+        public async Task DeleteCorporacaoEnderecoAsync(CorporacaoEnderecoModel endereco)
+        {
+            _context.TB_CORPORACAO_ENDERECO.Remove(endereco);
+            await _context.SaveChangesAsync();
+        }
     }
 }
