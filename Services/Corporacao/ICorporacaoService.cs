@@ -6,7 +6,7 @@
         public Task PutAsync(int id);
         public Task DeleteAsync(int id);
         public Task RegistrarCorporacaoExistente(string email);
-        public Task<String> AutenticarCorporacaoAsync(string email, string passwordString);
+        public Task<string> AutenticarCorporacaoAsync(string email, string passwordString);
         public Task GetCorporacaoAsync(string email);
         public Task<bool> CorporacaoExisteAsync(int id);
     }

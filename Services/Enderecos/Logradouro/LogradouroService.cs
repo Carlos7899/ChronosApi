@@ -1,5 +1,4 @@
 using ChronosApi.Data;
-using ChronosApi.Models;
 using ChronosApi.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 

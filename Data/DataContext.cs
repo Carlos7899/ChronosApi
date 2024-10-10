@@ -21,9 +21,9 @@ namespace ChronosApi.Data
         public DbSet<VagaModel> TB_VAGA { get; set; }
         public DbSet<LogradouroModel> TB_LOGRADOURO { get; set; }
         public DbSet<CorporacaoEnderecoModel> TB_CORPORACAO_ENDERECO { get; set; }
-        public DbSet<CursoEndereco> TB_CURSO_ENDERECO { get; set; }
+        public DbSet<CursoEnderecoModel> TB_CURSO_ENDERECO { get; set; }
         public DbSet<EgressoEnderecoModel> TB_EGRESSO_ENDERECO { get; set; }
-        public DbSet<VagaEndereco> TB_VAGA_ENDERECO { get; set; }
+        public DbSet<VagaEnderecoModel> TB_VAGA_ENDERECO { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -99,13 +99,26 @@ namespace ChronosApi.Data
             #region Comentario
             modelBuilder.Entity<ComentarioModel>().HasData
             (
-                new ComentarioModel() { 
-                    idComentario = 1, 
-                    idEgresso = 1, 
-                    idPublicacao = 1, 
-                    comentarioPublicacao = "Minha empresa esta contratando PCD para trabalharem"
+                new ComentarioModel()
+                {
+                    idComentario = 1,
+                    idEgresso = 1,
+                    idPublicacao = 1,
+                    comentarioPublicacao = "Minha empresa esta contratando auxiliares na cozinha para trabalharem"
                 }
             );
+
+            modelBuilder.Entity<ComentarioModel>()
+                .HasOne<EgressoModel>()
+                .WithMany()
+                .HasForeignKey(c => c.idEgresso)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ComentarioModel>()
+                .HasOne<PublicacaoModel>()
+                .WithMany()
+                .HasForeignKey(c => c.idPublicacao)
+                .OnDelete(DeleteBehavior.Cascade);
             #endregion
 
             #region Curso
@@ -142,8 +155,7 @@ namespace ChronosApi.Data
                 new VagaModel() 
                 { 
                     idVaga = 1, 
-                    idCorporacao = 1, 
-                    idVagaEndereco = 1,
+                    idCorporacao = 1,
                     nomeVaga = "Desenvolvedor Júnior", 
                     tipoVaga = 1, 
                     descricaoVaga = "Vaga júnior desenvolvedor"
@@ -194,6 +206,7 @@ namespace ChronosApi.Data
             );
             #endregion
 
+            #region Endereços
             #region CorporacaoEndereco
             modelBuilder.Entity<CorporacaoEnderecoModel>().HasData
             (
@@ -205,24 +218,23 @@ namespace ChronosApi.Data
                    complementoCorporacaoEndereco = "bloco",
                    numeroCorporacaoEndereco = "443"
                }
-
             );
 
             modelBuilder.Entity<CorporacaoEnderecoModel>()
-            .HasOne(cc => cc.Corporacao) // Um endereço pertence a um egresso
-            .WithOne() // Um egresso tem um endereço
+            .HasOne(cc => cc.corporacao)
+            .WithOne()
             .HasForeignKey<CorporacaoEnderecoModel>(ee => ee.idCorporacao);
 
             modelBuilder.Entity<CorporacaoEnderecoModel>()
-             .HasOne(cc => cc.Logradouro) // Um endereço pertence a um logradouro
-             .WithMany() // Um logradouro pode ter vários endereços
-             .HasForeignKey(cc => cc.idLogradouro);
+             .HasOne(cc => cc.logradouro)
+             .WithOne()
+             .HasForeignKey<CorporacaoEnderecoModel>(cc => cc.idLogradouro);
             #endregion
 
             #region CursoEndereco
-            modelBuilder.Entity<CursoEndereco>().HasData
+            modelBuilder.Entity<CursoEnderecoModel>().HasData
             (
-                new CursoEndereco() 
+                new CursoEnderecoModel() 
                 {
                     idCursoEndereco = 1 , 
                     idLogradouro = 2, 
@@ -233,16 +245,24 @@ namespace ChronosApi.Data
             #endregion
 
             #region VagaEndereco
-            modelBuilder.Entity<VagaEndereco>().HasData
+            modelBuilder.Entity<VagaEnderecoModel>().HasData
             (
-                new VagaEndereco() 
+                new VagaEnderecoModel() 
                 {
                     idVagaEndereco = 1, 
-                    idLogradouro = 3, 
+                    idLogradouro = 3,
+                    idVaga = 1,
                     complementoVagaEndereco = "", 
                     numeroVagaEndereco = "899" 
                 }
             );
+
+            modelBuilder.Entity<VagaEnderecoModel>()
+            .HasOne(v => v.vaga)
+            .WithOne()
+            .HasForeignKey<VagaModel>(e => e.idVaga);
+
+            // ARRUMAR
             #endregion
 
             #region EgressoEndereco
@@ -267,6 +287,7 @@ namespace ChronosApi.Data
              .HasOne(ee => ee.Logradouro) // Um endereço pertence a um logradouro
              .WithMany() // Um logradouro pode ter vários endereços
              .HasForeignKey(ee => ee.idLogradouro);
+            #endregion
             #endregion
 
         }

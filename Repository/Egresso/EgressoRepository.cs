@@ -20,7 +20,7 @@ namespace ChronosApi.Repository.Egresso
             return egresso;
         }
 
-        public async Task<ActionResult<EgressoModel>> GetIdAsync(int id)
+        public async Task<ActionResult<EgressoModel?>> GetIdAsync(int id)
         {
             var egresso = await _context.TB_EGRESSO.FirstOrDefaultAsync(e => e.idEgresso == id);
             return egresso;
@@ -38,6 +38,11 @@ namespace ChronosApi.Repository.Egresso
         {
             var egresso = await _context.TB_EGRESSO.FirstOrDefaultAsync((EgressoModel e) => e.idEgresso == id);
 
+            if (egresso == null)
+            {
+                return new NotFoundResult();
+            }
+
             egresso.nomeEgresso = updatedEgresso.nomeEgresso;
             egresso.tipoEgresso = updatedEgresso.tipoEgresso;
             egresso.numeroEgresso = updatedEgresso.numeroEgresso;
@@ -51,8 +56,13 @@ namespace ChronosApi.Repository.Egresso
             
         public async Task<ActionResult<EgressoModel>> DeleteAsync(int id)
         {
-
             var egresso = await _context.TB_EGRESSO.FirstOrDefaultAsync(e => e.idEgresso == id);
+
+            if (egresso == null)
+            {
+                return new NotFoundResult();
+            }
+
             _context.TB_EGRESSO.Remove(egresso);
             await _context.SaveChangesAsync();
 
@@ -101,8 +111,12 @@ namespace ChronosApi.Repository.Egresso
 
         public async Task AlterarSenhaEgressoAsync(string email, string novaSenha)
         {
-            EgressoModel usuario = await _context.TB_EGRESSO
-                .FirstOrDefaultAsync(x => x.emailEgresso == email);
+            EgressoModel? usuario = await _context.TB_EGRESSO.FirstOrDefaultAsync(x => x.emailEgresso == email);
+
+            if (usuario == null)
+            {
+                throw new KeyNotFoundException("Usuário não encontrado");
+            }
 
             Criptografia.CriarPasswordHash(novaSenha, out byte[] novoHash, out byte[] novoSal);
 

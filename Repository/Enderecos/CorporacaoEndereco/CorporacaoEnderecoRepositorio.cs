@@ -15,8 +15,7 @@ namespace ChronosApi.Repository.CorporacaoEndereco
 
         public async Task<CorporacaoEnderecoModel?> GetCorporacaoEnderecoByIdAsync(int id)
         {
-            return await _context.TB_CORPORACAO_ENDERECO.Include(e => e.Logradouro)
-                .FirstOrDefaultAsync(e => e.idCorporacaoEndereco == id);
+            return await _context.TB_CORPORACAO_ENDERECO.Include(e => e.logradouro).FirstOrDefaultAsync(e => e.idCorporacaoEndereco == id);
         }
 
         public async Task<bool> CorporacaoExistsAsync(int idCorporacao)

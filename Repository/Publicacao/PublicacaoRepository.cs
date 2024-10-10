@@ -4,8 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Repository.Publicacao
 {
-    public class PublicacaoRepository
-        : IPublicacaoRepository
+    public class PublicacaoRepository : IPublicacaoRepository
     {
         private readonly DataContext _context;
 
@@ -19,7 +18,7 @@ namespace ChronosApi.Repository.Publicacao
             return await _context.TB_PUBLICACAO .ToListAsync();
         }
 
-        public async Task<PublicacaoModel> GetIdAsync(int id)
+        public async Task<PublicacaoModel?> GetIdAsync(int id)
         {
             return await _context.TB_PUBLICACAO.FirstOrDefaultAsync(p => p.idPublicacao == id);
         }
@@ -31,7 +30,7 @@ namespace ChronosApi.Repository.Publicacao
             return publicacao;
         }
 
-        public async Task<PublicacaoModel> PutAsync(int id, PublicacaoModel updatedPublicacao)
+        public async Task<PublicacaoModel?> PutAsync(int id, PublicacaoModel updatedPublicacao)
         {
             var publicacao = await GetIdAsync(id);
             if (publicacao == null) return null;
@@ -46,7 +45,7 @@ namespace ChronosApi.Repository.Publicacao
             return publicacao;
         }
 
-        public async Task<PublicacaoModel> DeleteAsync(int id)
+        public async Task<PublicacaoModel?> DeleteAsync(int id)
         {
             var publicacao = await GetIdAsync(id);
             if (publicacao == null) return null;
@@ -57,4 +56,3 @@ namespace ChronosApi.Repository.Publicacao
         }
     }
 }
-

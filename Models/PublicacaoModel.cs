@@ -7,6 +7,7 @@ namespace ChronosApi.Models
     {
         [Key]
         public int idPublicacao { get; set; }
+
         [ForeignKey("idCorporacao")]
         public int idCorporacao { get; set; }
         public string títuloPublicacao { get; set; } = string.Empty;

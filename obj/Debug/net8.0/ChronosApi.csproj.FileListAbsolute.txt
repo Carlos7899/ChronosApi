@@ -1380,3 +1380,5 @@ C:\API\ChronosApi\obj\Debug\net8.0\refint\ChronosApi.dll
 C:\API\ChronosApi\obj\Debug\net8.0\ChronosApi.pdb
 C:\API\ChronosApi\obj\Debug\net8.0\ChronosApi.genruntimeconfig.cache
 C:\API\ChronosApi\obj\Debug\net8.0\ref\ChronosApi.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Microsoft.Bcl.TimeProvider.dll

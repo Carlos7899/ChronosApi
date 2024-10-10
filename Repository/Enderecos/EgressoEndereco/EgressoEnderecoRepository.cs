@@ -1,5 +1,4 @@
 ﻿using ChronosApi.Data;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ChronosApi.Models.Enderecos;
 

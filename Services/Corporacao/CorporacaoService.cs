@@ -3,7 +3,6 @@ using ChronosApi.Models;
 using ChronosApi.Services.Exceptions;
 using ChronosApi.Services.Utils;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -25,7 +24,7 @@ namespace ChronosApi.Services.Corporacao
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
             if (corporacao == null)
             {
-                throw new NotFoundException("Corporaçao não encontrado.");
+                throw new NotFoundException("Corporação não encontrada.");
             }
         }
         public async Task PutAsync(int id)
@@ -42,7 +41,7 @@ namespace ChronosApi.Services.Corporacao
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
             if (corporacao == null)
             {
-                throw new NotFoundException("Egresso não encontrado.");
+                throw new NotFoundException("Corporação não encontrada.");
             }
         }
 
@@ -62,24 +61,23 @@ namespace ChronosApi.Services.Corporacao
 
             if (await CorporacaoExistente(email))
             {
-                throw new System.Exception("Este email ja possui login");
+                throw new Exception("Este email já possui um login.");
             }
-
         }
 
-        public async Task<String> AutenticarCorporacaoAsync(string email, string passwordString)
+        public async Task<string> AutenticarCorporacaoAsync(string email, string passwordString)
         {
             CorporacaoModel? usuario = await _context.TB_CORPORACAO.FirstOrDefaultAsync(x => x.emailCorporacao.ToLower().Equals(email.ToLower()));
 
 
             if (usuario == null)
             {
-                throw new System.Exception("Usuário não encontrado.");
+                throw new Exception("Usuário não encontrado.");
             }
 
             else if (!Criptografia.VerificarPasswordHash(passwordString, usuario.PasswordHash, usuario.PasswordSalt))
             {
-                throw new System.Exception("Senha incorreta.");
+                throw new Exception("Senha incorreta.");
             }
             return CriarToken(usuario);
         }
@@ -91,8 +89,7 @@ namespace ChronosApi.Services.Corporacao
                  new Claim(ClaimTypes.NameIdentifier, usuario.idCorporacao.ToString()),
                  new Claim(ClaimTypes.Email, usuario.emailCorporacao)
             };
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
-             .GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value));
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
 
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -112,7 +109,7 @@ namespace ChronosApi.Services.Corporacao
             CorporacaoModel? usuario = await _context.TB_CORPORACAO.FirstOrDefaultAsync(x => x.emailCorporacao.ToLower().Equals(email.ToLower()));
             if (usuario == null)
             {
-                throw new System.Exception("Usuário não encontrado.");
+                throw new Exception("Usuário não encontrado.");
             }
         }
 
@@ -121,10 +118,6 @@ namespace ChronosApi.Services.Corporacao
             var egresso = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
             return egresso != null;
         }
-
-
-
-
     }
 }
 

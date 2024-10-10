@@ -1,6 +1,4 @@
-﻿
-using ChronosApi.Models.Enderecos;
-using System.Threading.Tasks;
+﻿using ChronosApi.Models.Enderecos;
 
 namespace ChronosApi.Services.EgressoEndereco
 {
@@ -11,7 +9,5 @@ namespace ChronosApi.Services.EgressoEndereco
         Task<EgressoEnderecoModel> CreateEgressoEnderecoAsync(EgressoEnderecoModel endereco);
         Task<EgressoEnderecoModel> UpdateEgressoEnderecoAsync(int id, EgressoEnderecoModel updatedEndereco);
         Task DeleteEgressoEnderecoAsync(int id);
-
     }
 }
-

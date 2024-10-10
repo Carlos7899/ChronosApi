@@ -23,7 +23,6 @@ namespace ChronosApi.Controllers
 
         // CRUD pronto
 
-
         #region GET
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status200OK)]

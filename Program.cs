@@ -16,13 +16,17 @@ using ChronosApi.Repository.Publicacao;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ChronosApi.Repository.Vaga;
+using ChronosApi.Services.Vaga;
+using ChronosApi.Repository.Comentario;
+using ChronosApi.Services.Comentario;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(Options =>
 {
-    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal5"));
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"));
 });
 
 // Add services to the container.
@@ -34,15 +38,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
 
-//revisar
+// Revisar
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         { 
            ValidateIssuerSigningKey = true,
-           IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
-                .GetBytes(builder.Configuration.GetSection("configuracaoToken:Chave").Value)),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetSection("configuracaoToken:Chave").Value ?? "")),
            ValidateIssuer = false,
            ValidateAudience = false
         };
@@ -55,6 +58,16 @@ builder.Services.AddScoped<ICorporacaoRepository, CorporacaoRepository>();
 builder.Services.AddScoped<IEgressoService, EgressoService>();
 builder.Services.AddScoped<IEgressoRepository, EgressoRepository>();
 
+builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
+builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
+
+builder.Services.AddScoped<IVagaService, VagaService>();
+builder.Services.AddScoped<IVagaRepository, VagaRepository>();
+
+builder.Services.AddScoped<IComentarioService, ComentarioService>();
+builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
+
+#region Endereços
 builder.Services.AddScoped<ICorporacaoEnderecoService, CorporacaoEnderecoService>();
 builder.Services.AddScoped<ICorporacaoEnderecoRepository, CorporacaoEnderecoRepository>();
 
@@ -63,9 +76,7 @@ builder.Services.AddScoped<ILogradouroRepository, LogradouroRepository>();
 
 builder.Services.AddScoped<IEgressoEnderecoService, EgressoEnderecoService>();
 builder.Services.AddScoped<IEgressoEnderecoRepository, EgressoEnderecoRepository>();
-
-builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
-builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
+#endregion
 
 #endregion
 

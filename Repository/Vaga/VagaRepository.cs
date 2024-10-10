@@ -1,0 +1,57 @@
+﻿using ChronosApi.Data;
+using ChronosApi.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace ChronosApi.Repository.Vaga
+{
+    public class VagaRepository : IVagaRepository
+    {
+        private readonly DataContext _context;
+
+        public VagaRepository(DataContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<List<VagaModel>> GetAllAsync()
+        {
+            return await _context.TB_VAGA .ToListAsync();
+        }
+
+        public async Task<VagaModel?> GetIdAsync(int id)
+        {
+            return await _context.TB_VAGA.FirstOrDefaultAsync(v => v.idVaga == id);
+        }
+
+        public async Task<VagaModel> PostAsync(VagaModel vaga)
+        {
+            await _context.TB_VAGA.AddAsync(vaga);
+            await _context.SaveChangesAsync();
+            return vaga;
+        }
+
+        public async Task<VagaModel?> PutAsync(int id, VagaModel updatedVaga)
+        {
+            var vaga = await GetIdAsync(id);
+            if (vaga == null) return null;
+
+            vaga.nomeVaga = updatedVaga.nomeVaga;
+            vaga.nomeVaga = updatedVaga.nomeVaga;
+            vaga.descricaoVaga = updatedVaga.descricaoVaga;
+
+            _context.Entry(vaga).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return vaga;
+        }
+
+        public async Task<VagaModel?> DeleteAsync(int id)
+        {
+            var vaga = await GetIdAsync(id);
+            if (vaga == null) return null;
+
+            _context.TB_VAGA.Remove(vaga);
+            await _context.SaveChangesAsync();
+            return vaga;
+        }
+    }
+}

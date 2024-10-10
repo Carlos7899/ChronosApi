@@ -15,13 +15,12 @@ namespace ChronosApi.Services.CorporacaoEndereco
 
         public async Task<IEnumerable<CorporacaoEnderecoModel>> GetAllCorporacoesEnderecosAsync()
         {
-            return await _context.TB_CORPORACAO_ENDERECO.Include(e => e.Logradouro).ToListAsync();
+            return await _context.TB_CORPORACAO_ENDERECO.Include(e => e.logradouro).ToListAsync();
         }
 
         public async Task<CorporacaoEnderecoModel> GetCorporacaoEnderecoAsync(int id)
         {
-            var endereco = await _context.TB_CORPORACAO_ENDERECO.Include(e => e.Logradouro)
-                .FirstOrDefaultAsync(e => e.idCorporacaoEndereco == id);
+            var endereco = await _context.TB_CORPORACAO_ENDERECO.Include(e => e.logradouro).FirstOrDefaultAsync(e => e.idCorporacaoEndereco == id);
 
             if (endereco == null)
             {
@@ -33,14 +32,12 @@ namespace ChronosApi.Services.CorporacaoEndereco
 
         public async Task<CorporacaoEnderecoModel> CreateCorporacaoEnderecoAsync(CorporacaoEnderecoModel endereco)
         {
-            // Verifica se a corporação existe
             var corporacaoExists = await _context.TB_CORPORACAO.AnyAsync(c => c.idCorporacao == endereco.idCorporacao);
             if (!corporacaoExists)
             {
                 throw new NotFoundException("Corporação não encontrada.");
             }
 
-            // Verifica se o logradouro existe
             var logradouroExists = await _context.TB_LOGRADOURO.AnyAsync(l => l.idLogradouro == endereco.idLogradouro);
             if (!logradouroExists)
             {
@@ -54,7 +51,6 @@ namespace ChronosApi.Services.CorporacaoEndereco
         {
             var endereco = await GetCorporacaoEnderecoAsync(id);
 
-            // Atualiza apenas os campos permitidos
             endereco.numeroCorporacaoEndereco = updatedEndereco.numeroCorporacaoEndereco;
             endereco.complementoCorporacaoEndereco = updatedEndereco.complementoCorporacaoEndereco;
 
@@ -68,9 +64,6 @@ namespace ChronosApi.Services.CorporacaoEndereco
             {
                 throw new NotFoundException("Corporação não encontrada.");
             }
-
         }
-
-
     }
 }

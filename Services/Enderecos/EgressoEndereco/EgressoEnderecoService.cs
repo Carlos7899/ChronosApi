@@ -21,7 +21,6 @@ namespace ChronosApi.Services.EgressoEndereco
             return await _context.TB_EGRESSO_ENDERECO.Include(e => e.Logradouro).ToListAsync();
         }
 
-
         public async Task<EgressoEnderecoModel> GetEgressoEnderecoAsync(int id)
         {
             var endereco = await _context.TB_EGRESSO_ENDERECO.Include(e => e.Logradouro)
@@ -37,14 +36,12 @@ namespace ChronosApi.Services.EgressoEndereco
 
         public async Task<EgressoEnderecoModel> CreateEgressoEnderecoAsync(EgressoEnderecoModel endereco)
         {
-            // Verifica se o egresso existe
             var egressoExists = await _context.TB_EGRESSO.AnyAsync(e => e.idEgresso == endereco.idEgresso);
             if (!egressoExists)
             {
                 throw new NotFoundException("Egresso não encontrado.");
             }
 
-            // Verifica se o logradouro existe
             var logradouroExists = await _context.TB_LOGRADOURO.AnyAsync(l => l.idLogradouro == endereco.idLogradouro);
             if (!logradouroExists)
             {
@@ -58,7 +55,6 @@ namespace ChronosApi.Services.EgressoEndereco
         {
             var endereco = await GetEgressoEnderecoAsync(id);
 
-            // Atualiza apenas os campos permitidos
             endereco.numeroEgressoEndereco = updatedEndereco.numeroEgressoEndereco;
             endereco.complementoEgressoEndereco = updatedEndereco.complementoEgressoEndereco;
 
@@ -73,7 +69,5 @@ namespace ChronosApi.Services.EgressoEndereco
                 throw new NotFoundException("Egresso não encontrado.");
             }
         }
-
-
     }
 }

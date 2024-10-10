@@ -10,8 +10,13 @@
                 hash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-        public static bool VerificarPasswordHash(string password, byte[] hash, byte[] salt)
+        public static bool VerificarPasswordHash(string password, byte[]? hash, byte[]? salt)
         {
+            if (hash == null || salt == null)
+            {
+                return false;
+            }
+
             using (var hmac = new System.Security.Cryptography.HMACSHA512(salt))
             {
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));

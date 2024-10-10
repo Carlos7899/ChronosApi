@@ -80,20 +80,14 @@ namespace ChronosApi.Controllers
             {
                 var novoegresso = await _egressoRepository.PostAsync(egresso);
                 return StatusCode(201, novoegresso);
-
             }
 
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
 
             }
-
         }
-
-
-
-
         #endregion
 
         #region UPDATE
@@ -105,14 +99,12 @@ namespace ChronosApi.Controllers
         {
             try
             {
-                // Valida se o Egresso existe no Service
                 var egressoExists = await _egressoService.EgressoExisteAsync(id);
                 if (!egressoExists)
                 {
                     return NotFound("Egresso não encontrado.");
                 }
 
-                // Atualiza os dados permitidos no Repository
                 var updatedEgresso = await _egressoRepository.PutAsync(id, egresso);
 
                 if (updatedEgresso == null)
@@ -217,9 +209,5 @@ namespace ChronosApi.Controllers
             }
         }
         #endregion
-
-    
-
-
     }
 }

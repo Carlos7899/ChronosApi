@@ -56,13 +56,12 @@ namespace ChronosApi.Services.Egresso
 
         public async Task RegistrarEgressoExistente(string email)
         {
-            var utilizador = await _context.TB_EGRESSO .FirstOrDefaultAsync(u => u.emailEgresso == email);
+            var utilizador = await _context.TB_EGRESSO.FirstOrDefaultAsync(u => u.emailEgresso == email);
 
             if (await EgressoExistente(email))
             {
-                throw new System.Exception("Este email ja possui login");
+                throw new Exception("Este email já possui um login.");
             }
-
         }
 
         public async Task<string> AutenticarEgressoAsync(string email, string passwordString)
@@ -72,12 +71,12 @@ namespace ChronosApi.Services.Egresso
 
             if (usuario == null)
             {
-                throw new System.Exception("Usuário não encontrado.");
+                throw new Exception("Usuário não encontrado.");
             }
 
             else if (!Criptografia.VerificarPasswordHash(passwordString, usuario.PasswordHash, usuario.PasswordSalt))
             {
-                throw new System.Exception("Senha incorreta.");
+                throw new Exception("Senha incorreta.");
             }
 
             return CriarToken(usuario);
@@ -90,8 +89,7 @@ namespace ChronosApi.Services.Egresso
                  new Claim(ClaimTypes.NameIdentifier, usuario.idEgresso.ToString()),
                  new Claim(ClaimTypes.Email, usuario.emailEgresso)
             };
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
-             .GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value));
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
 
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -111,7 +109,7 @@ namespace ChronosApi.Services.Egresso
             EgressoModel? usuario = await _context.TB_EGRESSO.FirstOrDefaultAsync(x => x.emailEgresso.ToLower().Equals(email.ToLower()));
             if (usuario == null)
             {
-                throw new System.Exception("Usuário não encontrado.");
+                throw new Exception("Usuário não encontrado.");
             }
         }
 
@@ -120,8 +118,5 @@ namespace ChronosApi.Services.Egresso
             var egresso = await _context.TB_EGRESSO.FirstOrDefaultAsync(e => e.idEgresso == id);
             return egresso != null;
         }
-
-
-
     }
 }

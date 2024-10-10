@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace ChronosApi.Services.Logradouro
 {
     public interface ILogradouroService

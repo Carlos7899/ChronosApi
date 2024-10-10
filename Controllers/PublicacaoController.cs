@@ -85,7 +85,7 @@ namespace ChronosApi.Controllers
             }
         #endregion
 
-        #region UPDATE
+            #region UPDATE
         [HttpPut("Put/{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -108,15 +108,14 @@ namespace ChronosApi.Controllers
 
                 return Accepted(new { message = "Publicacao atualizada com sucesso!" }); 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
         #endregion
 
-
-        #region DELETE
+            #region DELETE
         [HttpDelete("Delete/{id}")]
             [ProducesResponseType(StatusCodes.Status200OK)]
             [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -139,6 +138,5 @@ namespace ChronosApi.Controllers
                 }
             }
             #endregion
-
         }
  }

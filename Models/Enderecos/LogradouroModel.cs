@@ -12,7 +12,5 @@ namespace ChronosApi.Models.Enderecos
         public string bairroLogradouro { get; set; } = string.Empty;
         public string cidadeLogradouro { get; set; } = string.Empty;
         public string ufLogradouro { get; set; } = string.Empty;
-
-
     }
 }

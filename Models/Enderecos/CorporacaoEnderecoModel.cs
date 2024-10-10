@@ -17,14 +17,14 @@ namespace ChronosApi.Models.Enderecos
         public string numeroCorporacaoEndereco { get; set; } = string.Empty;
         public string complementoCorporacaoEndereco { get; set; } = string.Empty;
 
-        // revisar relacionamento, a corporação não pode aceitar um Logradouro que já pertence a alguem
-        // revisar no egresso também 
+        // Revisar relacionamento, a corporação não pode aceitar um Logradouro que já pertence a alguem
+        // Revisar no egresso também 
         [NotMapped]
         [JsonIgnore]
-        public CorporacaoModel? Corporacao { get; set; }
+        public CorporacaoModel? corporacao { get; set; }
 
         [NotMapped]
         [JsonIgnore]
-        public LogradouroModel? Logradouro { get; set; }
+        public LogradouroModel? logradouro { get; set; }
     }
 }

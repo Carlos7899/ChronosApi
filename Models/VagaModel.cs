@@ -8,9 +8,6 @@ namespace ChronosApi.Models
         [Key]
         public int idVaga { get; set; }
 
-        [ForeignKey("idVagaEndereco")]
-        public int idVagaEndereco { get; set; }
-
         [ForeignKey("idCorporacao")]
         public int idCorporacao { get; set; }
         public int tipoVaga { get; set; } 

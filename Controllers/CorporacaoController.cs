@@ -1,8 +1,6 @@
-﻿using ChronosApi.Data;
-using ChronosApi.Models;
+﻿using ChronosApi.Models;
 using ChronosApi.Repository.Corporacao;
 using ChronosApi.Services.Corporacao;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChronosApi.Controllers
@@ -13,13 +11,11 @@ namespace ChronosApi.Controllers
     public class CorporacaoController : ControllerBase
     {
   
-        private readonly DataContext _context;
         private readonly ICorporacaoRepository _corporacaoRepository;
         private readonly ICorporacaoService _corporacaoService;
 
-        public CorporacaoController( ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository, DataContext context)
+        public CorporacaoController( ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository)
         {
-            _context = context;
             _corporacaoRepository = CorporacaoRepository;
             _corporacaoService = CorporacaoService;
         }
@@ -39,7 +35,7 @@ namespace ChronosApi.Controllers
 
             }
 
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -61,7 +57,7 @@ namespace ChronosApi.Controllers
 
             }
 
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
 
@@ -83,17 +79,13 @@ namespace ChronosApi.Controllers
 
             }
 
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
 
             }
 
         }
-
-
-
-
         #endregion
 
         #region UPDATE
@@ -105,14 +97,12 @@ namespace ChronosApi.Controllers
         {
             try
             {
-                // Valida se o Egresso existe no Service
                 var egressoExists = await _corporacaoService.CorporacaoExisteAsync(id);
                 if (!egressoExists)
                 {
                     return NotFound("Egresso não encontrado.");
                 }
 
-                // Atualiza os dados permitidos no Repository
                 var updatedEgresso = await _corporacaoRepository.PutAsync(id, corporacao);
 
                 if (updatedEgresso == null)
@@ -122,7 +112,7 @@ namespace ChronosApi.Controllers
 
                 return Ok("Dados do Egresso atualizados com sucesso!");
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -147,7 +137,7 @@ namespace ChronosApi.Controllers
                 return Ok("Egresso Deletado com sucesso!");
 
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -167,7 +157,7 @@ namespace ChronosApi.Controllers
 
                 return StatusCode(200);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -188,7 +178,7 @@ namespace ChronosApi.Controllers
                 return Ok(new { Token = token });
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -208,12 +198,11 @@ namespace ChronosApi.Controllers
 
                 return Ok(200);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
         #endregion
-
     }
 }

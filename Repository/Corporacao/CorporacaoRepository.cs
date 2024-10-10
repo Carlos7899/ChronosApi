@@ -20,7 +20,7 @@ namespace ChronosApi.Repository.Corporacao
             return corporacao;
         }
 
-        public async Task<ActionResult<CorporacaoModel>> GetIdAsync(int id)
+        public async Task<ActionResult<CorporacaoModel?>> GetIdAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
             return corporacao;
@@ -38,6 +38,11 @@ namespace ChronosApi.Repository.Corporacao
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
 
+            if (corporacao == null)
+            {
+                return new NotFoundResult();
+            }
+
             corporacao.nomeCorporacao = updatedCorporacao.nomeCorporacao;
             corporacao.tipoCorporacao = updatedCorporacao.tipoCorporacao;
             corporacao.numeroCorporacao = updatedCorporacao.numeroCorporacao;
@@ -52,8 +57,13 @@ namespace ChronosApi.Repository.Corporacao
 
         public async Task<ActionResult<CorporacaoModel>> DeleteAsync(int id)
         {
-
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
+
+            if (corporacao == null)
+            {
+                return new NotFoundResult();
+            }
+
             _context.TB_CORPORACAO.Remove(corporacao);
             await _context.SaveChangesAsync();
 
@@ -71,7 +81,6 @@ namespace ChronosApi.Repository.Corporacao
                 PasswordHash = hash,
                 PasswordSalt = salt
             };
-
 
             await _context.TB_CORPORACAO.AddAsync(corporacao);
             await _context.SaveChangesAsync();
@@ -102,8 +111,12 @@ namespace ChronosApi.Repository.Corporacao
 
         public async Task AlterarSenhaCorporacaoAsync(string email, string novaSenha)
         {
-            CorporacaoModel usuario = await _context.TB_CORPORACAO
-                .FirstOrDefaultAsync(x => x.emailCorporacao == email);
+            CorporacaoModel? usuario = await _context.TB_CORPORACAO.FirstOrDefaultAsync(x => x.emailCorporacao == email);
+
+            if (usuario == null)
+            {
+                throw new KeyNotFoundException("Usuário não encontrado");
+            }
 
             Criptografia.CriarPasswordHash(novaSenha, out byte[] novoHash, out byte[] novoSal);
 
@@ -116,6 +129,5 @@ namespace ChronosApi.Repository.Corporacao
 
             await _context.SaveChangesAsync();
         }
-
     }
 }
