@@ -16,10 +16,6 @@ namespace ChronosApi.Controllers
 
         public CorporacaoController( ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository)
         {
-<<<<<<< HEAD
-=======
-            
->>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
             _corporacaoRepository = CorporacaoRepository;
             _corporacaoService = CorporacaoService;
         }

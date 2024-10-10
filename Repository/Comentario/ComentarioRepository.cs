@@ -18,11 +18,7 @@ namespace ChronosApi.Repository.Comentario
         return await _context.TB_COMENTARIOS.ToListAsync();
     }
 
-<<<<<<< HEAD
     public async Task<ComentarioModel?> GetByIdAsync(int idComentario)
-=======
-    public async Task<ComentarioModel> GetByIdAsync(int idComentario)
->>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
     {
         return await _context.TB_COMENTARIOS.FirstOrDefaultAsync(c => c.idComentario == idComentario);
     }
