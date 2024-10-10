@@ -16,5 +16,8 @@ namespace ChronosApi.Models
         public string nomeCurso { get; set; } = string.Empty;
         public string descricaoCurso { get; set; } = string.Empty;
 
+
+
+
     }
 }

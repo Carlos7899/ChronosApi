@@ -48,7 +48,11 @@ namespace ChronosApi.Services.Comentario
                 .ToListAsync();
         }
 
+<<<<<<< HEAD
         public async Task<ComentarioModel?> ObterComentarioPorIdAsync(int idComentario)
+=======
+        public async Task<ComentarioModel> ObterComentarioPorIdAsync(int idComentario)
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
         {
             return await _context.TB_COMENTARIOS.FirstOrDefaultAsync(c => c.idComentario == idComentario);
         }

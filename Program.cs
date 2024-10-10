@@ -16,10 +16,15 @@ using ChronosApi.Repository.Publicacao;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+<<<<<<< HEAD
 using ChronosApi.Repository.Vaga;
 using ChronosApi.Services.Vaga;
 using ChronosApi.Repository.Comentario;
 using ChronosApi.Services.Comentario;
+=======
+using ChronosApi.Services.Comentario;
+using ChronosApi.Repository.Comentario;
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -58,6 +63,7 @@ builder.Services.AddScoped<ICorporacaoRepository, CorporacaoRepository>();
 builder.Services.AddScoped<IEgressoService, EgressoService>();
 builder.Services.AddScoped<IEgressoRepository, EgressoRepository>();
 
+<<<<<<< HEAD
 builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
 builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
 
@@ -68,6 +74,16 @@ builder.Services.AddScoped<IComentarioService, ComentarioService>();
 builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
 
 #region Endereços
+=======
+builder.Services.AddScoped<IComentarioService, ComentarioService>();
+builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
+
+builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
+builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
+
+#region Enderecos
+
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
 builder.Services.AddScoped<ICorporacaoEnderecoService, CorporacaoEnderecoService>();
 builder.Services.AddScoped<ICorporacaoEnderecoRepository, CorporacaoEnderecoRepository>();
 
@@ -76,9 +92,17 @@ builder.Services.AddScoped<ILogradouroRepository, LogradouroRepository>();
 
 builder.Services.AddScoped<IEgressoEnderecoService, EgressoEnderecoService>();
 builder.Services.AddScoped<IEgressoEnderecoRepository, EgressoEnderecoRepository>();
+<<<<<<< HEAD
+#endregion
+=======
+
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
+
 #endregion
 
 #endregion
+
+
 
 var app = builder.Build();
 

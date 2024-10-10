@@ -99,21 +99,36 @@ namespace ChronosApi.Data
             #region Comentario
             modelBuilder.Entity<ComentarioModel>().HasData
             (
+<<<<<<< HEAD
                 new ComentarioModel()
                 {
                     idComentario = 1,
                     idEgresso = 1,
                     idPublicacao = 1,
+=======
+                new ComentarioModel() { 
+                    idComentario = 1, 
+                    idEgresso = 1, 
+                    idPublicacao = 1, 
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
                     comentarioPublicacao = "Minha empresa esta contratando auxiliares na cozinha para trabalharem"
                 }
             );
 
+<<<<<<< HEAD
+=======
+            // Relacionamento: um Egresso pode fazer vários Comentários
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
             modelBuilder.Entity<ComentarioModel>()
                 .HasOne<EgressoModel>()
                 .WithMany()
                 .HasForeignKey(c => c.idEgresso)
                 .OnDelete(DeleteBehavior.Cascade);
 
+<<<<<<< HEAD
+=======
+            // Relacionamento: uma Publicação pode ter vários Comentários
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
             modelBuilder.Entity<ComentarioModel>()
                 .HasOne<PublicacaoModel>()
                 .WithMany()
@@ -162,6 +177,8 @@ namespace ChronosApi.Data
                 }
             );
             #endregion
+
+            #region enderecos
 
             #region Logradouro
             modelBuilder.Entity<LogradouroModel>().HasData
@@ -226,8 +243,13 @@ namespace ChronosApi.Data
             .HasForeignKey<CorporacaoEnderecoModel>(ee => ee.idCorporacao);
 
             modelBuilder.Entity<CorporacaoEnderecoModel>()
+<<<<<<< HEAD
              .HasOne(cc => cc.logradouro)
              .WithOne()
+=======
+             .HasOne(cc => cc.Logradouro) // Um endereço pertence a um logradouro
+             .WithOne() 
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
              .HasForeignKey<CorporacaoEnderecoModel>(cc => cc.idLogradouro);
             #endregion
 
@@ -285,11 +307,16 @@ namespace ChronosApi.Data
 
             modelBuilder.Entity<EgressoEnderecoModel>()
              .HasOne(ee => ee.Logradouro) // Um endereço pertence a um logradouro
-             .WithMany() // Um logradouro pode ter vários endereços
-             .HasForeignKey(ee => ee.idLogradouro);
+             .WithOne() // Um logradouro pode ter um endereços
+             .HasForeignKey<EgressoEnderecoModel>(ee => ee.idLogradouro);
             #endregion
             #endregion
 
+            #endregion
+
+
+
+          
         }
     }
 }

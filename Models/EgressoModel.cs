@@ -24,7 +24,11 @@ namespace ChronosApi.Models
 
         [MinLength(6)]
         [DataType(DataType.Password)]
+<<<<<<< HEAD
         [NotMapped]
+=======
+        [NotMapped] 
+>>>>>>> 52e31b7976fd34f52c6b615786316abe3a06748b
         public string PasswordString { get; set; } = string.Empty;
 
         [NotMapped]
