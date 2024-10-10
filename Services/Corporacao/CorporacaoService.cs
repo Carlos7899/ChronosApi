@@ -67,7 +67,7 @@ namespace ChronosApi.Services.Corporacao
 
         }
 
-        public async Task<String> AutenticarCorporacaoAsync(string email, string passwordString)
+        public async Task<string> AutenticarCorporacaoAsync(string email, string passwordString)
         {
             CorporacaoModel? usuario = await _context.TB_CORPORACAO.FirstOrDefaultAsync(x => x.emailCorporacao.ToLower().Equals(email.ToLower()));
 

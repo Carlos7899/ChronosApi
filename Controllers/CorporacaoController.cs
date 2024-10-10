@@ -13,13 +13,12 @@ namespace ChronosApi.Controllers
     public class CorporacaoController : ControllerBase
     {
   
-        private readonly DataContext _context;
         private readonly ICorporacaoRepository _corporacaoRepository;
         private readonly ICorporacaoService _corporacaoService;
 
-        public CorporacaoController( ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository, DataContext context)
+        public CorporacaoController( ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository)
         {
-            _context = context;
+            
             _corporacaoRepository = CorporacaoRepository;
             _corporacaoService = CorporacaoService;
         }

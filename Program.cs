@@ -16,6 +16,8 @@ using ChronosApi.Repository.Publicacao;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ChronosApi.Services.Comentario;
+using ChronosApi.Repository.Comentario;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,6 +57,14 @@ builder.Services.AddScoped<ICorporacaoRepository, CorporacaoRepository>();
 builder.Services.AddScoped<IEgressoService, EgressoService>();
 builder.Services.AddScoped<IEgressoRepository, EgressoRepository>();
 
+builder.Services.AddScoped<IComentarioService, ComentarioService>();
+builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
+
+builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
+builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
+
+#region Enderecos
+
 builder.Services.AddScoped<ICorporacaoEnderecoService, CorporacaoEnderecoService>();
 builder.Services.AddScoped<ICorporacaoEnderecoRepository, CorporacaoEnderecoRepository>();
 
@@ -64,10 +74,12 @@ builder.Services.AddScoped<ILogradouroRepository, LogradouroRepository>();
 builder.Services.AddScoped<IEgressoEnderecoService, EgressoEnderecoService>();
 builder.Services.AddScoped<IEgressoEnderecoRepository, EgressoEnderecoRepository>();
 
-builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
-builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
 
 #endregion
+
+#endregion
+
+
 
 var app = builder.Build();
 

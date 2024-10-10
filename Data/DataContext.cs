@@ -103,9 +103,23 @@ namespace ChronosApi.Data
                     idComentario = 1, 
                     idEgresso = 1, 
                     idPublicacao = 1, 
-                    comentarioPublicacao = "Minha empresa esta contratando PCD para trabalharem"
+                    comentarioPublicacao = "Minha empresa esta contratando auxiliares na cozinha para trabalharem"
                 }
             );
+
+            // Relacionamento: um Egresso pode fazer vários Comentários
+            modelBuilder.Entity<ComentarioModel>()
+                .HasOne<EgressoModel>()
+                .WithMany()
+                .HasForeignKey(c => c.idEgresso)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relacionamento: uma Publicação pode ter vários Comentários
+            modelBuilder.Entity<ComentarioModel>()
+                .HasOne<PublicacaoModel>()
+                .WithMany()
+                .HasForeignKey(c => c.idPublicacao)
+                .OnDelete(DeleteBehavior.Cascade);
             #endregion
 
             #region Curso
@@ -150,6 +164,8 @@ namespace ChronosApi.Data
                 }
             );
             #endregion
+
+            #region enderecos
 
             #region Logradouro
             modelBuilder.Entity<LogradouroModel>().HasData
@@ -215,8 +231,8 @@ namespace ChronosApi.Data
 
             modelBuilder.Entity<CorporacaoEnderecoModel>()
              .HasOne(cc => cc.Logradouro) // Um endereço pertence a um logradouro
-             .WithMany() // Um logradouro pode ter vários endereços
-             .HasForeignKey(cc => cc.idLogradouro);
+             .WithOne() 
+             .HasForeignKey<CorporacaoEnderecoModel>(cc => cc.idLogradouro);
             #endregion
 
             #region CursoEndereco
@@ -265,10 +281,15 @@ namespace ChronosApi.Data
 
             modelBuilder.Entity<EgressoEnderecoModel>()
              .HasOne(ee => ee.Logradouro) // Um endereço pertence a um logradouro
-             .WithMany() // Um logradouro pode ter vários endereços
-             .HasForeignKey(ee => ee.idLogradouro);
+             .WithOne() // Um logradouro pode ter um endereços
+             .HasForeignKey<EgressoEnderecoModel>(ee => ee.idLogradouro);
             #endregion
 
+            #endregion
+
+
+
+          
         }
     }
 }
