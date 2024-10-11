@@ -44,5 +44,29 @@ namespace ChronosApi.Services.Vaga
         {
             return await _context.TB_VAGA.AnyAsync(v => v.idVaga == id);
         }
+
+        public async Task<List<VagaModel>> GetVagasPorCorporacaoAsync(int idCorporacao)
+        {
+            // Verifica se a corporação existe
+            var existeCorporacao = await _context.TB_VAGA.AnyAsync(v => v.idCorporacao == idCorporacao);
+            if (!existeCorporacao)
+            {
+                throw new NotFoundException("Corporacao não encontrada.");
+            }
+
+            // Busca todas as vagas da corporação
+            return await _context.TB_VAGA
+                .Where(v => v.idCorporacao == idCorporacao)
+                .ToListAsync();
+        }
+
+        public async Task<List<VagaModel>> GetVagasPorDataCriacaoAsync(DateTime dataCriacao)
+        {
+            return await _context.TB_VAGA
+                .Where(v => v.DataCriacao.Date == dataCriacao.Date)
+                .ToListAsync();
+        }
+
+
     }
 }

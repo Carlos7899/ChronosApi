@@ -25,5 +25,11 @@ namespace ChronosApi.Models
 
         [NotMapped]
         public string PasswordString { get; set; } = string.Empty;
+
+
+
+        [JsonIgnore]
+        [NotMapped]
+        public ICollection<VagaModel>? Vagas { get; set; }
     }
 }

@@ -47,7 +47,7 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idCandidatura = 1,
-                            dataIncricao = new DateTime(2024, 10, 9, 15, 56, 31, 456, DateTimeKind.Local).AddTicks(3038),
+                            dataIncricao = new DateTime(2024, 10, 11, 15, 30, 42, 163, DateTimeKind.Local).AddTicks(9332),
                             idEgresso = 1,
                             idVaga = 1
                         });
@@ -73,13 +73,17 @@ namespace ChronosApi.Migrations
 
                     b.HasKey("idComentario");
 
+                    b.HasIndex("idEgresso");
+
+                    b.HasIndex("idPublicacao");
+
                     b.ToTable("TB_COMENTARIOS");
 
                     b.HasData(
                         new
                         {
                             idComentario = 1,
-                            comentarioPublicacao = "Minha empresa esta contratando PCD para trabalharem",
+                            comentarioPublicacao = "Minha empresa esta contratando auxiliares na cozinha para trabalharem",
                             idEgresso = 1,
                             idPublicacao = 1
                         });
@@ -133,9 +137,9 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idCorporacao = 1,
-                            DataAcesso = new DateTime(2024, 10, 9, 15, 56, 31, 456, DateTimeKind.Local).AddTicks(3020),
-                            PasswordHash = new byte[] { 96, 61, 147, 96, 100, 80, 226, 131, 233, 99, 240, 18, 134, 150, 33, 45, 214, 191, 143, 141, 144, 180, 158, 141, 39, 248, 47, 31, 121, 95, 42, 160, 230, 37, 38, 104, 103, 21, 114, 110, 13, 94, 103, 240, 49, 169, 117, 14, 136, 177, 6, 96, 106, 221, 233, 230, 234, 187, 32, 48, 35, 121, 158, 130 },
-                            PasswordSalt = new byte[] { 130, 104, 244, 124, 112, 44, 58, 255, 53, 172, 131, 132, 240, 201, 32, 47, 76, 86, 94, 247, 143, 112, 177, 36, 90, 122, 182, 22, 201, 55, 30, 81, 46, 126, 100, 42, 253, 4, 8, 150, 85, 209, 146, 153, 5, 65, 240, 86, 20, 9, 233, 14, 212, 175, 189, 16, 144, 78, 38, 246, 196, 79, 170, 100, 66, 20, 27, 200, 58, 128, 238, 21, 65, 57, 25, 114, 243, 8, 130, 241, 187, 206, 20, 252, 152, 0, 66, 140, 139, 246, 89, 159, 118, 231, 95, 70, 235, 65, 181, 162, 10, 78, 19, 162, 69, 151, 49, 141, 77, 205, 210, 3, 22, 56, 60, 94, 76, 211, 156, 246, 153, 219, 216, 216, 37, 194, 96, 69 },
+                            DataAcesso = new DateTime(2024, 10, 11, 15, 30, 42, 163, DateTimeKind.Local).AddTicks(9316),
+                            PasswordHash = new byte[] { 185, 38, 6, 80, 84, 170, 4, 211, 23, 130, 199, 99, 70, 17, 111, 226, 243, 193, 212, 248, 184, 20, 218, 25, 120, 79, 240, 54, 153, 135, 101, 40, 250, 170, 225, 203, 38, 247, 84, 8, 227, 196, 127, 229, 60, 231, 186, 98, 197, 33, 173, 44, 119, 231, 246, 151, 74, 78, 238, 248, 61, 163, 42, 125 },
+                            PasswordSalt = new byte[] { 50, 14, 166, 125, 66, 71, 136, 170, 22, 63, 97, 232, 238, 169, 4, 2, 22, 212, 137, 168, 59, 102, 169, 164, 139, 175, 71, 210, 203, 29, 183, 248, 82, 59, 200, 32, 28, 66, 59, 66, 159, 122, 34, 236, 158, 153, 246, 131, 126, 121, 158, 89, 19, 214, 194, 224, 7, 243, 162, 216, 153, 230, 31, 117, 21, 110, 59, 214, 176, 254, 154, 44, 237, 52, 228, 31, 136, 148, 30, 0, 135, 135, 226, 60, 158, 2, 116, 101, 80, 252, 34, 238, 135, 7, 76, 156, 146, 69, 174, 12, 222, 170, 55, 25, 207, 129, 16, 27, 104, 45, 90, 213, 180, 98, 111, 30, 226, 55, 236, 132, 154, 105, 87, 17, 21, 238, 173, 188 },
                             cnpjCorporacao = "12.345.678/0001-99",
                             descricaoCorporacao = "Exemplo de corporação",
                             emailCorporacao = "contato@exemplo.com",
@@ -205,7 +209,8 @@ namespace ChronosApi.Migrations
 
                     b.Property<string>("emailEgresso")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("nomeEgresso")
                         .IsRequired()
@@ -226,9 +231,9 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idEgresso = 3,
-                            DataAcesso = new DateTime(2024, 10, 9, 15, 56, 31, 456, DateTimeKind.Local).AddTicks(2870),
-                            PasswordHash = new byte[] { 96, 61, 147, 96, 100, 80, 226, 131, 233, 99, 240, 18, 134, 150, 33, 45, 214, 191, 143, 141, 144, 180, 158, 141, 39, 248, 47, 31, 121, 95, 42, 160, 230, 37, 38, 104, 103, 21, 114, 110, 13, 94, 103, 240, 49, 169, 117, 14, 136, 177, 6, 96, 106, 221, 233, 230, 234, 187, 32, 48, 35, 121, 158, 130 },
-                            PasswordSalt = new byte[] { 130, 104, 244, 124, 112, 44, 58, 255, 53, 172, 131, 132, 240, 201, 32, 47, 76, 86, 94, 247, 143, 112, 177, 36, 90, 122, 182, 22, 201, 55, 30, 81, 46, 126, 100, 42, 253, 4, 8, 150, 85, 209, 146, 153, 5, 65, 240, 86, 20, 9, 233, 14, 212, 175, 189, 16, 144, 78, 38, 246, 196, 79, 170, 100, 66, 20, 27, 200, 58, 128, 238, 21, 65, 57, 25, 114, 243, 8, 130, 241, 187, 206, 20, 252, 152, 0, 66, 140, 139, 246, 89, 159, 118, 231, 95, 70, 235, 65, 181, 162, 10, 78, 19, 162, 69, 151, 49, 141, 77, 205, 210, 3, 22, 56, 60, 94, 76, 211, 156, 246, 153, 219, 216, 216, 37, 194, 96, 69 },
+                            DataAcesso = new DateTime(2024, 10, 11, 15, 30, 42, 163, DateTimeKind.Local).AddTicks(9160),
+                            PasswordHash = new byte[] { 185, 38, 6, 80, 84, 170, 4, 211, 23, 130, 199, 99, 70, 17, 111, 226, 243, 193, 212, 248, 184, 20, 218, 25, 120, 79, 240, 54, 153, 135, 101, 40, 250, 170, 225, 203, 38, 247, 84, 8, 227, 196, 127, 229, 60, 231, 186, 98, 197, 33, 173, 44, 119, 231, 246, 151, 74, 78, 238, 248, 61, 163, 42, 125 },
+                            PasswordSalt = new byte[] { 50, 14, 166, 125, 66, 71, 136, 170, 22, 63, 97, 232, 238, 169, 4, 2, 22, 212, 137, 168, 59, 102, 169, 164, 139, 175, 71, 210, 203, 29, 183, 248, 82, 59, 200, 32, 28, 66, 59, 66, 159, 122, 34, 236, 158, 153, 246, 131, 126, 121, 158, 89, 19, 214, 194, 224, 7, 243, 162, 216, 153, 230, 31, 117, 21, 110, 59, 214, 176, 254, 154, 44, 237, 52, 228, 31, 136, 148, 30, 0, 135, 135, 226, 60, 158, 2, 116, 101, 80, 252, 34, 238, 135, 7, 76, 156, 146, 69, 174, 12, 222, 170, 55, 25, 207, 129, 16, 27, 104, 45, 90, 213, 180, 98, 111, 30, 226, 55, 236, 132, 154, 105, 87, 17, 21, 238, 173, 188 },
                             cpfEgresso = "22222222222",
                             emailEgresso = "admin@example.com",
                             nomeEgresso = "Admin",
@@ -238,9 +243,9 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idEgresso = 1,
-                            DataAcesso = new DateTime(2024, 10, 9, 15, 56, 31, 456, DateTimeKind.Local).AddTicks(2998),
-                            PasswordHash = new byte[] { 96, 61, 147, 96, 100, 80, 226, 131, 233, 99, 240, 18, 134, 150, 33, 45, 214, 191, 143, 141, 144, 180, 158, 141, 39, 248, 47, 31, 121, 95, 42, 160, 230, 37, 38, 104, 103, 21, 114, 110, 13, 94, 103, 240, 49, 169, 117, 14, 136, 177, 6, 96, 106, 221, 233, 230, 234, 187, 32, 48, 35, 121, 158, 130 },
-                            PasswordSalt = new byte[] { 130, 104, 244, 124, 112, 44, 58, 255, 53, 172, 131, 132, 240, 201, 32, 47, 76, 86, 94, 247, 143, 112, 177, 36, 90, 122, 182, 22, 201, 55, 30, 81, 46, 126, 100, 42, 253, 4, 8, 150, 85, 209, 146, 153, 5, 65, 240, 86, 20, 9, 233, 14, 212, 175, 189, 16, 144, 78, 38, 246, 196, 79, 170, 100, 66, 20, 27, 200, 58, 128, 238, 21, 65, 57, 25, 114, 243, 8, 130, 241, 187, 206, 20, 252, 152, 0, 66, 140, 139, 246, 89, 159, 118, 231, 95, 70, 235, 65, 181, 162, 10, 78, 19, 162, 69, 151, 49, 141, 77, 205, 210, 3, 22, 56, 60, 94, 76, 211, 156, 246, 153, 219, 216, 216, 37, 194, 96, 69 },
+                            DataAcesso = new DateTime(2024, 10, 11, 15, 30, 42, 163, DateTimeKind.Local).AddTicks(9294),
+                            PasswordHash = new byte[] { 185, 38, 6, 80, 84, 170, 4, 211, 23, 130, 199, 99, 70, 17, 111, 226, 243, 193, 212, 248, 184, 20, 218, 25, 120, 79, 240, 54, 153, 135, 101, 40, 250, 170, 225, 203, 38, 247, 84, 8, 227, 196, 127, 229, 60, 231, 186, 98, 197, 33, 173, 44, 119, 231, 246, 151, 74, 78, 238, 248, 61, 163, 42, 125 },
+                            PasswordSalt = new byte[] { 50, 14, 166, 125, 66, 71, 136, 170, 22, 63, 97, 232, 238, 169, 4, 2, 22, 212, 137, 168, 59, 102, 169, 164, 139, 175, 71, 210, 203, 29, 183, 248, 82, 59, 200, 32, 28, 66, 59, 66, 159, 122, 34, 236, 158, 153, 246, 131, 126, 121, 158, 89, 19, 214, 194, 224, 7, 243, 162, 216, 153, 230, 31, 117, 21, 110, 59, 214, 176, 254, 154, 44, 237, 52, 228, 31, 136, 148, 30, 0, 135, 135, 226, 60, 158, 2, 116, 101, 80, 252, 34, 238, 135, 7, 76, 156, 146, 69, 174, 12, 222, 170, 55, 25, 207, 129, 16, 27, 104, 45, 90, 213, 180, 98, 111, 30, 226, 55, 236, 132, 154, 105, 87, 17, 21, 238, 173, 188 },
                             cpfEgresso = "222",
                             emailEgresso = "ops.gmail",
                             nomeEgresso = "Pedro",
@@ -276,7 +281,8 @@ namespace ChronosApi.Migrations
                     b.HasIndex("idCorporacao")
                         .IsUnique();
 
-                    b.HasIndex("idLogradouro");
+                    b.HasIndex("idLogradouro")
+                        .IsUnique();
 
                     b.ToTable("TB_CORPORACAO_ENDERECO");
 
@@ -291,7 +297,7 @@ namespace ChronosApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Enderecos.CursoEndereco", b =>
+            modelBuilder.Entity("ChronosApi.Models.Enderecos.CursoEnderecoModel", b =>
                 {
                     b.Property<int>("idCursoEndereco")
                         .ValueGeneratedOnAdd()
@@ -302,6 +308,9 @@ namespace ChronosApi.Migrations
                     b.Property<string>("complementoCursoEndereco")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idCurso")
+                        .HasColumnType("int");
 
                     b.Property<int>("idLogradouro")
                         .HasColumnType("int");
@@ -319,6 +328,7 @@ namespace ChronosApi.Migrations
                         {
                             idCursoEndereco = 1,
                             complementoCursoEndereco = "",
+                            idCurso = 0,
                             idLogradouro = 2,
                             numeroCursoEndereco = "221"
                         });
@@ -351,7 +361,8 @@ namespace ChronosApi.Migrations
                     b.HasIndex("idEgresso")
                         .IsUnique();
 
-                    b.HasIndex("idLogradouro");
+                    b.HasIndex("idLogradouro")
+                        .IsUnique();
 
                     b.ToTable("TB_EGRESSO_ENDERECO");
 
@@ -436,7 +447,7 @@ namespace ChronosApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ChronosApi.Models.Enderecos.VagaEndereco", b =>
+            modelBuilder.Entity("ChronosApi.Models.Enderecos.VagaEnderecoModel", b =>
                 {
                     b.Property<int>("idVagaEndereco")
                         .ValueGeneratedOnAdd()
@@ -451,11 +462,20 @@ namespace ChronosApi.Migrations
                     b.Property<int>("idLogradouro")
                         .HasColumnType("int");
 
+                    b.Property<int>("idVaga")
+                        .HasColumnType("int");
+
                     b.Property<string>("numeroVagaEndereco")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("idVagaEndereco");
+
+                    b.HasIndex("idLogradouro")
+                        .IsUnique();
+
+                    b.HasIndex("idVaga")
+                        .IsUnique();
 
                     b.ToTable("TB_VAGA_ENDERECO");
 
@@ -465,6 +485,7 @@ namespace ChronosApi.Migrations
                             idVagaEndereco = 1,
                             complementoVagaEndereco = "",
                             idLogradouro = 3,
+                            idVaga = 1,
                             numeroVagaEndereco = "899"
                         });
                 });
@@ -514,14 +535,17 @@ namespace ChronosApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idVaga"));
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("descricaoVaga")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("idCorporacao")
-                        .HasColumnType("int");
-
-                    b.Property<int>("idVagaEndereco")
                         .HasColumnType("int");
 
                     b.Property<string>("nomeVaga")
@@ -533,37 +557,55 @@ namespace ChronosApi.Migrations
 
                     b.HasKey("idVaga");
 
+                    b.HasIndex("idCorporacao");
+
                     b.ToTable("TB_VAGA");
 
                     b.HasData(
                         new
                         {
                             idVaga = 1,
+                            DataCriacao = new DateTime(2024, 10, 11, 18, 30, 42, 164, DateTimeKind.Utc).AddTicks(5200),
+                            DataVencimento = new DateTime(2024, 11, 10, 18, 30, 42, 164, DateTimeKind.Utc).AddTicks(5201),
                             descricaoVaga = "Vaga júnior desenvolvedor",
                             idCorporacao = 1,
-                            idVagaEndereco = 1,
                             nomeVaga = "Desenvolvedor Júnior",
                             tipoVaga = 1
                         });
                 });
 
+            modelBuilder.Entity("ChronosApi.Models.ComentarioModel", b =>
+                {
+                    b.HasOne("ChronosApi.Models.EgressoModel", null)
+                        .WithMany()
+                        .HasForeignKey("idEgresso")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ChronosApi.Models.PublicacaoModel", null)
+                        .WithMany()
+                        .HasForeignKey("idPublicacao")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ChronosApi.Models.Enderecos.CorporacaoEnderecoModel", b =>
                 {
-                    b.HasOne("ChronosApi.Models.CorporacaoModel", "Corporacao")
+                    b.HasOne("ChronosApi.Models.CorporacaoModel", "corporacao")
                         .WithOne()
                         .HasForeignKey("ChronosApi.Models.Enderecos.CorporacaoEnderecoModel", "idCorporacao")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ChronosApi.Models.Enderecos.LogradouroModel", "Logradouro")
-                        .WithMany()
-                        .HasForeignKey("idLogradouro")
+                    b.HasOne("ChronosApi.Models.Enderecos.LogradouroModel", "logradouro")
+                        .WithOne()
+                        .HasForeignKey("ChronosApi.Models.Enderecos.CorporacaoEnderecoModel", "idLogradouro")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Corporacao");
+                    b.Navigation("corporacao");
 
-                    b.Navigation("Logradouro");
+                    b.Navigation("logradouro");
                 });
 
             modelBuilder.Entity("ChronosApi.Models.Enderecos.EgressoEnderecoModel", b =>
@@ -575,14 +617,49 @@ namespace ChronosApi.Migrations
                         .IsRequired();
 
                     b.HasOne("ChronosApi.Models.Enderecos.LogradouroModel", "Logradouro")
-                        .WithMany()
-                        .HasForeignKey("idLogradouro")
+                        .WithOne()
+                        .HasForeignKey("ChronosApi.Models.Enderecos.EgressoEnderecoModel", "idLogradouro")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Egresso");
 
                     b.Navigation("Logradouro");
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Enderecos.VagaEnderecoModel", b =>
+                {
+                    b.HasOne("ChronosApi.Models.Enderecos.LogradouroModel", "logradouro")
+                        .WithOne()
+                        .HasForeignKey("ChronosApi.Models.Enderecos.VagaEnderecoModel", "idLogradouro")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ChronosApi.Models.VagaModel", "vaga")
+                        .WithOne()
+                        .HasForeignKey("ChronosApi.Models.Enderecos.VagaEnderecoModel", "idVaga")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("logradouro");
+
+                    b.Navigation("vaga");
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.VagaModel", b =>
+                {
+                    b.HasOne("ChronosApi.Models.CorporacaoModel", "Corporacao")
+                        .WithMany("Vagas")
+                        .HasForeignKey("idCorporacao")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Corporacao");
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.CorporacaoModel", b =>
+                {
+                    b.Navigation("Vagas");
                 });
 #pragma warning restore 612, 618
         }

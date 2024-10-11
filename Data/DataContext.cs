@@ -158,9 +158,17 @@ namespace ChronosApi.Data
                     idCorporacao = 1,
                     nomeVaga = "Desenvolvedor Júnior", 
                     tipoVaga = 1, 
-                    descricaoVaga = "Vaga júnior desenvolvedor"
+                    descricaoVaga = "Vaga júnior desenvolvedor",
+                    DataCriacao = DateTime.UtcNow, 
+                    DataVencimento = DateTime.UtcNow.AddDays(30)
                 }
             );
+
+            modelBuilder.Entity<VagaModel>()
+              .HasOne(v => v.Corporacao)
+              .WithMany(c => c.Vagas)
+              .HasForeignKey(v => v.idCorporacao)
+              .OnDelete(DeleteBehavior.Cascade);
             #endregion
 
             #region Endereços
@@ -209,6 +217,7 @@ namespace ChronosApi.Data
             #endregion
 
             #region Endereços
+
             #region CorporacaoEndereco
             modelBuilder.Entity<CorporacaoEnderecoModel>().HasData
             (
@@ -260,11 +269,17 @@ namespace ChronosApi.Data
             );
 
             modelBuilder.Entity<VagaEnderecoModel>()
-            .HasOne(v => v.vaga)
-            .WithOne()
-            .HasForeignKey<VagaModel>(e => e.idVaga);
+             .HasOne(ve => ve.vaga)
+             .WithOne()
+             .HasForeignKey<VagaEnderecoModel>(ve => ve.idVaga)
+             .OnDelete(DeleteBehavior.Cascade);
 
-            // ARRUMAR
+            modelBuilder.Entity<VagaEnderecoModel>()
+             .HasOne(ve => ve.logradouro)
+             .WithOne()
+             .HasForeignKey<VagaEnderecoModel>(ve => ve.idLogradouro);
+
+
             #endregion
 
             #region EgressoEndereco
@@ -290,6 +305,7 @@ namespace ChronosApi.Data
              .WithOne() // Um logradouro pode ter um endereços
              .HasForeignKey<EgressoEnderecoModel>(ee => ee.idLogradouro);
             #endregion
+
             #endregion
 
             #endregion

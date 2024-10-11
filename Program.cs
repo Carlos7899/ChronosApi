@@ -25,7 +25,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(Options =>
 {
-    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"));
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal5"));
 });
 
 // Add services to the container.
@@ -89,6 +89,9 @@ builder.Services.AddScoped<IEgressoEnderecoRepository, EgressoEnderecoRepository
 
 #endregion
 #endregion
+
+// vagaCleanupService
+builder.Services.AddHostedService<VagaCleanupService>();
 
 var app = builder.Build();
 
