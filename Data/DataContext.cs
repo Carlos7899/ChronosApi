@@ -84,16 +84,34 @@ namespace ChronosApi.Data
             #endregion
 
             #region Candidatura
-            modelBuilder.Entity<CandidaturaModel>().HasData
-            (
-                new CandidaturaModel() 
+            modelBuilder.Entity<CandidaturaModel>().HasData(
+                new CandidaturaModel()
                 {
-                    idCandidatura = 1, 
-                    idEgresso = 1, 
-                    idVaga = 1, 
-                    dataIncricao = DateTime.Now 
-                }
-            );
+                    idCandidatura = 1,
+                    idEgresso = 1,
+                    idVaga = 1,
+                    dataIncricao = DateTime.Now,
+                    Status = StatusCandidatura.EmAnalise, 
+                    DataAtualizacao = null,
+                    Notas = null,
+                    Feedback = null
+                });
+
+            modelBuilder.Entity<CandidaturaModel>()
+                .HasKey(c => c.idCandidatura);
+
+            modelBuilder.Entity<CandidaturaModel>()
+                .HasOne<EgressoModel>() 
+                .WithMany() 
+                .HasForeignKey(c => c.idEgresso)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CandidaturaModel>()
+                .HasOne<VagaModel>() // Substitua por sua entidade Vaga
+                .WithMany() // Defina a relação correta aqui
+                .HasForeignKey(c => c.idVaga)
+                .OnDelete(DeleteBehavior.Cascade);
+
             #endregion
 
             #region Comentario

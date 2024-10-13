@@ -22,6 +22,7 @@ using ChronosApi.Repository.Comentario;
 using ChronosApi.Services.Comentario;
 using ChronosApi.Services.Enderecos.VagaEndereco;
 using ChronosApi.Repository.Enderecos.VagaEndereco;
+using ChronosApi.Services.Candidatura;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,6 +68,8 @@ builder.Services.AddScoped<IVagaRepository, VagaRepository>();
 
 builder.Services.AddScoped<IComentarioService, ComentarioService>();
 builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
+
+builder.Services.AddScoped<ICandidaturaService, CandidaturaService>();
 
 #region Enderecos
 
