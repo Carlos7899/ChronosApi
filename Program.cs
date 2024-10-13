@@ -20,6 +20,8 @@ using ChronosApi.Repository.Vaga;
 using ChronosApi.Services.Vaga;
 using ChronosApi.Repository.Comentario;
 using ChronosApi.Services.Comentario;
+using ChronosApi.Services.Enderecos.VagaEndereco;
+using ChronosApi.Repository.Enderecos.VagaEndereco;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,14 +68,6 @@ builder.Services.AddScoped<IVagaRepository, VagaRepository>();
 builder.Services.AddScoped<IComentarioService, ComentarioService>();
 builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
 
-#region Endereços
-
-builder.Services.AddScoped<IComentarioService, ComentarioService>();
-builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
-
-builder.Services.AddScoped<IPublicacaoService, PublicacaoService>();
-builder.Services.AddScoped<IPublicacaoRepository, PublicacaoRepository>();
-
 #region Enderecos
 
 builder.Services.AddScoped<ICorporacaoEnderecoService, CorporacaoEnderecoService>();
@@ -85,9 +79,11 @@ builder.Services.AddScoped<ILogradouroRepository, LogradouroRepository>();
 builder.Services.AddScoped<IEgressoEnderecoService, EgressoEnderecoService>();
 builder.Services.AddScoped<IEgressoEnderecoRepository, EgressoEnderecoRepository>();
 
-#endregion
+builder.Services.AddScoped<IVagaEnderecoService, VagaEnderecoService >();
+builder.Services.AddScoped<IVagaEnderecoRepository, VagaEnderecoRepository >();
 
 #endregion
+
 #endregion
 
 // vagaCleanupService

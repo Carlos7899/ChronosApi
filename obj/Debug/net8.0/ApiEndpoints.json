@@ -433,7 +433,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.CorporacaoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.CorporacaoEnderecoController",
     "Method": "CreateCorporacaoEndereco",
     "RelativePath": "api/CorporacaoEndereco",
     "HttpMethod": "POST",
@@ -468,7 +468,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.CorporacaoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.CorporacaoEnderecoController",
     "Method": "GetByIdCorporacaoEndereco",
     "RelativePath": "api/CorporacaoEndereco/{id}",
     "HttpMethod": "GET",
@@ -503,7 +503,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.CorporacaoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.CorporacaoEnderecoController",
     "Method": "Put",
     "RelativePath": "api/CorporacaoEndereco/{id}",
     "HttpMethod": "PUT",
@@ -544,7 +544,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.CorporacaoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.CorporacaoEnderecoController",
     "Method": "DeleteCorporacaoEndereco",
     "RelativePath": "api/CorporacaoEndereco/{id}",
     "HttpMethod": "DELETE",
@@ -575,7 +575,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.CorporacaoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.CorporacaoEnderecoController",
     "Method": "GetAll",
     "RelativePath": "api/CorporacaoEndereco/GetAll",
     "HttpMethod": "GET",
@@ -861,7 +861,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.EgressoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.EgressoEnderecoController",
     "Method": "CreateEgressoEndereco",
     "RelativePath": "api/EgressoEndereco",
     "HttpMethod": "POST",
@@ -896,7 +896,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.EgressoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.EgressoEnderecoController",
     "Method": "GetByIdEgressoEndereco",
     "RelativePath": "api/EgressoEndereco/{id}",
     "HttpMethod": "GET",
@@ -931,7 +931,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.EgressoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.EgressoEnderecoController",
     "Method": "DeleteEgressoEndereco",
     "RelativePath": "api/EgressoEndereco/{id}",
     "HttpMethod": "DELETE",
@@ -962,7 +962,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.EgressoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.EgressoEnderecoController",
     "Method": "GetAll",
     "RelativePath": "api/EgressoEndereco/GetAll",
     "HttpMethod": "GET",
@@ -987,7 +987,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.EgressoEnderecoController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.EgressoEnderecoController",
     "Method": "Put",
     "RelativePath": "api/EgressoEndereco/Put/{id}",
     "HttpMethod": "PUT",
@@ -1028,7 +1028,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.LogradouroController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.LogradouroController",
     "Method": "Delete",
     "RelativePath": "api/Logradouro/Delete/{id}",
     "HttpMethod": "DELETE",
@@ -1059,7 +1059,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.LogradouroController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.LogradouroController",
     "Method": "GetAll",
     "RelativePath": "api/Logradouro/GetAll",
     "HttpMethod": "GET",
@@ -1084,7 +1084,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.LogradouroController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.LogradouroController",
     "Method": "Get",
     "RelativePath": "api/Logradouro/GetbyId/{id}",
     "HttpMethod": "GET",
@@ -1119,7 +1119,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.LogradouroController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.LogradouroController",
     "Method": "Post",
     "RelativePath": "api/Logradouro/POST",
     "HttpMethod": "POST",
@@ -1150,7 +1150,7 @@
     ]
   },
   {
-    "ContainingType": "ChronosApi.Controllers.LogradouroController",
+    "ContainingType": "ChronosApi.Controllers.Enderecos.LogradouroController",
     "Method": "Put",
     "RelativePath": "api/Logradouro/Put/{id}",
     "HttpMethod": "PUT",
@@ -1602,6 +1602,173 @@
           "text/json"
         ],
         "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "ChronosApi.Controllers.Enderecos.VagaEnderecoController",
+    "Method": "CreateVagaEndereco",
+    "RelativePath": "api/VagaEndereco",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "endereco",
+        "Type": "ChronosApi.Models.Enderecos.VagaEnderecoModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ChronosApi.Models.Enderecos.VagaEnderecoModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "ChronosApi.Controllers.Enderecos.VagaEnderecoController",
+    "Method": "GetByIdVagaEndereco",
+    "RelativePath": "api/VagaEndereco/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "ChronosApi.Models.Enderecos.VagaEnderecoModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ChronosApi.Controllers.Enderecos.VagaEnderecoController",
+    "Method": "Put",
+    "RelativePath": "api/VagaEndereco/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedEndereco",
+        "Type": "ChronosApi.Models.Enderecos.VagaEnderecoModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 202
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "ChronosApi.Controllers.Enderecos.VagaEnderecoController",
+    "Method": "DeleteVagaEndereco",
+    "RelativePath": "api/VagaEndereco/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ChronosApi.Controllers.Enderecos.VagaEnderecoController",
+    "Method": "GetAll",
+    "RelativePath": "api/VagaEndereco/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ChronosApi.Models.Enderecos.VagaEnderecoModel, ChronosApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
       }
     ]
   }

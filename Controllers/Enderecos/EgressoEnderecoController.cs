@@ -1,27 +1,23 @@
-﻿using ChronosApi.Data;
+﻿using ChronosApi.Models;
 using ChronosApi.Models.Enderecos;
-using ChronosApi.Repository.CorporacaoEndereco;
-using ChronosApi.Services.CorporacaoEndereco;
+using ChronosApi.Repository.Enderecos.EgressoEndereco;
+using ChronosApi.Services.EgressoEndereco;
 using ChronosApi.Services.Exceptions;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace ChronosApi.Controllers
+namespace ChronosApi.Controllers.Enderecos
 {
-
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/[Controller]")]
-    public class CorporacaoEnderecoController : ControllerBase
+    public class EgressoEnderecoController : ControllerBase
     {
+        private readonly IEgressoEnderecoService _egressoEnderecoService;
+        private readonly IEgressoEnderecoRepository _egressoEnderecoRepository;
 
-        private readonly ICorporacaoEnderecoService _corporacaoEnderecoService;
-        private readonly ICorporacaoEnderecoRepository _corporacaoEnderecoRepository;
-
-        public CorporacaoEnderecoController(ICorporacaoEnderecoService corporacaoEnderecoService, ICorporacaoEnderecoRepository corporacaoEnderecoRepository)
+        public EgressoEnderecoController(IEgressoEnderecoService egressoEnderecoService, IEgressoEnderecoRepository egressoEnderecoRepository)
         {
-            _corporacaoEnderecoService = corporacaoEnderecoService;
-            _corporacaoEnderecoRepository = corporacaoEnderecoRepository;
+            _egressoEnderecoService = egressoEnderecoService;
+            _egressoEnderecoRepository = egressoEnderecoRepository;
         }
 
         #region GET
@@ -29,14 +25,14 @@ namespace ChronosApi.Controllers
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<CorporacaoEnderecoModel>>> GetAll()
+        public async Task<ActionResult<IEnumerable<EgressoEnderecoModel>>> GetAll()
         {
             try
             {
-                var enderecos = await _corporacaoEnderecoService.GetAllCorporacoesEnderecosAsync();
+                var enderecos = await _egressoEnderecoService.GetAllEgressosEnderecosAsync();
                 return Ok(enderecos);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
@@ -45,18 +41,18 @@ namespace ChronosApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<CorporacaoEnderecoModel>> GetByIdCorporacaoEndereco(int id)
+        public async Task<ActionResult<EgressoEnderecoModel>> GetByIdEgressoEndereco(int id)
         {
             try
             {
-                var endereco = await _corporacaoEnderecoService.GetCorporacaoEnderecoAsync(id);
+                var endereco = await _egressoEnderecoService.GetEgressoEnderecoAsync(id);
                 return Ok(endereco);
             }
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -67,22 +63,22 @@ namespace ChronosApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<CorporacaoEnderecoModel>> CreateCorporacaoEndereco([FromBody] CorporacaoEnderecoModel endereco)
+        public async Task<ActionResult<EgressoEnderecoModel>> CreateEgressoEndereco([FromBody] EgressoEnderecoModel endereco)
         {
             try
             {
-                // Verifica se a corporação e o logradouro existem
-                await _corporacaoEnderecoService.CreateCorporacaoEnderecoAsync(endereco);
+                // Verifica se o egresso e o logradouro existem
+                await _egressoEnderecoService.CreateEgressoEnderecoAsync(endereco);
 
                 // Adiciona o novo endereço ao repositório
-                var novoEndereco = await _corporacaoEnderecoRepository.AddCorporacaoEnderecoAsync(endereco);
-                return CreatedAtAction(nameof(GetByIdCorporacaoEndereco), new { id = novoEndereco.idCorporacaoEndereco }, novoEndereco);
+                var novoEndereco = await _egressoEnderecoRepository.AddEgressoEnderecoAsync(endereco);
+                return CreatedAtAction(nameof(GetByIdEgressoEndereco), new { id = novoEndereco.idEgressoEndereco }, novoEndereco);
             }
             catch (NotFoundException ex)
             {
                 return BadRequest(ex.Message);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -90,17 +86,17 @@ namespace ChronosApi.Controllers
         #endregion
 
         #region UPDATE
-        [HttpPut("{id}")]
+        [HttpPut("Put/{id}")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<CorporacaoEnderecoModel>> Put(int id, [FromBody] CorporacaoEnderecoModel updatedEndereco)
+        public async Task<ActionResult<EgressoEnderecoModel>> Put(int id, [FromBody] EgressoEnderecoModel updatedEndereco)
         {
             try
             {
-                var existingEndereco = await _corporacaoEnderecoService.UpdateCorporacaoEnderecoAsync(id, updatedEndereco);
+                var existingEndereco = await _egressoEnderecoService.UpdateEgressoEnderecoAsync(id, updatedEndereco);
 
-                await _corporacaoEnderecoRepository.UpdateCorporacaoEnderecoAsync(existingEndereco);
+                await _egressoEnderecoRepository.UpdateEgressoEnderecoAsync(existingEndereco);
 
                 return Ok(existingEndereco);
             }
@@ -108,7 +104,7 @@ namespace ChronosApi.Controllers
             {
                 return NotFound(ex.Message);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
@@ -119,24 +115,24 @@ namespace ChronosApi.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> DeleteCorporacaoEndereco(int id)
+        public async Task<ActionResult> DeleteEgressoEndereco(int id)
         {
             try
             {
-                var existingEndereco = await _corporacaoEnderecoRepository.GetCorporacaoEnderecoByIdAsync(id);
+                var existingEndereco = await _egressoEnderecoRepository.GetEgressoEnderecoByIdAsync(id);
                 if (existingEndereco == null)
                 {
                     return NotFound("Endereço não encontrado.");
                 }
 
-                await _corporacaoEnderecoRepository.DeleteCorporacaoEnderecoAsync(existingEndereco);
+                await _egressoEnderecoRepository.DeleteEgressoEnderecoAsync(existingEndereco);
                 return Ok("Endereço deletado com sucesso!");
             }
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }

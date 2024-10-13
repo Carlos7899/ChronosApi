@@ -4,7 +4,7 @@ using ChronosApi.Repository.Enderecos.Logradouro;
 using ChronosApi.Services.Logradouro;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ChronosApi.Controllers
+namespace ChronosApi.Controllers.Enderecos
 {
 
     [ApiController]

@@ -267,7 +267,6 @@ namespace ChronosApi.Data
                     numeroVagaEndereco = "899" 
                 }
             );
-
             modelBuilder.Entity<VagaEnderecoModel>()
              .HasOne(ve => ve.vaga)
              .WithOne()
