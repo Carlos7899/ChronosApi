@@ -1,6 +1,8 @@
-﻿using ChronosApi.Models.Enums;
+﻿using ChronosApi.Models.Curriculo;
+using ChronosApi.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ChronosApi.Models
 {
@@ -29,5 +31,9 @@ namespace ChronosApi.Models
 
         [NotMapped]
         public string? Token { get; set; }
+
+        [NotMapped]
+        [JsonIgnore]
+        public CurriculoModel? Curriculo { get; set; }
     }
 }

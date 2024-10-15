@@ -64,7 +64,7 @@ namespace ChronosApi.Migrations
                         {
                             idCandidatura = 1,
                             Status = 3,
-                            dataIncricao = new DateTime(2024, 10, 15, 11, 32, 57, 46, DateTimeKind.Local).AddTicks(8357),
+                            dataIncricao = new DateTime(2024, 10, 15, 14, 30, 12, 276, DateTimeKind.Local).AddTicks(9484),
                             idEgresso = 1,
                             idVaga = 1
                         });
@@ -154,15 +154,159 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idCorporacao = 1,
-                            DataAcesso = new DateTime(2024, 10, 15, 11, 32, 57, 46, DateTimeKind.Local).AddTicks(8342),
-                            PasswordHash = new byte[] { 207, 100, 242, 240, 234, 66, 106, 243, 217, 15, 51, 149, 140, 96, 252, 154, 136, 59, 154, 74, 3, 37, 76, 191, 250, 2, 62, 143, 8, 228, 96, 255, 194, 33, 50, 151, 109, 13, 214, 126, 55, 157, 229, 253, 19, 122, 173, 152, 211, 111, 173, 200, 112, 220, 130, 189, 78, 0, 50, 57, 43, 56, 183, 180 },
-                            PasswordSalt = new byte[] { 171, 15, 129, 205, 147, 46, 166, 94, 71, 174, 146, 212, 126, 185, 114, 42, 189, 169, 101, 49, 60, 121, 190, 124, 126, 183, 114, 46, 30, 153, 136, 200, 198, 240, 183, 56, 127, 205, 128, 0, 242, 164, 241, 171, 36, 183, 12, 238, 88, 116, 40, 3, 22, 203, 121, 244, 73, 5, 144, 119, 139, 13, 75, 85, 117, 69, 60, 158, 17, 171, 60, 22, 163, 55, 76, 61, 169, 64, 231, 240, 209, 102, 167, 71, 95, 199, 200, 247, 32, 197, 1, 2, 126, 74, 224, 203, 7, 216, 120, 163, 250, 50, 20, 230, 136, 187, 113, 51, 71, 213, 60, 101, 205, 236, 205, 222, 46, 155, 122, 154, 58, 16, 121, 152, 20, 95, 245, 5 },
+                            DataAcesso = new DateTime(2024, 10, 15, 14, 30, 12, 276, DateTimeKind.Local).AddTicks(9468),
+                            PasswordHash = new byte[] { 122, 94, 106, 123, 207, 57, 151, 234, 71, 3, 31, 101, 29, 255, 222, 216, 131, 210, 221, 191, 54, 74, 234, 85, 134, 90, 37, 251, 117, 99, 142, 97, 195, 209, 189, 128, 198, 68, 185, 47, 136, 134, 18, 62, 64, 1, 26, 46, 185, 6, 244, 243, 164, 205, 12, 41, 192, 130, 91, 55, 147, 244, 11, 17 },
+                            PasswordSalt = new byte[] { 171, 52, 12, 208, 47, 216, 247, 216, 153, 201, 65, 176, 218, 51, 133, 141, 205, 202, 120, 3, 235, 89, 126, 219, 113, 101, 66, 110, 35, 18, 245, 138, 38, 48, 123, 110, 21, 199, 96, 218, 15, 109, 12, 21, 107, 25, 51, 162, 235, 36, 116, 34, 97, 112, 213, 141, 122, 237, 164, 112, 246, 202, 102, 48, 153, 223, 26, 201, 176, 177, 215, 116, 240, 186, 24, 72, 215, 113, 42, 178, 62, 221, 227, 174, 125, 64, 74, 44, 48, 247, 94, 251, 104, 126, 94, 172, 214, 5, 218, 197, 60, 207, 186, 197, 249, 135, 187, 149, 125, 10, 36, 227, 61, 23, 11, 123, 247, 54, 180, 86, 66, 157, 45, 235, 72, 181, 107, 86 },
                             cnpjCorporacao = "12.345.678/0001-99",
                             descricaoCorporacao = "Exemplo de corporação",
                             emailCorporacao = "contato@exemplo.com",
                             nomeCorporacao = "Corporação Exemplo",
                             numeroCorporacao = "12345678",
                             tipoCorporacao = 0
+                        });
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Curriculo.CurriculoModel", b =>
+                {
+                    b.Property<int>("idCurriculo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idCurriculo"));
+
+                    b.Property<string>("descricaoCurriculo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("emailCurriculo")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("habilidadesCurriculo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idEgresso")
+                        .HasColumnType("int");
+
+                    b.Property<string>("telefoneCurriculo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idCurriculo");
+
+                    b.HasIndex("idEgresso")
+                        .IsUnique();
+
+                    b.ToTable("TB_CURRICULO");
+
+                    b.HasData(
+                        new
+                        {
+                            idCurriculo = 1,
+                            descricaoCurriculo = "Desenvolvedor de software com experiência em .NET.",
+                            emailCurriculo = "curriculo1@example.com",
+                            habilidadesCurriculo = "C#, ASP.NET Core, SQL Server",
+                            idEgresso = 1,
+                            telefoneCurriculo = "11999999999"
+                        });
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Curriculo.ExperienciaModel", b =>
+                {
+                    b.Property<int>("idExperiencia")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idExperiencia"));
+
+                    b.Property<int?>("CurriculoidCurriculo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("cargoExperiencia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("dataFimExperiencia")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("dataInicioExperiencia")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("empresaExperiencia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("idCurriculo")
+                        .HasColumnType("int");
+
+                    b.HasKey("idExperiencia");
+
+                    b.HasIndex("CurriculoidCurriculo");
+
+                    b.HasIndex("idCurriculo");
+
+                    b.ToTable("TB_EXPERIENCIA");
+
+                    b.HasData(
+                        new
+                        {
+                            idExperiencia = 1,
+                            Descricao = "Desenvolvimento de aplicações web.",
+                            cargoExperiencia = "Desenvolvedor Júnior",
+                            dataFimExperiencia = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            dataInicioExperiencia = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            empresaExperiencia = "Empresa XYZ",
+                            idCurriculo = 1
+                        });
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Curriculo.FormacaoModel", b =>
+                {
+                    b.Property<int>("idFormacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idFormacao"));
+
+                    b.Property<int?>("CurriculoidCurriculo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("cursoFormacao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("dataConclusaoFormacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("idCurriculo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("instituicaoFormacao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idFormacao");
+
+                    b.HasIndex("CurriculoidCurriculo");
+
+                    b.HasIndex("idCurriculo");
+
+                    b.ToTable("TB_FORMACAO");
+
+                    b.HasData(
+                        new
+                        {
+                            idFormacao = 1,
+                            cursoFormacao = "Análise e Desenvolvimento de Sistemas",
+                            dataConclusaoFormacao = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            idCurriculo = 1,
+                            instituicaoFormacao = "Universidade ABC"
                         });
                 });
 
@@ -209,8 +353,8 @@ namespace ChronosApi.Migrations
                         {
                             idCurso = 1,
                             cargaHorariaCurso = 40,
-                            dataFimCurso = new DateTime(2025, 1, 15, 11, 32, 57, 47, DateTimeKind.Local).AddTicks(9640),
-                            dataInicioCurso = new DateTime(2024, 10, 15, 11, 32, 57, 47, DateTimeKind.Local).AddTicks(9634),
+                            dataFimCurso = new DateTime(2025, 1, 15, 14, 30, 12, 278, DateTimeKind.Local).AddTicks(1558),
+                            dataInicioCurso = new DateTime(2024, 10, 15, 14, 30, 12, 278, DateTimeKind.Local).AddTicks(1553),
                             descricaoCurso = "Curso especializado no aprendizado de hardwares e códigos",
                             idCorporacao = 1,
                             nomeCurso = "Desenvolvimento de Sistemas"
@@ -262,9 +406,9 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idEgresso = 3,
-                            DataAcesso = new DateTime(2024, 10, 15, 11, 32, 57, 46, DateTimeKind.Local).AddTicks(8200),
-                            PasswordHash = new byte[] { 207, 100, 242, 240, 234, 66, 106, 243, 217, 15, 51, 149, 140, 96, 252, 154, 136, 59, 154, 74, 3, 37, 76, 191, 250, 2, 62, 143, 8, 228, 96, 255, 194, 33, 50, 151, 109, 13, 214, 126, 55, 157, 229, 253, 19, 122, 173, 152, 211, 111, 173, 200, 112, 220, 130, 189, 78, 0, 50, 57, 43, 56, 183, 180 },
-                            PasswordSalt = new byte[] { 171, 15, 129, 205, 147, 46, 166, 94, 71, 174, 146, 212, 126, 185, 114, 42, 189, 169, 101, 49, 60, 121, 190, 124, 126, 183, 114, 46, 30, 153, 136, 200, 198, 240, 183, 56, 127, 205, 128, 0, 242, 164, 241, 171, 36, 183, 12, 238, 88, 116, 40, 3, 22, 203, 121, 244, 73, 5, 144, 119, 139, 13, 75, 85, 117, 69, 60, 158, 17, 171, 60, 22, 163, 55, 76, 61, 169, 64, 231, 240, 209, 102, 167, 71, 95, 199, 200, 247, 32, 197, 1, 2, 126, 74, 224, 203, 7, 216, 120, 163, 250, 50, 20, 230, 136, 187, 113, 51, 71, 213, 60, 101, 205, 236, 205, 222, 46, 155, 122, 154, 58, 16, 121, 152, 20, 95, 245, 5 },
+                            DataAcesso = new DateTime(2024, 10, 15, 14, 30, 12, 276, DateTimeKind.Local).AddTicks(9302),
+                            PasswordHash = new byte[] { 122, 94, 106, 123, 207, 57, 151, 234, 71, 3, 31, 101, 29, 255, 222, 216, 131, 210, 221, 191, 54, 74, 234, 85, 134, 90, 37, 251, 117, 99, 142, 97, 195, 209, 189, 128, 198, 68, 185, 47, 136, 134, 18, 62, 64, 1, 26, 46, 185, 6, 244, 243, 164, 205, 12, 41, 192, 130, 91, 55, 147, 244, 11, 17 },
+                            PasswordSalt = new byte[] { 171, 52, 12, 208, 47, 216, 247, 216, 153, 201, 65, 176, 218, 51, 133, 141, 205, 202, 120, 3, 235, 89, 126, 219, 113, 101, 66, 110, 35, 18, 245, 138, 38, 48, 123, 110, 21, 199, 96, 218, 15, 109, 12, 21, 107, 25, 51, 162, 235, 36, 116, 34, 97, 112, 213, 141, 122, 237, 164, 112, 246, 202, 102, 48, 153, 223, 26, 201, 176, 177, 215, 116, 240, 186, 24, 72, 215, 113, 42, 178, 62, 221, 227, 174, 125, 64, 74, 44, 48, 247, 94, 251, 104, 126, 94, 172, 214, 5, 218, 197, 60, 207, 186, 197, 249, 135, 187, 149, 125, 10, 36, 227, 61, 23, 11, 123, 247, 54, 180, 86, 66, 157, 45, 235, 72, 181, 107, 86 },
                             cpfEgresso = "22222222222",
                             emailEgresso = "admin@example.com",
                             nomeEgresso = "Admin",
@@ -274,9 +418,9 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idEgresso = 1,
-                            DataAcesso = new DateTime(2024, 10, 15, 11, 32, 57, 46, DateTimeKind.Local).AddTicks(8323),
-                            PasswordHash = new byte[] { 207, 100, 242, 240, 234, 66, 106, 243, 217, 15, 51, 149, 140, 96, 252, 154, 136, 59, 154, 74, 3, 37, 76, 191, 250, 2, 62, 143, 8, 228, 96, 255, 194, 33, 50, 151, 109, 13, 214, 126, 55, 157, 229, 253, 19, 122, 173, 152, 211, 111, 173, 200, 112, 220, 130, 189, 78, 0, 50, 57, 43, 56, 183, 180 },
-                            PasswordSalt = new byte[] { 171, 15, 129, 205, 147, 46, 166, 94, 71, 174, 146, 212, 126, 185, 114, 42, 189, 169, 101, 49, 60, 121, 190, 124, 126, 183, 114, 46, 30, 153, 136, 200, 198, 240, 183, 56, 127, 205, 128, 0, 242, 164, 241, 171, 36, 183, 12, 238, 88, 116, 40, 3, 22, 203, 121, 244, 73, 5, 144, 119, 139, 13, 75, 85, 117, 69, 60, 158, 17, 171, 60, 22, 163, 55, 76, 61, 169, 64, 231, 240, 209, 102, 167, 71, 95, 199, 200, 247, 32, 197, 1, 2, 126, 74, 224, 203, 7, 216, 120, 163, 250, 50, 20, 230, 136, 187, 113, 51, 71, 213, 60, 101, 205, 236, 205, 222, 46, 155, 122, 154, 58, 16, 121, 152, 20, 95, 245, 5 },
+                            DataAcesso = new DateTime(2024, 10, 15, 14, 30, 12, 276, DateTimeKind.Local).AddTicks(9447),
+                            PasswordHash = new byte[] { 122, 94, 106, 123, 207, 57, 151, 234, 71, 3, 31, 101, 29, 255, 222, 216, 131, 210, 221, 191, 54, 74, 234, 85, 134, 90, 37, 251, 117, 99, 142, 97, 195, 209, 189, 128, 198, 68, 185, 47, 136, 134, 18, 62, 64, 1, 26, 46, 185, 6, 244, 243, 164, 205, 12, 41, 192, 130, 91, 55, 147, 244, 11, 17 },
+                            PasswordSalt = new byte[] { 171, 52, 12, 208, 47, 216, 247, 216, 153, 201, 65, 176, 218, 51, 133, 141, 205, 202, 120, 3, 235, 89, 126, 219, 113, 101, 66, 110, 35, 18, 245, 138, 38, 48, 123, 110, 21, 199, 96, 218, 15, 109, 12, 21, 107, 25, 51, 162, 235, 36, 116, 34, 97, 112, 213, 141, 122, 237, 164, 112, 246, 202, 102, 48, 153, 223, 26, 201, 176, 177, 215, 116, 240, 186, 24, 72, 215, 113, 42, 178, 62, 221, 227, 174, 125, 64, 74, 44, 48, 247, 94, 251, 104, 126, 94, 172, 214, 5, 218, 197, 60, 207, 186, 197, 249, 135, 187, 149, 125, 10, 36, 227, 61, 23, 11, 123, 247, 54, 180, 86, 66, 157, 45, 235, 72, 181, 107, 86 },
                             cpfEgresso = "222",
                             emailEgresso = "ops.gmail",
                             nomeEgresso = "Pedro",
@@ -602,8 +746,8 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idVaga = 1,
-                            DataCriacao = new DateTime(2024, 10, 15, 14, 32, 57, 48, DateTimeKind.Utc).AddTicks(3699),
-                            DataVencimento = new DateTime(2024, 11, 14, 14, 32, 57, 48, DateTimeKind.Utc).AddTicks(3700),
+                            DataCriacao = new DateTime(2024, 10, 15, 17, 30, 12, 278, DateTimeKind.Utc).AddTicks(5776),
+                            DataVencimento = new DateTime(2024, 11, 14, 17, 30, 12, 278, DateTimeKind.Utc).AddTicks(5776),
                             descricaoVaga = "Vaga júnior desenvolvedor",
                             idCorporacao = 1,
                             nomeVaga = "Desenvolvedor Júnior",
@@ -639,6 +783,47 @@ namespace ChronosApi.Migrations
                         .HasForeignKey("idPublicacao")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Curriculo.CurriculoModel", b =>
+                {
+                    b.HasOne("ChronosApi.Models.EgressoModel", "Egresso")
+                        .WithOne("Curriculo")
+                        .HasForeignKey("ChronosApi.Models.Curriculo.CurriculoModel", "idEgresso")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Egresso");
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Curriculo.ExperienciaModel", b =>
+                {
+                    b.HasOne("ChronosApi.Models.Curriculo.CurriculoModel", "Curriculo")
+                        .WithMany()
+                        .HasForeignKey("CurriculoidCurriculo");
+
+                    b.HasOne("ChronosApi.Models.Curriculo.CurriculoModel", null)
+                        .WithMany("ExperienciasProfissionais")
+                        .HasForeignKey("idCurriculo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Curriculo");
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Curriculo.FormacaoModel", b =>
+                {
+                    b.HasOne("ChronosApi.Models.Curriculo.CurriculoModel", "Curriculo")
+                        .WithMany()
+                        .HasForeignKey("CurriculoidCurriculo");
+
+                    b.HasOne("ChronosApi.Models.Curriculo.CurriculoModel", null)
+                        .WithMany("FormacoesAcademicas")
+                        .HasForeignKey("idCurriculo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Curriculo");
                 });
 
             modelBuilder.Entity("ChronosApi.Models.CursoModel", b =>
@@ -742,6 +927,18 @@ namespace ChronosApi.Migrations
                     b.Navigation("Cursos");
 
                     b.Navigation("Vagas");
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.Curriculo.CurriculoModel", b =>
+                {
+                    b.Navigation("ExperienciasProfissionais");
+
+                    b.Navigation("FormacoesAcademicas");
+                });
+
+            modelBuilder.Entity("ChronosApi.Models.EgressoModel", b =>
+                {
+                    b.Navigation("Curriculo");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
 ﻿using ChronosApi.Models;
+using ChronosApi.Models.Curriculo;
 using ChronosApi.Models.Enderecos;
 using ChronosApi.Models.Enums;
 using ChronosApi.Services.Utils;
@@ -19,11 +20,23 @@ namespace ChronosApi.Data
         public DbSet<CursoModel> TB_CURSO { get; set; }
         public DbSet<PublicacaoModel> TB_PUBLICACAO { get; set; }
         public DbSet<VagaModel> TB_VAGA { get; set; }
+
+        #region Curriculo
+
+        public DbSet<CurriculoModel> TB_CURRICULO { get; set; }
+        public DbSet<ExperienciaModel> TB_EXPERIENCIA { get; set; }
+        public DbSet<FormacaoModel> TB_FORMACAO { get; set; }
+
+        #endregion
+
+        #region Enderecos
         public DbSet<LogradouroModel> TB_LOGRADOURO { get; set; }
         public DbSet<CorporacaoEnderecoModel> TB_CORPORACAO_ENDERECO { get; set; }
         public DbSet<CursoEnderecoModel> TB_CURSO_ENDERECO { get; set; }
         public DbSet<EgressoEnderecoModel> TB_EGRESSO_ENDERECO { get; set; }
         public DbSet<VagaEnderecoModel> TB_VAGA_ENDERECO { get; set; }
+        #endregion
+
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -197,6 +210,84 @@ namespace ChronosApi.Data
               .OnDelete(DeleteBehavior.Cascade);
             #endregion
 
+            #region Curriculo 
+
+            #region Curriculo
+            modelBuilder.Entity<CurriculoModel>().HasData
+           (
+
+             new CurriculoModel()
+             {
+                 idCurriculo = 1,
+                 idEgresso = 1,
+                 emailCurriculo = "curriculo1@example.com",
+                 telefoneCurriculo = "11999999999",
+                 habilidadesCurriculo = "C#, ASP.NET Core, SQL Server",
+                 descricaoCurriculo = "Desenvolvedor de software com experiência em .NET."
+             }
+            );
+
+            modelBuilder.Entity<CurriculoModel>()
+               .HasOne(c => c.Egresso)
+               .WithOne(e => e.Curriculo)
+               .HasForeignKey<CurriculoModel>(c => c.idEgresso);
+
+            modelBuilder.Entity<CurriculoModel>()
+             .HasMany(c => c.ExperienciasProfissionais)
+             .WithOne(e => e.Curriculo)
+             .HasForeignKey(e => e.idCurriculo)
+             .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<CurriculoModel>()
+                .HasMany(c => c.FormacoesAcademicas)
+                .WithOne(f => f.Curriculo)
+                .HasForeignKey(f => f.idCurriculo)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+
+            #endregion
+
+           #region Experiencia
+                    modelBuilder.Entity<ExperienciaModel>().HasData
+                    (
+                        new ExperienciaModel
+                        {
+                            idExperiencia = 1,
+                            idCurriculo = 1,
+                            cargoExperiencia = "Desenvolvedor Júnior",
+                            empresaExperiencia = "Empresa XYZ",
+                            dataInicioExperiencia = new DateTime(2022, 01, 01),
+                            dataFimExperiencia = new DateTime(2023, 01, 01),
+                            Descricao = "Desenvolvimento de aplicações web."
+                        }
+                    );
+                    modelBuilder.Entity<ExperienciaModel>()
+                       .HasOne<CurriculoModel>()
+                       .WithMany(c => c.ExperienciasProfissionais)
+                       .HasForeignKey(e => e.idCurriculo);
+                    #endregion
+
+                    #region Formacao
+                    modelBuilder.Entity<FormacaoModel>().HasData
+                    (
+                        new FormacaoModel
+                        {
+                            idFormacao = 1,
+                            idCurriculo = 1, 
+                            cursoFormacao = "Análise e Desenvolvimento de Sistemas",
+                            instituicaoFormacao = "Universidade ABC",
+                            dataConclusaoFormacao = new DateTime(2021, 12, 01)
+                        }
+                    );
+                    modelBuilder.Entity<FormacaoModel>()
+                     .HasOne<CurriculoModel>()
+                     .WithMany(c => c.FormacoesAcademicas)
+                     .HasForeignKey(e => e.idCurriculo);
+                    #endregion 
+
+            #endregion
+
             #region Endereços
 
             #region Logradouro
@@ -241,8 +332,6 @@ namespace ChronosApi.Data
 
             );
             #endregion
-
-            #region Endereços
 
             #region CorporacaoEndereco
             modelBuilder.Entity<CorporacaoEnderecoModel>().HasData
@@ -344,7 +433,7 @@ namespace ChronosApi.Data
 
             #endregion
 
-            #endregion
+      
         }
     }
 }
