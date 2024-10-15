@@ -23,6 +23,9 @@ using ChronosApi.Services.Comentario;
 using ChronosApi.Services.Enderecos.VagaEndereco;
 using ChronosApi.Repository.Enderecos.VagaEndereco;
 using ChronosApi.Services.Candidatura;
+using ChronosApi.Services.Curso;
+using ChronosApi.Services.Enderecos.CursoEndereco;
+using ChronosApi.Repository.Enderecos.CursoEndereco;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,7 +74,12 @@ builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
 
 builder.Services.AddScoped<ICandidaturaService, CandidaturaService>();
 
+builder.Services.AddScoped<ICursoService, CursoService>();
+
 #region Enderecos
+
+builder.Services.AddScoped<ICursoEnderecoService, CursoEnderecoService>();
+builder.Services.AddScoped<ICursoEnderecoRepository, CursoEnderecoRepository>();
 
 builder.Services.AddScoped<ICorporacaoEnderecoService, CorporacaoEnderecoService>();
 builder.Services.AddScoped<ICorporacaoEnderecoRepository, CorporacaoEnderecoRepository>();

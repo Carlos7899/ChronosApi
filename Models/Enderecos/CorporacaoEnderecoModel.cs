@@ -18,7 +18,6 @@ namespace ChronosApi.Models.Enderecos
         public string complementoCorporacaoEndereco { get; set; } = string.Empty;
 
         // Revisar relacionamento, a corporação não pode aceitar um Logradouro que já pertence a alguem
-        // Revisar no egresso também 
         [NotMapped]
         [JsonIgnore]
         public CorporacaoModel? corporacao { get; set; }

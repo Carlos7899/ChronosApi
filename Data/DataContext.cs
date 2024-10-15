@@ -142,15 +142,23 @@ namespace ChronosApi.Data
             #region Curso
             modelBuilder.Entity<CursoModel>().HasData
             (
-                new CursoModel() 
-                { 
-                    idCurso = 1, 
-                    idCorporacao = 1, 
-                    idCorporacaoEndereco = 1, 
-                    nomeCurso = "Desenvolvimento de Sistemas", 
-                    descricaoCurso = "Curso especializado no aprendizado de hardwares e códigos"
+                new CursoModel()
+                {
+                    idCurso = 1,
+                    idCorporacao = 1,
+                    nomeCurso = "Desenvolvimento de Sistemas",
+                    descricaoCurso = "Curso especializado no aprendizado de hardwares e códigos",
+                    cargaHorariaCurso = 40,
+                    dataInicioCurso = DateTime.Now,
+                    dataFimCurso = DateTime.Now.AddMonths(3),
+
                 }
             );
+            modelBuilder.Entity<CursoModel>()
+              .HasOne<CorporacaoModel>() 
+              .WithMany(c => c.Cursos)   
+              .HasForeignKey(c => c.idCorporacao) 
+              .OnDelete(DeleteBehavior.Cascade);
             #endregion
 
             #region Publicacao
@@ -267,10 +275,21 @@ namespace ChronosApi.Data
                 {
                     idCursoEndereco = 1 , 
                     idLogradouro = 2, 
+                    idCurso = 1,
                     complementoCursoEndereco = "", 
                     numeroCursoEndereco = "221"
                 }
             );
+
+            modelBuilder.Entity<CursoEnderecoModel>()
+                 .HasOne(cc => cc.curso)
+                 .WithOne()
+                 .HasForeignKey<CursoEnderecoModel>(ee => ee.idCurso);
+
+            modelBuilder.Entity<CursoEnderecoModel>()
+                   .HasOne(cc => cc.logradouro)
+                   .WithOne()
+                   .HasForeignKey<CursoEnderecoModel>(cc => cc.idLogradouro);
             #endregion
 
             #region VagaEndereco

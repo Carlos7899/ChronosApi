@@ -26,10 +26,17 @@ namespace ChronosApi.Models
         [NotMapped]
         public string PasswordString { get; set; } = string.Empty;
 
+        [NotMapped]
+        public string? Token { get; set; }
+
 
 
         [JsonIgnore]
         [NotMapped]
         public ICollection<VagaModel>? Vagas { get; set; }
+
+        [JsonIgnore]
+        [NotMapped]
+        public ICollection<CursoModel> Cursos { get; set; }
     }
 }
