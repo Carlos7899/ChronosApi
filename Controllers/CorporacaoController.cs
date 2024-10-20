@@ -1,11 +1,17 @@
 ﻿using ChronosApi.Models;
 using ChronosApi.Repository.Corporacao;
 using ChronosApi.Services.Corporacao;
+using ChronosApi.Services.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace ChronosApi.Controllers
 {
-    
     [ApiController]
     [Route("api/[controller]")]
     public class CorporacaoController : ControllerBase
@@ -13,11 +19,13 @@ namespace ChronosApi.Controllers
   
         private readonly ICorporacaoRepository _corporacaoRepository;
         private readonly ICorporacaoService _corporacaoService;
+        private readonly IConfiguration _configuration;
 
-        public CorporacaoController( ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository)
+        public CorporacaoController( ICorporacaoService CorporacaoService, ICorporacaoRepository CorporacaoRepository, IConfiguration configuration)
         {
             _corporacaoRepository = CorporacaoRepository;
             _corporacaoService = CorporacaoService;
+            _configuration = configuration;
         }
 
         //CRUD pronto
@@ -144,18 +152,30 @@ namespace ChronosApi.Controllers
         }
         #endregion
 
+     
         #region REGISTRAR
         [HttpPost("Registrar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RegistrarUsuario(string email, string passwordString)
+        public async Task<IActionResult> RegistrarUsuario([FromBody] CorporacaoModel model)
         {
+            if (model == null || string.IsNullOrEmpty(model.emailCorporacao) || string.IsNullOrEmpty(model.PasswordString))
+            {
+                return BadRequest("Email e senha são obrigatórios.");
+            }
+
             try
             {
-                await _corporacaoService.RegistrarCorporacaoExistente(email);
-                await _corporacaoRepository.RegistrarCorporacaoAsync(email, passwordString);
+                // Verifica se a corporação já existe
+                if (await _corporacaoRepository.CorporacaoExisteEmailAsync(model.emailCorporacao))
+                {
+                    return BadRequest("Corporação já registrada.");
+                }
 
-                return StatusCode(200);
+                // Registrar a nova corporação
+                await _corporacaoRepository.RegistrarCorporacaoAsync(model.emailCorporacao, model.PasswordString);
+
+                return Ok("Registro realizado com sucesso.");
             }
             catch (Exception ex)
             {
@@ -164,19 +184,43 @@ namespace ChronosApi.Controllers
         }
         #endregion
 
+
         #region AUTENTICAR
+        [AllowAnonymous]
         [HttpPost("Autenticar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AutenticarCorporacao(string email, string passwordString)
+        public async Task<IActionResult> AutenticarCorporacao(CorporacaoModel credenciais)
         {
+            if (credenciais == null || string.IsNullOrEmpty(credenciais.emailCorporacao) || string.IsNullOrEmpty(credenciais.PasswordString))
+            {
+                return BadRequest("Email e senha são obrigatórios.");
+            }
+
             try
             {
-                string token = await _corporacaoService.AutenticarCorporacaoAsync(email, passwordString);
-                await _corporacaoRepository.AutenticarCorporacaoAsync(email, passwordString);
+                var corporacao = await _corporacaoRepository.GetAllAsync();
+                var corporacaoEncontrada = corporacao.FirstOrDefault(c => c.emailCorporacao.ToLower() == credenciais.emailCorporacao.ToLower());
+
+                if (corporacaoEncontrada == null)
+                {
+                    throw new Exception("Corporação não encontrada.");
+                }
+
+                // Verifica se a senha está correta
+                if (!Criptografia.VerificarPasswordHash(credenciais.PasswordString, corporacaoEncontrada.PasswordHash, corporacaoEncontrada.PasswordSalt))
+                {
+                    throw new Exception("Senha incorreta.");
+                }
+
+                corporacaoEncontrada.DataAcesso = DateTime.Now;
+                await _corporacaoRepository.PutAsync(corporacaoEncontrada.idCorporacao, corporacaoEncontrada);
+
+                // Cria o token
+                string token = CriarToken(corporacaoEncontrada);
+                corporacaoEncontrada.Token = token; // Se quiser incluir o token no retorno
 
                 return Ok(new { Token = token });
-
             }
             catch (Exception ex)
             {
@@ -185,6 +229,27 @@ namespace ChronosApi.Controllers
         }
 
 
+        private string CriarToken(CorporacaoModel usuario)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.idCorporacao.ToString()),
+                 new Claim(ClaimTypes.Email, usuario.emailCorporacao),
+            };
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
+
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
         #endregion
 
         #region ALTERAR-SENHA

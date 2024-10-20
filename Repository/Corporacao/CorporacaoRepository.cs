@@ -129,5 +129,10 @@ namespace ChronosApi.Repository.Corporacao
 
             await _context.SaveChangesAsync();
         }
+        public async Task<bool> CorporacaoExisteEmailAsync(string email)
+        {
+            var corporacoes = await GetAllAsync();
+            return corporacoes.Any(c => c.emailCorporacao.ToLower() == email.ToLower());
+        }
     }
 }

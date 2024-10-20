@@ -534,14 +534,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "passwordString",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "credenciais",
+        "Type": "ChronosApi.Models.CorporacaoModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -738,14 +733,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "passwordString",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "model",
+        "Type": "ChronosApi.Models.CorporacaoModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [

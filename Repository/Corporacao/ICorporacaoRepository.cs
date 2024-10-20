@@ -13,6 +13,6 @@ namespace ChronosApi.Repository.Corporacao
         public Task RegistrarCorporacaoAsync(string email, string passwordString);
         public Task<bool> AutenticarCorporacaoAsync(string email, string passwordString);
         public Task AlterarSenhaCorporacaoAsync(string email, string novaSenha);
-
+        public Task<bool> CorporacaoExisteEmailAsync(string email);
     }
 }

@@ -37,6 +37,6 @@ namespace ChronosApi.Models
 
         [JsonIgnore]
         [NotMapped]
-        public ICollection<CursoModel> Cursos { get; set; }
+        public ICollection<CursoModel>? Cursos { get; set; }
     }
 }

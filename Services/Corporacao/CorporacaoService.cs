@@ -87,7 +87,7 @@ namespace ChronosApi.Services.Corporacao
             List<Claim> claims = new List<Claim>
             {
                  new Claim(ClaimTypes.NameIdentifier, usuario.idCorporacao.ToString()),
-                 new Claim(ClaimTypes.Email, usuario.emailCorporacao)
+                 new Claim(ClaimTypes.Email, usuario.emailCorporacao),
             };
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
 
@@ -118,6 +118,8 @@ namespace ChronosApi.Services.Corporacao
             var egresso = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
             return egresso != null;
         }
+      
+
     }
 }
 
