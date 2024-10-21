@@ -12,7 +12,6 @@ namespace ChronosApi.Models
         [Required]
         [ForeignKey("idCorporacao")]
         public int idCorporacao { get; set; }
-        public int tipoVaga { get; set; } 
         public string nomeVaga { get; set; } = string.Empty;
         public string descricaoVaga { get; set; } = string.Empty;
 

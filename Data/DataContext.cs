@@ -196,7 +196,6 @@ namespace ChronosApi.Data
                     idVaga = 1, 
                     idCorporacao = 1,
                     nomeVaga = "Desenvolvedor Júnior", 
-                    tipoVaga = 1, 
                     descricaoVaga = "Vaga júnior desenvolvedor",
                     DataCriacao = DateTime.UtcNow, 
                     DataVencimento = DateTime.UtcNow.AddDays(30)
