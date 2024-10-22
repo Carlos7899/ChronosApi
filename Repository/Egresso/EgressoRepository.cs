@@ -130,5 +130,11 @@ namespace ChronosApi.Repository.Egresso
             await _context.SaveChangesAsync();
         }
 
+        public async Task<bool> EgressoExisteEmailAsync(string email)
+        {
+            var corporacoes = await GetAllAsync();
+            return corporacoes.Any(c => c.emailEgresso.ToLower() == email.ToLower());
+        }
+
     }
 }

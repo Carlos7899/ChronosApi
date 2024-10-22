@@ -35,7 +35,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(Options =>
 {
-    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal3"));
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal5"));
 });
 
 // Add services to the container.

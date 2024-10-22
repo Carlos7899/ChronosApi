@@ -2,8 +2,14 @@
 using ChronosApi.Models;
 using ChronosApi.Repository.Egresso;
 using ChronosApi.Services.Egresso;
+using ChronosApi.Services.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace ChronosApi.Controllers
 {
@@ -13,14 +19,15 @@ namespace ChronosApi.Controllers
     {
         private readonly IEgressoService _egressoService;
         private readonly IEgressoRepository _egressoRepository;
+        private readonly IConfiguration _configuration;
 
-        public EgressoController( IEgressoService egressoService, IEgressoRepository egressoRepository)
+        public EgressoController(IEgressoService egressoService, IEgressoRepository egressoRepository, IConfiguration configuration )
         {
 
-           
+            _configuration = configuration;
             _egressoService = egressoService;
             _egressoRepository = egressoRepository;
-         
+
         }
 
 
@@ -149,16 +156,27 @@ namespace ChronosApi.Controllers
         [HttpPost("Registrar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RegistrarUsuario(string email, string passwordString)
+        public async Task<IActionResult> RegistrarUsuario([FromBody] EgressoModel model)
         {
+            if (model == null || string.IsNullOrEmpty(model.emailEgresso) || string.IsNullOrEmpty(model.PasswordString))
+            {
+                return BadRequest("Email e senha são obrigatórios.");
+            }
+
             try
             {
-                await _egressoService.RegistrarEgressoExistente(email);
-                await _egressoRepository.RegistrarEgressoAsync(email, passwordString);
+             
+                if (await _egressoRepository.EgressoExisteEmailAsync(model.emailEgresso))
+                {
+                    return BadRequest("Egresso já registrada.");
+                }
 
-                return StatusCode(200);
+           
+                await _egressoRepository.RegistrarEgressoAsync(model.emailEgresso, model.PasswordString);
+
+                return Ok("Registro realizado com sucesso.");
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -166,30 +184,70 @@ namespace ChronosApi.Controllers
         #endregion
 
         #region AUTENTICAR
+        [AllowAnonymous]
         [HttpPost("Autenticar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AutenticarEgresso(string email, string passwordString)
+        public async Task<IActionResult> AutenticarEgresso(EgressoModel credenciais)
         {
+            if (credenciais == null || string.IsNullOrEmpty(credenciais.emailEgresso) || string.IsNullOrEmpty(credenciais.PasswordString))
+            {
+                return BadRequest("Email e senha são obrigatórios.");
+            }
+
             try
             {
-                // Autenticar e gerar o token via service
-                string token = await _egressoService.AutenticarEgressoAsync(email, passwordString);
+                var egresso = await _egressoRepository.GetAllAsync();
+                var egressoEncontrada = egresso.FirstOrDefault(c => c.emailEgresso.ToLower() == credenciais.emailEgresso.ToLower());
 
-                // Armazenar no banco via repository, se necessário
-                await _egressoRepository.AutenticarEgressoAsync(email, passwordString);
+                if (egressoEncontrada == null)
+                {
+                    throw new Exception("Egresso não encontrada.");
+                }
 
-                // Retornar o token ao cliente
+                // Verifica se a senha está correta
+                if (!Criptografia.VerificarPasswordHash(credenciais.PasswordString, egressoEncontrada.PasswordHash, egressoEncontrada.PasswordSalt))
+                {
+                    throw new Exception("Senha incorreta.");
+                }
+
+                egressoEncontrada.DataAcesso = DateTime.Now;
+                await _egressoRepository.PutAsync(egressoEncontrada.idEgresso, egressoEncontrada);
+
+                // Cria o token
+                string token = CriarToken(egressoEncontrada);
+                egressoEncontrada.Token = token; // Se quiser incluir o token no retorno
+
                 return Ok(new { Token = token });
-
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
 
+        private string CriarToken(EgressoModel usuario)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.idEgresso.ToString()),
+                new Claim(ClaimTypes.Email, usuario.emailEgresso),
+            };
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
+
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
         #endregion
 
         #region ALTERAR-SENHA
@@ -209,5 +267,6 @@ namespace ChronosApi.Controllers
             }
         }
         #endregion
+
     }
 }

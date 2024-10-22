@@ -151,8 +151,7 @@ namespace ChronosApi.Controllers
             }
         }
         #endregion
-
-     
+    
         #region REGISTRAR
         [HttpPost("Registrar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -183,7 +182,6 @@ namespace ChronosApi.Controllers
             }
         }
         #endregion
-
 
         #region AUTENTICAR
         [AllowAnonymous]

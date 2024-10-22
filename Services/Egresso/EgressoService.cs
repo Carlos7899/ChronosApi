@@ -118,5 +118,7 @@ namespace ChronosApi.Services.Egresso
             var egresso = await _context.TB_EGRESSO.FirstOrDefaultAsync(e => e.idEgresso == id);
             return egresso != null;
         }
+
+       
     }
 }

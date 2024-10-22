@@ -13,5 +13,6 @@ namespace ChronosApi.Repository.Egresso
         public Task RegistrarEgressoAsync(string email, string passwordString);
         public Task<bool> AutenticarEgressoAsync(string email, string passwordString);
         public Task AlterarSenhaEgressoAsync(string email, string novaSenha);
+        public Task<bool> EgressoExisteEmailAsync(string email);
     }
 }
