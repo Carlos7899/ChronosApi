@@ -108,7 +108,7 @@ namespace ChronosApi.Controllers
                 var egressoExists = await _corporacaoService.CorporacaoExisteAsync(id);
                 if (!egressoExists)
                 {
-                    return NotFound("Egresso não encontrado.");
+                    return NotFound("corporacao não encontrado.");
                 }
 
                 var updatedEgresso = await _corporacaoRepository.PutAsync(id, corporacao);
@@ -216,15 +216,21 @@ namespace ChronosApi.Controllers
 
                 // Cria o token
                 string token = CriarToken(corporacaoEncontrada);
-                corporacaoEncontrada.Token = token; // Se quiser incluir o token no retorno
 
-                return Ok(new { Token = token });
+                // Retorna o token e o ID da corporação
+                return Ok(new
+                {
+                    Token = token,
+                    IdCorporacao = corporacaoEncontrada.idCorporacao 
+                });
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+       
+
 
 
         private string CriarToken(CorporacaoModel usuario)
@@ -233,6 +239,8 @@ namespace ChronosApi.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, usuario.idCorporacao.ToString()),
                  new Claim(ClaimTypes.Email, usuario.emailCorporacao),
+                
+                 
             };
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
 
