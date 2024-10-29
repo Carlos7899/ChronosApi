@@ -95,41 +95,45 @@ namespace ChronosApi.Controllers
         }
 
         #endregion
-
         #region CREATE
         [HttpPost("POST")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<VagaModel>> Post([FromBody] VagaModel vaga)
         {
+            // Verifica se o objeto vaga é nulo
             if (vaga == null)
             {
                 return BadRequest("O objeto vaga não pode ser nulo.");
             }
 
+            // Validação dos campos obrigatórios
             if (string.IsNullOrWhiteSpace(vaga.nomeVaga))
             {
                 return BadRequest("O campo nome da Vaga é obrigatório.");
             }
 
-            if (vaga.idCorporacao <= 0) // Verifique se o idCorporacao é válido
+            if (vaga.idCorporacao <= 0) // Verifica se o idCorporacao é válido
             {
                 return BadRequest("O campo idCorporacao é obrigatório.");
             }
 
             try
             {
+                // Tenta criar a nova vaga
                 var novavaga = await _vagaRepository.PostAsync(vaga);
-                return StatusCode(201, novavaga);
+                return CreatedAtAction(nameof(Post), new { id = novavaga.idVaga }, novavaga); // Retorna 201 Created com o local da nova vaga
             }
             catch (Exception ex)
             {
                 // Logue o erro para depuração
-                Console.WriteLine(ex.Message);
-                return StatusCode(500);
+                Console.WriteLine($"Erro ao criar vaga: {ex.Message}");
+                return StatusCode(500, "Ocorreu um erro ao tentar criar a vaga."); // Retorna mensagem mais descritiva
             }
         }
         #endregion
+
 
         #region UPDATE
         [HttpPut("Put/{id}")]

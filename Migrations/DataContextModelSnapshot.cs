@@ -17,7 +17,7 @@ namespace ChronosApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -64,7 +64,7 @@ namespace ChronosApi.Migrations
                         {
                             idCandidatura = 1,
                             Status = 3,
-                            dataIncricao = new DateTime(2024, 10, 15, 14, 30, 12, 276, DateTimeKind.Local).AddTicks(9484),
+                            dataIncricao = new DateTime(2024, 10, 28, 14, 17, 41, 842, DateTimeKind.Local).AddTicks(9778),
                             idEgresso = 1,
                             idVaga = 1
                         });
@@ -154,9 +154,9 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idCorporacao = 1,
-                            DataAcesso = new DateTime(2024, 10, 15, 14, 30, 12, 276, DateTimeKind.Local).AddTicks(9468),
-                            PasswordHash = new byte[] { 122, 94, 106, 123, 207, 57, 151, 234, 71, 3, 31, 101, 29, 255, 222, 216, 131, 210, 221, 191, 54, 74, 234, 85, 134, 90, 37, 251, 117, 99, 142, 97, 195, 209, 189, 128, 198, 68, 185, 47, 136, 134, 18, 62, 64, 1, 26, 46, 185, 6, 244, 243, 164, 205, 12, 41, 192, 130, 91, 55, 147, 244, 11, 17 },
-                            PasswordSalt = new byte[] { 171, 52, 12, 208, 47, 216, 247, 216, 153, 201, 65, 176, 218, 51, 133, 141, 205, 202, 120, 3, 235, 89, 126, 219, 113, 101, 66, 110, 35, 18, 245, 138, 38, 48, 123, 110, 21, 199, 96, 218, 15, 109, 12, 21, 107, 25, 51, 162, 235, 36, 116, 34, 97, 112, 213, 141, 122, 237, 164, 112, 246, 202, 102, 48, 153, 223, 26, 201, 176, 177, 215, 116, 240, 186, 24, 72, 215, 113, 42, 178, 62, 221, 227, 174, 125, 64, 74, 44, 48, 247, 94, 251, 104, 126, 94, 172, 214, 5, 218, 197, 60, 207, 186, 197, 249, 135, 187, 149, 125, 10, 36, 227, 61, 23, 11, 123, 247, 54, 180, 86, 66, 157, 45, 235, 72, 181, 107, 86 },
+                            DataAcesso = new DateTime(2024, 10, 28, 14, 17, 41, 842, DateTimeKind.Local).AddTicks(9762),
+                            PasswordHash = new byte[] { 113, 218, 32, 61, 248, 200, 75, 206, 22, 153, 64, 73, 154, 59, 71, 101, 224, 116, 174, 97, 58, 91, 133, 162, 7, 167, 231, 226, 241, 55, 50, 226, 231, 152, 125, 149, 121, 136, 154, 170, 204, 187, 236, 70, 42, 161, 30, 86, 176, 75, 169, 253, 225, 163, 103, 120, 171, 202, 190, 91, 9, 232, 156, 177 },
+                            PasswordSalt = new byte[] { 9, 104, 108, 132, 161, 253, 190, 78, 63, 21, 52, 140, 58, 207, 193, 158, 133, 250, 147, 3, 25, 36, 51, 165, 176, 70, 72, 94, 39, 11, 74, 49, 208, 199, 38, 93, 130, 255, 115, 233, 99, 100, 207, 33, 57, 230, 16, 174, 192, 223, 231, 101, 220, 194, 234, 137, 176, 158, 189, 191, 176, 107, 246, 11, 229, 56, 232, 214, 107, 133, 129, 134, 116, 134, 163, 5, 61, 75, 42, 3, 50, 184, 154, 22, 59, 139, 41, 4, 166, 6, 171, 231, 243, 41, 54, 151, 0, 185, 208, 43, 237, 174, 94, 118, 60, 140, 136, 232, 107, 30, 191, 13, 167, 162, 239, 91, 252, 219, 86, 194, 192, 45, 179, 181, 80, 210, 27, 59 },
                             cnpjCorporacao = "12.345.678/0001-99",
                             descricaoCorporacao = "Exemplo de corporação",
                             emailCorporacao = "contato@exemplo.com",
@@ -353,8 +353,8 @@ namespace ChronosApi.Migrations
                         {
                             idCurso = 1,
                             cargaHorariaCurso = 40,
-                            dataFimCurso = new DateTime(2025, 1, 15, 14, 30, 12, 278, DateTimeKind.Local).AddTicks(1558),
-                            dataInicioCurso = new DateTime(2024, 10, 15, 14, 30, 12, 278, DateTimeKind.Local).AddTicks(1553),
+                            dataFimCurso = new DateTime(2025, 1, 28, 14, 17, 41, 844, DateTimeKind.Local).AddTicks(2123),
+                            dataInicioCurso = new DateTime(2024, 10, 28, 14, 17, 41, 844, DateTimeKind.Local).AddTicks(2118),
                             descricaoCurso = "Curso especializado no aprendizado de hardwares e códigos",
                             idCorporacao = 1,
                             nomeCurso = "Desenvolvimento de Sistemas"
@@ -406,9 +406,9 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idEgresso = 3,
-                            DataAcesso = new DateTime(2024, 10, 15, 14, 30, 12, 276, DateTimeKind.Local).AddTicks(9302),
-                            PasswordHash = new byte[] { 122, 94, 106, 123, 207, 57, 151, 234, 71, 3, 31, 101, 29, 255, 222, 216, 131, 210, 221, 191, 54, 74, 234, 85, 134, 90, 37, 251, 117, 99, 142, 97, 195, 209, 189, 128, 198, 68, 185, 47, 136, 134, 18, 62, 64, 1, 26, 46, 185, 6, 244, 243, 164, 205, 12, 41, 192, 130, 91, 55, 147, 244, 11, 17 },
-                            PasswordSalt = new byte[] { 171, 52, 12, 208, 47, 216, 247, 216, 153, 201, 65, 176, 218, 51, 133, 141, 205, 202, 120, 3, 235, 89, 126, 219, 113, 101, 66, 110, 35, 18, 245, 138, 38, 48, 123, 110, 21, 199, 96, 218, 15, 109, 12, 21, 107, 25, 51, 162, 235, 36, 116, 34, 97, 112, 213, 141, 122, 237, 164, 112, 246, 202, 102, 48, 153, 223, 26, 201, 176, 177, 215, 116, 240, 186, 24, 72, 215, 113, 42, 178, 62, 221, 227, 174, 125, 64, 74, 44, 48, 247, 94, 251, 104, 126, 94, 172, 214, 5, 218, 197, 60, 207, 186, 197, 249, 135, 187, 149, 125, 10, 36, 227, 61, 23, 11, 123, 247, 54, 180, 86, 66, 157, 45, 235, 72, 181, 107, 86 },
+                            DataAcesso = new DateTime(2024, 10, 28, 14, 17, 41, 842, DateTimeKind.Local).AddTicks(9611),
+                            PasswordHash = new byte[] { 113, 218, 32, 61, 248, 200, 75, 206, 22, 153, 64, 73, 154, 59, 71, 101, 224, 116, 174, 97, 58, 91, 133, 162, 7, 167, 231, 226, 241, 55, 50, 226, 231, 152, 125, 149, 121, 136, 154, 170, 204, 187, 236, 70, 42, 161, 30, 86, 176, 75, 169, 253, 225, 163, 103, 120, 171, 202, 190, 91, 9, 232, 156, 177 },
+                            PasswordSalt = new byte[] { 9, 104, 108, 132, 161, 253, 190, 78, 63, 21, 52, 140, 58, 207, 193, 158, 133, 250, 147, 3, 25, 36, 51, 165, 176, 70, 72, 94, 39, 11, 74, 49, 208, 199, 38, 93, 130, 255, 115, 233, 99, 100, 207, 33, 57, 230, 16, 174, 192, 223, 231, 101, 220, 194, 234, 137, 176, 158, 189, 191, 176, 107, 246, 11, 229, 56, 232, 214, 107, 133, 129, 134, 116, 134, 163, 5, 61, 75, 42, 3, 50, 184, 154, 22, 59, 139, 41, 4, 166, 6, 171, 231, 243, 41, 54, 151, 0, 185, 208, 43, 237, 174, 94, 118, 60, 140, 136, 232, 107, 30, 191, 13, 167, 162, 239, 91, 252, 219, 86, 194, 192, 45, 179, 181, 80, 210, 27, 59 },
                             cpfEgresso = "22222222222",
                             emailEgresso = "admin@example.com",
                             nomeEgresso = "Admin",
@@ -418,9 +418,9 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idEgresso = 1,
-                            DataAcesso = new DateTime(2024, 10, 15, 14, 30, 12, 276, DateTimeKind.Local).AddTicks(9447),
-                            PasswordHash = new byte[] { 122, 94, 106, 123, 207, 57, 151, 234, 71, 3, 31, 101, 29, 255, 222, 216, 131, 210, 221, 191, 54, 74, 234, 85, 134, 90, 37, 251, 117, 99, 142, 97, 195, 209, 189, 128, 198, 68, 185, 47, 136, 134, 18, 62, 64, 1, 26, 46, 185, 6, 244, 243, 164, 205, 12, 41, 192, 130, 91, 55, 147, 244, 11, 17 },
-                            PasswordSalt = new byte[] { 171, 52, 12, 208, 47, 216, 247, 216, 153, 201, 65, 176, 218, 51, 133, 141, 205, 202, 120, 3, 235, 89, 126, 219, 113, 101, 66, 110, 35, 18, 245, 138, 38, 48, 123, 110, 21, 199, 96, 218, 15, 109, 12, 21, 107, 25, 51, 162, 235, 36, 116, 34, 97, 112, 213, 141, 122, 237, 164, 112, 246, 202, 102, 48, 153, 223, 26, 201, 176, 177, 215, 116, 240, 186, 24, 72, 215, 113, 42, 178, 62, 221, 227, 174, 125, 64, 74, 44, 48, 247, 94, 251, 104, 126, 94, 172, 214, 5, 218, 197, 60, 207, 186, 197, 249, 135, 187, 149, 125, 10, 36, 227, 61, 23, 11, 123, 247, 54, 180, 86, 66, 157, 45, 235, 72, 181, 107, 86 },
+                            DataAcesso = new DateTime(2024, 10, 28, 14, 17, 41, 842, DateTimeKind.Local).AddTicks(9741),
+                            PasswordHash = new byte[] { 113, 218, 32, 61, 248, 200, 75, 206, 22, 153, 64, 73, 154, 59, 71, 101, 224, 116, 174, 97, 58, 91, 133, 162, 7, 167, 231, 226, 241, 55, 50, 226, 231, 152, 125, 149, 121, 136, 154, 170, 204, 187, 236, 70, 42, 161, 30, 86, 176, 75, 169, 253, 225, 163, 103, 120, 171, 202, 190, 91, 9, 232, 156, 177 },
+                            PasswordSalt = new byte[] { 9, 104, 108, 132, 161, 253, 190, 78, 63, 21, 52, 140, 58, 207, 193, 158, 133, 250, 147, 3, 25, 36, 51, 165, 176, 70, 72, 94, 39, 11, 74, 49, 208, 199, 38, 93, 130, 255, 115, 233, 99, 100, 207, 33, 57, 230, 16, 174, 192, 223, 231, 101, 220, 194, 234, 137, 176, 158, 189, 191, 176, 107, 246, 11, 229, 56, 232, 214, 107, 133, 129, 134, 116, 134, 163, 5, 61, 75, 42, 3, 50, 184, 154, 22, 59, 139, 41, 4, 166, 6, 171, 231, 243, 41, 54, 151, 0, 185, 208, 43, 237, 174, 94, 118, 60, 140, 136, 232, 107, 30, 191, 13, 167, 162, 239, 91, 252, 219, 86, 194, 192, 45, 179, 181, 80, 210, 27, 59 },
                             cpfEgresso = "222",
                             emailEgresso = "ops.gmail",
                             nomeEgresso = "Pedro",
@@ -686,7 +686,16 @@ namespace ChronosApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("dataCriacaoPublicacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("idCorporacao")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("imagemPublicacao")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int?>("numeroVisualizacoes")
                         .HasColumnType("int");
 
                     b.Property<string>("títuloPublicacao")
@@ -703,6 +712,7 @@ namespace ChronosApi.Migrations
                             idPublicacao = 1,
                             avaliacaoPublicacao = 1,
                             conteudoPublicacao = "Conteúdo top",
+                            dataCriacaoPublicacao = new DateTime(2024, 10, 28, 17, 17, 41, 844, DateTimeKind.Utc).AddTicks(6381),
                             idCorporacao = 1,
                             títuloPublicacao = "Publicacao"
                         });
@@ -733,9 +743,6 @@ namespace ChronosApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("tipoVaga")
-                        .HasColumnType("int");
-
                     b.HasKey("idVaga");
 
                     b.HasIndex("idCorporacao");
@@ -746,12 +753,11 @@ namespace ChronosApi.Migrations
                         new
                         {
                             idVaga = 1,
-                            DataCriacao = new DateTime(2024, 10, 15, 17, 30, 12, 278, DateTimeKind.Utc).AddTicks(5776),
-                            DataVencimento = new DateTime(2024, 11, 14, 17, 30, 12, 278, DateTimeKind.Utc).AddTicks(5776),
+                            DataCriacao = new DateTime(2024, 10, 28, 17, 17, 41, 844, DateTimeKind.Utc).AddTicks(6429),
+                            DataVencimento = new DateTime(2024, 11, 27, 17, 17, 41, 844, DateTimeKind.Utc).AddTicks(6430),
                             descricaoVaga = "Vaga júnior desenvolvedor",
                             idCorporacao = 1,
-                            nomeVaga = "Desenvolvedor Júnior",
-                            tipoVaga = 1
+                            nomeVaga = "Desenvolvedor Júnior"
                         });
                 });
 

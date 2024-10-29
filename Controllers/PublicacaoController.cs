@@ -6,86 +6,86 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChronosApi.Controllers
 {
-        [ApiController]
-        [Route("api/[controller]")]
-        public class PublicacaoController : ControllerBase
+    [ApiController]
+    [Route("api/[controller]")]
+    public class PublicacaoController : ControllerBase
+    {
+        private readonly DataContext _context;
+        private readonly IPublicacaoService _publicacaoService;
+        private readonly IPublicacaoRepository _publicacaoRepository;
+
+        public PublicacaoController(DataContext context, IPublicacaoService publicacaoService, IPublicacaoRepository publicacaoRepository)
         {
-            private readonly DataContext _context;
-            private readonly IPublicacaoService _publicacaoService;
-            private readonly IPublicacaoRepository _publicacaoRepository;
+            _context = context;
+            _publicacaoService = publicacaoService;
+            _publicacaoRepository = publicacaoRepository;
+        }
 
-            public PublicacaoController(DataContext context, IPublicacaoService publicacaoService, IPublicacaoRepository publicacaoRepository)
+        #region GET
+        [HttpGet("GetAll")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<PublicacaoModel>>> GetAll()
+        {
+            try
             {
-                _context = context;
-                _publicacaoService = publicacaoService;
-                _publicacaoRepository = publicacaoRepository;
+                var publicacoes = await _publicacaoRepository.GetAllAsync();
+                return Ok(publicacoes);
             }
-
-            #region GET
-            [HttpGet("GetAll")]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            public async Task<ActionResult<List<PublicacaoModel>>> GetAll()
+            catch (System.Exception ex)
             {
-                try
-                {
-                    var publicacoes = await _publicacaoRepository.GetAllAsync();
-                    return Ok(publicacoes);
-                }
-                catch (System.Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                return StatusCode(500, ex.Message);
             }
+        }
 
-            [HttpGet("GetbyId/{id}")]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            public async Task<ActionResult<PublicacaoModel>> Get(int id)
+        [HttpGet("GetbyId/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<PublicacaoModel>> Get(int id)
+        {
+            try
             {
-                try
+                var publicacao = await _publicacaoRepository.GetIdAsync(id);
+                if (publicacao == null)
                 {
-                    var publicacao = await _publicacaoRepository.GetIdAsync(id);
-                    if (publicacao == null)
-                    {
-                        return NotFound("Publicação não encontrada.");
-                    }
-                    return Ok(publicacao);
+                    return NotFound("Publicação não encontrada.");
                 }
-                catch (System.Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                return Ok(publicacao);
             }
-            #endregion
-
-            #region CREATE
-            [HttpPost("POST")]
-            [ProducesResponseType(StatusCodes.Status201Created)]
-            [ProducesResponseType(StatusCodes.Status400BadRequest)]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            public async Task<ActionResult<PublicacaoModel>> Post([FromBody] PublicacaoModel publicacao)
+            catch (System.Exception ex)
             {
-                try
-                {
-                    // Valida se a corporação existe
-                    if (!await _publicacaoService.CorporacaoExists(publicacao.idCorporacao))
-                    {
-                        return BadRequest("Corporação não encontrada.");
-                    }
-
-                    var novaPublicacao = await _publicacaoRepository.PostAsync(publicacao);
-                    return CreatedAtAction(nameof(Get), new { id = novaPublicacao.idPublicacao }, novaPublicacao);
-                }
-                catch (System.Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                return StatusCode(500, ex.Message);
             }
+        }
         #endregion
 
-            #region UPDATE
+        #region CREATE
+        [HttpPost("POST")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<PublicacaoModel>> Post([FromBody] PublicacaoModel publicacao)
+        {
+            try
+            {
+                // Valida se a corporação existe
+                if (!await _publicacaoService.CorporacaoExists(publicacao.idCorporacao))
+                {
+                    return BadRequest("Corporação não encontrada.");
+                }
+
+                var novaPublicacao = await _publicacaoRepository.PostAsync(publicacao);
+                return CreatedAtAction(nameof(Get), new { id = novaPublicacao.idPublicacao }, novaPublicacao);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        #endregion
+
+        #region UPDATE
         [HttpPut("Put/{id}")]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -97,16 +97,16 @@ namespace ChronosApi.Controllers
                 // Verifica se a corporação existe
                 if (!await _publicacaoService.CorporacaoExists(publicacao.idCorporacao))
                 {
-                    return BadRequest("Corporacao nao encontrada."); 
+                    return BadRequest("Corporação não encontrada.");
                 }
 
                 var updatedPublicacao = await _publicacaoRepository.PutAsync(id, publicacao);
                 if (updatedPublicacao == null)
                 {
-                    return NotFound("Publicacao nao encontrada."); 
+                    return NotFound("Publicação não encontrada.");
                 }
 
-                return Accepted(new { message = "Publicacao atualizada com sucesso!" }); 
+                return Accepted(new { message = "Publicação atualizada com sucesso!" });
             }
             catch (Exception ex)
             {
@@ -115,28 +115,52 @@ namespace ChronosApi.Controllers
         }
         #endregion
 
-            #region DELETE
+        #region DELETE
         [HttpDelete("Delete/{id}")]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            public async Task<ActionResult> Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
             {
-                try
+                var publicacao = await _publicacaoRepository.DeleteAsync(id);
+                if (publicacao == null)
                 {
-                    var publicacao = await _publicacaoRepository.DeleteAsync(id);
-                    if (publicacao == null)
-                    {
-                        return NotFound("Publicação não encontrada.");
-                    }
+                    return NotFound("Publicação não encontrada.");
+                }
 
-                    return Ok("Publicação deletada com sucesso!");
-                }
-                catch (System.Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                return Ok("Publicação deletada com sucesso!");
             }
-            #endregion
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
- }
+        #endregion
+
+        #region UPDATE VIEWS
+        [HttpPut("UpdateViews/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> UpdateViews(int id)
+        {
+            try
+            {
+                var result = await _publicacaoRepository.AtualizarNumeroViews(id);
+                if (!result)
+                {
+                    return NotFound("Publicação não encontrada.");
+                }
+
+                return NoContent(); // Retorna 204 No Content para indicar sucesso
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        #endregion
+    }
+}
