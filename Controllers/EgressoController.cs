@@ -218,7 +218,12 @@ namespace ChronosApi.Controllers
                 string token = CriarToken(egressoEncontrada);
                 egressoEncontrada.Token = token; // Se quiser incluir o token no retorno
 
-                return Ok(new { Token = token });
+                // Retorna o token e o ID da corporação
+                return Ok(new
+                {
+                    Token = token,
+                    IdEgresso = egressoEncontrada.idEgresso
+                });
             }
             catch (Exception ex)
             {
