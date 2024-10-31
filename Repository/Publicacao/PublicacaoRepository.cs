@@ -78,5 +78,13 @@ namespace ChronosApi.Repository.Publicacao
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<List<PublicacaoModel>> GetByCorporacaoAsync(int idCorporacao)
+        {
+            return await _context.TB_PUBLICACAO
+                                 .Where(p => p.idCorporacao == idCorporacao)
+                                 .ToListAsync();
+        }
+
     }
 }

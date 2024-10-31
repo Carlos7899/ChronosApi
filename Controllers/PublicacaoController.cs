@@ -162,5 +162,31 @@ namespace ChronosApi.Controllers
             }
         }
         #endregion
+
+        #region GET BY CORPORACAO
+        [HttpGet("GetByCorporacao/{idCorporacao}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<PublicacaoModel>>> GetByCorporacao(int idCorporacao)
+        {
+            try
+            {
+                var publicacoes = await _publicacaoRepository.GetByCorporacaoAsync(idCorporacao);
+
+                if (publicacoes == null || !publicacoes.Any())
+                {
+                    return NotFound("Nenhuma publicação encontrada para esta corporação.");
+                }
+
+                return Ok(publicacoes);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        #endregion
+
     }
 }

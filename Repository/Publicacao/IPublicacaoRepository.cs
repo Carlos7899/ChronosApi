@@ -10,5 +10,7 @@ namespace ChronosApi.Repository.Publicacao
         Task<PublicacaoModel?> PutAsync(int id, PublicacaoModel updatedPublicacao);
         Task<PublicacaoModel?> DeleteAsync(int id);
         Task<bool> AtualizarNumeroViews(int id);
+        Task<List<PublicacaoModel>> GetByCorporacaoAsync(int idCorporacao);
+
     }
 }
