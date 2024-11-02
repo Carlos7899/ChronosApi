@@ -13,18 +13,17 @@ namespace ChronosApi.Models
         public TipoEgresso tipoEgresso { get; set; }
         public string nomeEgresso { get; set; } = string.Empty;
 
-        [MaxLength(150)]
         [EmailAddress]
         public string emailEgresso { get; set; } = string.Empty;
         public string numeroEgresso { get; set; } = string.Empty;
         public string cpfEgresso { get; set; } = string.Empty;
+        public byte[]? FotoPerfil { get; set; }
 
         public byte[]? PasswordHash { get; set; }
         public byte[]? PasswordSalt { get; set; }
         public DateTime? DataAcesso { get; set; }
 
-        [MinLength(6)]
-        [DataType(DataType.Password)]
+ 
         [NotMapped]
         public string PasswordString { get; set; } = string.Empty;
 

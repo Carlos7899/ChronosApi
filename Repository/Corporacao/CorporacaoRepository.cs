@@ -48,6 +48,7 @@ namespace ChronosApi.Repository.Corporacao
             corporacao.numeroCorporacao = updatedCorporacao.numeroCorporacao;
             corporacao.cnpjCorporacao = updatedCorporacao.cnpjCorporacao;
             corporacao.descricaoCorporacao = updatedCorporacao.descricaoCorporacao;
+            corporacao.fotoPerfilCorporacao = updatedCorporacao?.fotoPerfilCorporacao;
 
             _context.Entry(corporacao).State = EntityState.Modified;
 
