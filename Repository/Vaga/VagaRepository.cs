@@ -40,6 +40,10 @@ namespace ChronosApi.Repository.Vaga
             vaga.nomeVaga = updatedVaga.nomeVaga;
             vaga.nomeVaga = updatedVaga.nomeVaga;
             vaga.descricaoVaga = updatedVaga.descricaoVaga;
+            vaga.responsabilidadesVaga = updatedVaga.responsabilidadesVaga;
+            vaga.salarioVaga = updatedVaga.salarioVaga;
+            vaga.cidadeVaga = updatedVaga.cidadeVaga;
+            vaga.beneficiosVaga = updatedVaga.beneficiosVaga;
 
             _context.Entry(vaga).State = EntityState.Modified;
             await _context.SaveChangesAsync();

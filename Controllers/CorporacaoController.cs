@@ -238,8 +238,8 @@ namespace ChronosApi.Controllers
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, usuario.idCorporacao.ToString()),
-                 new Claim(ClaimTypes.Email, usuario.emailCorporacao),
-                
+                new Claim(ClaimTypes.Email, usuario.emailCorporacao),
+                new Claim(ClaimTypes.Name, usuario.nomeCorporacao),
                  
             };
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));

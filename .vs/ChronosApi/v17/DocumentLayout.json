@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\API\\ChronosApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\models\\vagamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\vagamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\repository\\vaga\\vagarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:repository\\vaga\\vagarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\controllers\\vagacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:controllers\\vagacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\controllers\\corporacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:controllers\\corporacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\models\\egressomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\egressomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\models\\corporacaomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\corporacaomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\models\\publicacaomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\publicacaomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,10 +43,6 @@
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:controllers\\publicacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\models\\corporacaomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\corporacaomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\repository\\corporacao\\corporacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:repository\\corporacao\\corporacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,16 +51,8 @@
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:repository\\egresso\\egressorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\controllers\\corporacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:controllers\\corporacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\models\\egressomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\egressomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\services\\vaga\\vagacleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,10 +71,6 @@
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:controllers\\comentariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\repository\\vaga\\vagarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:repository\\vaga\\vagarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\repository\\vaga\\ivagarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:repository\\vaga\\ivagarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -73,14 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\services\\publicacao\\publicacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:services\\publicacao\\publicacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\controllers\\vagacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:controllers\\vagacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\models\\vagamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\vagamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|c:\\api\\chronosapi\\controllers\\enderecos\\logradourocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -290,63 +290,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CorporacaoModel.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Models\\CorporacaoModel.cs",
-              "RelativeDocumentMoniker": "Models\\CorporacaoModel.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Models\\CorporacaoModel.cs",
-              "RelativeToolTip": "Models\\CorporacaoModel.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAcwBUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T12:55:22.266Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CorporacaoRepository.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Corporacao\\CorporacaoRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\Corporacao\\CorporacaoRepository.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Repository\\Corporacao\\CorporacaoRepository.cs",
-              "RelativeToolTip": "Repository\\Corporacao\\CorporacaoRepository.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAA7wC8AAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T21:14:08.578Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PublicacaoController.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\PublicacaoController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PublicacaoController.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Controllers\\PublicacaoController.cs",
-              "RelativeToolTip": "Controllers\\PublicacaoController.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwIsAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T19:54:14.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IPublicacaoRepository.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Publicacao\\IPublicacaoRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\Publicacao\\IPublicacaoRepository.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Repository\\Publicacao\\IPublicacaoRepository.cs",
-              "RelativeToolTip": "Repository\\Publicacao\\IPublicacaoRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-28T17:11:26.606Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "PublicacaoRepository.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Publicacao\\PublicacaoRepository.cs",
               "RelativeDocumentMoniker": "Repository\\Publicacao\\PublicacaoRepository.cs",
@@ -354,25 +302,138 @@
               "RelativeToolTip": "Repository\\Publicacao\\PublicacaoRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-28T17:11:24.39Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-28T17:11:24.39Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "PublicacaoModel.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Models\\PublicacaoModel.cs",
               "RelativeDocumentMoniker": "Models\\PublicacaoModel.cs",
               "ToolTip": "C:\\API\\ChronosApi\\Models\\PublicacaoModel.cs",
               "RelativeToolTip": "Models\\PublicacaoModel.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAcwBAAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAcwBEAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T17:00:03.938Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
+              "Title": "EgressoModel.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Models\\EgressoModel.cs",
+              "RelativeDocumentMoniker": "Models\\EgressoModel.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Models\\EgressoModel.cs",
+              "RelativeToolTip": "Models\\EgressoModel.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAADwvw4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-12T19:19:09.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CorporacaoController.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\CorporacaoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CorporacaoController.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Controllers\\CorporacaoController.cs",
+              "RelativeToolTip": "Controllers\\CorporacaoController.cs",
+              "ViewState": "AgIAAOcAAAAAAAAAAAAgwPIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T13:11:31.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VagaModel.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Models\\VagaModel.cs",
+              "RelativeDocumentMoniker": "Models\\VagaModel.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Models\\VagaModel.cs",
+              "RelativeToolTip": "Models\\VagaModel.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBQAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T16:59:55.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VagaController.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\VagaController.cs",
+              "RelativeDocumentMoniker": "Controllers\\VagaController.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Controllers\\VagaController.cs",
+              "RelativeToolTip": "Controllers\\VagaController.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAQwGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T17:27:47.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VagaRepository.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Vaga\\VagaRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Vaga\\VagaRepository.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Repository\\Vaga\\VagaRepository.cs",
+              "RelativeToolTip": "Repository\\Vaga\\VagaRepository.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAkwCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-21T23:34:16.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IPublicacaoRepository.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Publicacao\\IPublicacaoRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Publicacao\\IPublicacaoRepository.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Repository\\Publicacao\\IPublicacaoRepository.cs",
+              "RelativeToolTip": "Repository\\Publicacao\\IPublicacaoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-28T17:11:26.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PublicacaoController.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\PublicacaoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PublicacaoController.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Controllers\\PublicacaoController.cs",
+              "RelativeToolTip": "Controllers\\PublicacaoController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwIsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:54:14.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CorporacaoModel.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Models\\CorporacaoModel.cs",
+              "RelativeDocumentMoniker": "Models\\CorporacaoModel.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Models\\CorporacaoModel.cs",
+              "RelativeToolTip": "Models\\CorporacaoModel.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAIwBMAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T12:55:22.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CorporacaoRepository.cs",
+              "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Corporacao\\CorporacaoRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Corporacao\\CorporacaoRepository.cs",
+              "ToolTip": "C:\\API\\ChronosApi\\Repository\\Corporacao\\CorporacaoRepository.cs",
+              "RelativeToolTip": "Repository\\Corporacao\\CorporacaoRepository.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAA7wC8AAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T21:14:08.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "EgressoRepository.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Egresso\\EgressoRepository.cs",
               "RelativeDocumentMoniker": "Repository\\Egresso\\EgressoRepository.cs",
@@ -380,12 +441,11 @@
               "RelativeToolTip": "Repository\\Egresso\\EgressoRepository.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAYwDsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T20:16:40.244Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-13T20:16:40.244Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "DataContext.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Data\\DataContext.cs",
               "RelativeDocumentMoniker": "Data\\DataContext.cs",
@@ -393,12 +453,11 @@
               "RelativeToolTip": "Data\\DataContext.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAYwE8AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T18:24:50.853Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-11T18:24:50.853Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "VagaCleanupService.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Services\\Vaga\\VagaCleanupService.cs",
               "RelativeDocumentMoniker": "Services\\Vaga\\VagaCleanupService.cs",
@@ -406,38 +465,11 @@
               "RelativeToolTip": "Services\\Vaga\\VagaCleanupService.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAYwCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T18:22:40.19Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-11T18:22:40.19Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CorporacaoController.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\CorporacaoController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CorporacaoController.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Controllers\\CorporacaoController.cs",
-              "RelativeToolTip": "Controllers\\CorporacaoController.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAA1wGIAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T13:11:31.319Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "EgressoModel.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Models\\EgressoModel.cs",
-              "RelativeDocumentMoniker": "Models\\EgressoModel.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Models\\EgressoModel.cs",
-              "RelativeToolTip": "Models\\EgressoModel.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAADwvxMAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T19:19:09.167Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "CursoController.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\CursoController.cs",
               "RelativeDocumentMoniker": "Controllers\\CursoController.cs",
@@ -449,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "EgressoController.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\EgressoController.cs",
               "RelativeDocumentMoniker": "Controllers\\EgressoController.cs",
@@ -461,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "ComentarioController.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\ComentarioController.cs",
               "RelativeDocumentMoniker": "Controllers\\ComentarioController.cs",
@@ -473,31 +505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "VagaController.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Controllers\\VagaController.cs",
-              "RelativeDocumentMoniker": "Controllers\\VagaController.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Controllers\\VagaController.cs",
-              "RelativeToolTip": "Controllers\\VagaController.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAADwv4cAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T17:27:47.713Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "VagaRepository.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Vaga\\VagaRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\Vaga\\VagaRepository.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Repository\\Vaga\\VagaRepository.cs",
-              "RelativeToolTip": "Repository\\Vaga\\VagaRepository.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAkwDAAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-21T23:34:16.938Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "PublicacaoService.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Services\\Publicacao\\PublicacaoService.cs",
               "RelativeDocumentMoniker": "Services\\Publicacao\\PublicacaoService.cs",
@@ -509,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "IPublicacaoService.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Services\\Publicacao\\IPublicacaoService.cs",
               "RelativeDocumentMoniker": "Services\\Publicacao\\IPublicacaoService.cs",
@@ -521,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "IVagaRepository.cs",
               "DocumentMoniker": "C:\\API\\ChronosApi\\Repository\\Vaga\\IVagaRepository.cs",
               "RelativeDocumentMoniker": "Repository\\Vaga\\IVagaRepository.cs",
@@ -530,18 +538,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-27T20:22:06.875Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "VagaModel.cs",
-              "DocumentMoniker": "C:\\API\\ChronosApi\\Models\\VagaModel.cs",
-              "RelativeDocumentMoniker": "Models\\VagaModel.cs",
-              "ToolTip": "C:\\API\\ChronosApi\\Models\\VagaModel.cs",
-              "RelativeToolTip": "Models\\VagaModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T16:59:55.244Z"
             },
             {
               "$type": "Document",
