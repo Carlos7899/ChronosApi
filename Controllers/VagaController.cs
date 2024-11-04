@@ -94,6 +94,34 @@ namespace ChronosApi.Controllers
             return Ok(vagas);
         }
 
+        [HttpGet("GetByNome/{nome}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<VagaModel>>> GetByNome(string nome)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(nome))
+                {
+                    return BadRequest("O nome da vaga não pode ser vazio.");
+                }
+
+                var vagas = await _vagaService.GetVagasPorNomeAsync(nome);
+                if (!vagas.Any())
+                {
+                    return NotFound("Nenhuma vaga encontrada com o nome especificado.");
+                }
+
+                return Ok(vagas);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Ocorreu um erro ao buscar as vagas: " + ex.Message);
+            }
+        }
+
+
         #endregion
 
 

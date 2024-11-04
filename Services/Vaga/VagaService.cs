@@ -67,6 +67,14 @@ namespace ChronosApi.Services.Vaga
                 .ToListAsync();
         }
 
+        public async Task<List<VagaModel>> GetVagasPorNomeAsync(string nome)
+        {
+            return await _context.TB_VAGA
+                .Where(v => v.nomeVaga.Contains(nome))
+                .ToListAsync();
+        }
+
+
 
     }
 }

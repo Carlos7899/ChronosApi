@@ -2903,6 +2903,46 @@
   },
   {
     "ContainingType": "ChronosApi.Controllers.VagaController",
+    "Method": "GetByNome",
+    "RelativePath": "api/Vaga/GetByNome/{nome}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nome",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[ChronosApi.Models.VagaModel, ChronosApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
+      }
+    ]
+  },
+  {
+    "ContainingType": "ChronosApi.Controllers.VagaController",
     "Method": "GetVagasPorDataCriacao",
     "RelativePath": "api/Vaga/GetPorDataCriacao/{dataCriacao}",
     "HttpMethod": "GET",

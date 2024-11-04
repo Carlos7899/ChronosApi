@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChronosApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2de3f95f9bef81da2c305191a7ce2b42f9d3b139")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+992f42fe8cbf0a02ee75d95f766c056bf0254e59")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChronosApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChronosApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
