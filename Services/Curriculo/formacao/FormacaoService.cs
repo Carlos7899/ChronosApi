@@ -39,7 +39,7 @@ namespace ChronosApi.Services.Formacao
 
         public async Task CreateAsync(FormacaoModel novaFormacao)
         {
-            // Validações
+            
             if (novaFormacao == null)
             {
                 throw new ArgumentNullException(nameof(novaFormacao), "A formação não pode ser nula.");
@@ -72,7 +72,7 @@ namespace ChronosApi.Services.Formacao
                 throw new NotFoundException("Formação não encontrada.");
             }
 
-            // Atualiza as propriedades da formação
+            
             formacao.cursoFormacao = formacaoAtualizada.cursoFormacao;
             formacao.instituicaoFormacao = formacaoAtualizada.instituicaoFormacao;
             formacao.dataConclusaoFormacao = formacaoAtualizada.dataConclusaoFormacao;

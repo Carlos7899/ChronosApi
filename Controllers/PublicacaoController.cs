@@ -69,7 +69,7 @@ namespace ChronosApi.Controllers
         {
             try
             {
-                // Valida se a corporação existe
+               
                 if (!await _publicacaoService.CorporacaoExists(publicacao.idCorporacao))
                 {
                     return BadRequest("Corporação não encontrada.");
@@ -94,7 +94,7 @@ namespace ChronosApi.Controllers
         {
             try
             {
-                // Verifica se a corporação existe
+         
                 if (!await _publicacaoService.CorporacaoExists(publicacao.idCorporacao))
                 {
                     return BadRequest("Corporação não encontrada.");
@@ -154,7 +154,7 @@ namespace ChronosApi.Controllers
                     return NotFound("Publicação não encontrada.");
                 }
 
-                return NoContent(); // Retorna 204 No Content para indicar sucesso
+                return NoContent(); 
             }
             catch (System.Exception ex)
             {

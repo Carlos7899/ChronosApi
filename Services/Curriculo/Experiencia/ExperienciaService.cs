@@ -32,7 +32,6 @@ namespace ChronosApi.Services.Curriculo.Experiencia
                 throw new NotFoundException("Experiência não encontrada.");
             }
 
-            // Atualiza as propriedades da experiência
             experiencia.empresaExperiencia = experienciaAtualizada.empresaExperiencia;
             experiencia.cargoExperiencia = experienciaAtualizada.cargoExperiencia;
             experiencia.dataInicioExperiencia = experienciaAtualizada.dataInicioExperiencia;

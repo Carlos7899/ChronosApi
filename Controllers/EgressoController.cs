@@ -30,9 +30,6 @@ namespace ChronosApi.Controllers
 
         }
 
-
-        //Controller Pronta
-
         #region GET
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -76,7 +73,7 @@ namespace ChronosApi.Controllers
         }
         #endregion
 
-        //Nao e´ necessario, basta registrar e depois update, possivelmente vou remover
+        //Não é necessario, basta registrar e depois update, possivelmente vou remover
         #region CREATE
         [HttpPost("POST")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -205,7 +202,6 @@ namespace ChronosApi.Controllers
                     throw new Exception("Egresso não encontrada.");
                 }
 
-                // Verifica se a senha está correta
                 if (!Criptografia.VerificarPasswordHash(credenciais.PasswordString, egressoEncontrada.PasswordHash, egressoEncontrada.PasswordSalt))
                 {
                     throw new Exception("Senha incorreta.");
@@ -214,11 +210,9 @@ namespace ChronosApi.Controllers
                 egressoEncontrada.DataAcesso = DateTime.Now;
                 await _egressoRepository.PutAsync(egressoEncontrada.idEgresso, egressoEncontrada);
 
-                // Cria o token
                 string token = CriarToken(egressoEncontrada);
-                egressoEncontrada.Token = token; // Se quiser incluir o token no retorno
+                egressoEncontrada.Token = token; 
 
-                // Retorna o token e o ID da corporação
                 return Ok(new
                 {
                     Token = token,

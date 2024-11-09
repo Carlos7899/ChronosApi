@@ -28,8 +28,6 @@ namespace ChronosApi.Controllers
             _configuration = configuration;
         }
 
-        //CRUD pronto
-
         #region GET
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

@@ -47,14 +47,13 @@ namespace ChronosApi.Services.Vaga
 
         public async Task<List<VagaModel>> GetVagasPorCorporacaoAsync(int idCorporacao)
         {
-            // Verifica se a corporação existe
+           
             var existeCorporacao = await _context.TB_VAGA.AnyAsync(v => v.idCorporacao == idCorporacao);
             if (!existeCorporacao)
             {
                 throw new NotFoundException("Corporacao não encontrada.");
             }
 
-            // Busca todas as vagas da corporação
             return await _context.TB_VAGA
                 .Where(v => v.idCorporacao == idCorporacao)
                 .ToListAsync();

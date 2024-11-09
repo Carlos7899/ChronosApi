@@ -35,19 +35,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(Options =>
 {
-    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal5"));
+    Options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal3"));
 });
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Learn more about configuring Swagger/OpenAPI  https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
 
-// Revisar
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -111,12 +108,11 @@ builder.Services.AddScoped<IVagaEnderecoRepository, VagaEnderecoRepository >();
 
 #endregion
 
-// vagaCleanupService
+
 builder.Services.AddHostedService<VagaCleanupService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

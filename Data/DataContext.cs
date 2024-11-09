@@ -120,8 +120,8 @@ namespace ChronosApi.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<CandidaturaModel>()
-                .HasOne<VagaModel>() // Substitua por sua entidade Vaga
-                .WithMany() // Defina a relação correta aqui
+                .HasOne<VagaModel>() 
+                .WithMany() 
                 .HasForeignKey(c => c.idVaga)
                 .OnDelete(DeleteBehavior.Cascade);
 
@@ -247,7 +247,7 @@ namespace ChronosApi.Data
 
             #endregion
 
-           #region Experiencia
+            #region Experiencia
                     modelBuilder.Entity<ExperienciaModel>().HasData
                     (
                         new ExperienciaModel
@@ -267,7 +267,7 @@ namespace ChronosApi.Data
                        .HasForeignKey(e => e.idCurriculo);
                     #endregion
 
-                    #region Formacao
+            #region Formacao
                     modelBuilder.Entity<FormacaoModel>().HasData
                     (
                         new FormacaoModel
@@ -432,7 +432,6 @@ namespace ChronosApi.Data
 
             #endregion
 
-      
         }
     }
 }

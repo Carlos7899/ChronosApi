@@ -25,10 +25,10 @@ namespace ChronosApi.Repository.Vaga
 
         public async Task<VagaModel> PostAsync(VagaModel vaga)
         {
-            // Adiciona a nova vaga ao contexto
-            await _context.TB_VAGA.AddAsync(vaga); // _context é seu DbContext
-            await _context.SaveChangesAsync(); // Salva as alterações no banco de dados
-            return vaga; // Retorna a vaga criada
+           
+            await _context.TB_VAGA.AddAsync(vaga); 
+            await _context.SaveChangesAsync(); 
+            return vaga; 
         }
 
 
