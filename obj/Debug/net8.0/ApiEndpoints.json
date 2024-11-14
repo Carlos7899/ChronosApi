@@ -994,7 +994,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ChronosApi.Models.Curriculo.CurriculoModel, ChronosApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "ChronosApi.Models.Curriculo.CurriculoModel",
         "MediaTypes": [
           "text/plain",
           "application/json",

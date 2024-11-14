@@ -10,6 +10,6 @@ namespace ChronosApi.Services.Curriculo.Curriculo
         Task<bool> CurriculoExisteAsync(int id);
         Task CreateAsync(CurriculoModel novoCurriculo);
         Task<IEnumerable<CurriculoModel>> GetAllAsync();
-        Task<IEnumerable<CurriculoModel>> GetCurriculosByEgressoAsync(int idEgresso);
+        Task<CurriculoModel> GetCurriculoByEgressoAsync(int idEgresso);
     }
 }

@@ -100,12 +100,14 @@ namespace ChronosApi.Services.Curriculo.Curriculo
             return await _context.TB_CURRICULO.ToListAsync();
         }
 
-        
-        public async Task<IEnumerable<CurriculoModel>> GetCurriculosByEgressoAsync(int idEgresso)
+
+        public async Task<CurriculoModel> GetCurriculoByEgressoAsync(int idEgresso)
         {
+            // Retorna o primeiro currículo encontrado para o egresso ou null se não houver nenhum.
             return await _context.TB_CURRICULO
                 .Where(c => c.idEgresso == idEgresso)
-                .ToListAsync();
+                .FirstOrDefaultAsync(); // Use FirstOrDefaultAsync para obter um único currículo
         }
+
     }
 }

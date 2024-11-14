@@ -56,11 +56,11 @@ namespace ChronosApi.Controllers.Curriculo
         [HttpGet("GetByEgresso/{idEgresso}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<CurriculoModel>>> GetByEgresso(int idEgresso)
+        public async Task<ActionResult<CurriculoModel>> GetByEgresso(int idEgresso)
         {
             try
             {
-                var curriculos = await _curriculoService.GetCurriculosByEgressoAsync(idEgresso);
+                var curriculos = await _curriculoService.GetCurriculoByEgressoAsync(idEgresso);
                 return Ok(curriculos);
             }
             catch (Exception ex)
