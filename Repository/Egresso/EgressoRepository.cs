@@ -47,6 +47,7 @@ namespace ChronosApi.Repository.Egresso
             egresso.tipoEgresso = updatedEgresso.tipoEgresso;
             egresso.numeroEgresso = updatedEgresso.numeroEgresso;
             egresso.cpfEgresso = updatedEgresso.cpfEgresso;
+            egresso.fotoPerfilEgresso = updatedEgresso.fotoPerfilEgresso;
 
             _context.Entry(egresso).State = EntityState.Modified;
 
