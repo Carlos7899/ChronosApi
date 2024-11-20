@@ -25,6 +25,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var experiencias = await _experienciaService.GetAllAsync();
+
                 return Ok(experiencias);
             }
             catch (Exception ex)
@@ -41,6 +42,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var experiencia = await _experienciaService.GetAsync(id);
+
                 return Ok(experiencia);
             }
             catch (NotFoundException)
@@ -61,6 +63,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var experiencias = await _experienciaService.GetExperienciasByCurriculoAsync(idCurriculo);
+
                 return Ok(experiencias);
             }
             catch (Exception ex)
@@ -79,6 +82,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 await _experienciaService.CreateAsync(novaExperiencia);
+
                 return CreatedAtAction(nameof(Get), new { id = novaExperiencia.idExperiencia }, novaExperiencia);
             }
             catch (Exception ex)
@@ -119,6 +123,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 await _experienciaService.DeleteAsync(id);
+
                 return Ok("Experiência deletada com sucesso!");
             }
             catch (NotFoundException)

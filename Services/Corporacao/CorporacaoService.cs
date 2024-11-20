@@ -14,11 +14,13 @@ namespace ChronosApi.Services.Corporacao
     {
         private readonly DataContext _context;
         private readonly IConfiguration _configuration;
+
         public CorporacaoService(DataContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
         }
+
         public async Task GetAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
@@ -27,6 +29,7 @@ namespace ChronosApi.Services.Corporacao
                 throw new NotFoundException("Corporação não encontrada.");
             }
         }
+
         public async Task PutAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
@@ -34,8 +37,8 @@ namespace ChronosApi.Services.Corporacao
             {
                 throw new ConflictException("Dados inválidos.");
             }
-
         }
+
         public async Task DeleteAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync((CorporacaoModel c) => c.idCorporacao == id);
@@ -47,11 +50,11 @@ namespace ChronosApi.Services.Corporacao
 
         private async Task<bool> CorporacaoExistente(string email)
         {
-
             if (await _context.TB_CORPORACAO.AnyAsync(x => x.emailCorporacao.ToLower() == email.ToLower()))
             {
                 return true;
             }
+
             return false;
         }
 
@@ -69,7 +72,6 @@ namespace ChronosApi.Services.Corporacao
         {
             CorporacaoModel? usuario = await _context.TB_CORPORACAO.FirstOrDefaultAsync(x => x.emailCorporacao.ToLower().Equals(email.ToLower()));
 
-
             if (usuario == null)
             {
                 throw new Exception("Usuário não encontrado.");
@@ -79,6 +81,7 @@ namespace ChronosApi.Services.Corporacao
             {
                 throw new Exception("Senha incorreta.");
             }
+
             return CriarToken(usuario);
         }
 
@@ -89,8 +92,8 @@ namespace ChronosApi.Services.Corporacao
                  new Claim(ClaimTypes.NameIdentifier, usuario.idCorporacao.ToString()),
                  new Claim(ClaimTypes.Email, usuario.emailCorporacao),
             };
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
 
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
@@ -99,8 +102,10 @@ namespace ChronosApi.Services.Corporacao
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = creds
             };
+
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+
             return tokenHandler.WriteToken(token);
         }
 
@@ -118,9 +123,5 @@ namespace ChronosApi.Services.Corporacao
             var egresso = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
             return egresso != null;
         }
-      
-
     }
 }
-
-    

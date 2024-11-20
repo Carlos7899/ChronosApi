@@ -21,6 +21,7 @@ namespace ChronosApi.Services.Candidatura
             {
                 throw new NotFoundException("Candidatura não encontrada.");
             }
+
             return candidatura;
         }
 
@@ -31,20 +32,19 @@ namespace ChronosApi.Services.Candidatura
 
         public async Task<CandidaturaModel> CreateAsync(CandidaturaModel candidatura)
         {
-
             var vagaExists = await _context.TB_VAGA.AnyAsync(v => v.idVaga == candidatura.idVaga);
             if (!vagaExists)
             {
                 throw new NotFoundException("Vaga não encontrada.");
             }
+
             var egressoExists = await _context.TB_EGRESSO.AnyAsync(e => e.idEgresso == candidatura.idEgresso);
             if (!egressoExists)
             {
                 throw new NotFoundException("Egresso não encontrado.");
             }
-            var candidaturaExists = await _context.TB_CANDIDATURA
-                .AnyAsync(c => c.idEgresso == candidatura.idEgresso && c.idVaga == candidatura.idVaga);
 
+            var candidaturaExists = await _context.TB_CANDIDATURA.AnyAsync(c => c.idEgresso == candidatura.idEgresso && c.idVaga == candidatura.idVaga);
             if (candidaturaExists)
             {
                 throw new ConflictException("Candidatura já existente para esta vaga.");
@@ -52,6 +52,7 @@ namespace ChronosApi.Services.Candidatura
 
             _context.TB_CANDIDATURA.Add(candidatura);
             await _context.SaveChangesAsync();
+
             return candidatura;
         }
 
@@ -91,37 +92,27 @@ namespace ChronosApi.Services.Candidatura
 
         public async Task<List<CandidaturaModel>> GetByEgressoAsync(int idEgresso)
         {
-            return await _context.TB_CANDIDATURA
-                .Where(c => c.idEgresso == idEgresso)
-                .ToListAsync();
+            return await _context.TB_CANDIDATURA.Where(c => c.idEgresso == idEgresso).ToListAsync();
         }
+
         public async Task<List<CandidaturaModel>> GetByVagaAsync(int idVaga)
         {
-            return await _context.TB_CANDIDATURA
-                .Where(c => c.idVaga == idVaga)
-                .ToListAsync();
+            return await _context.TB_CANDIDATURA.Where(c => c.idVaga == idVaga).ToListAsync();
         }
+
         public async Task<List<CandidaturaModel>> GetRecentCandidaturasByVagaAsync(int idVaga)
         {
-            return await _context.TB_CANDIDATURA
-                .Where(c => c.idVaga == idVaga)
-                .OrderByDescending(c => c.dataIncricao)
-                .ToListAsync();
+            return await _context.TB_CANDIDATURA.Where(c => c.idVaga == idVaga).OrderByDescending(c => c.dataIncricao).ToListAsync();
         }
 
         public async Task<int> CountCandidaturasByEgressoAsync(int idEgresso)
         {
-            return await _context.TB_CANDIDATURA
-                .CountAsync(c => c.idEgresso == idEgresso);
+            return await _context.TB_CANDIDATURA.CountAsync(c => c.idEgresso == idEgresso);
         }
 
         public async Task<int> CountCandidaturasByVagaAsync(int idVaga)
         {
-            return await _context.TB_CANDIDATURA
-                .CountAsync(c => c.idVaga == idVaga);
+            return await _context.TB_CANDIDATURA.CountAsync(c => c.idVaga == idVaga);
         }
-
-
-
     }
 }

@@ -15,7 +15,6 @@ namespace ChronosApi.Services.Curso
             _context = context;
         }
 
-   
         public async Task<CursoModel> GetAsync(int id)
         {
             var curso = await _context.TB_CURSO.FirstOrDefaultAsync(c => c.idCurso == id);
@@ -26,7 +25,6 @@ namespace ChronosApi.Services.Curso
             return curso;
         }
 
-  
         public async Task PutAsync(int id, CursoModel cursoAtualizado)
         {
             var curso = await _context.TB_CURSO.FirstOrDefaultAsync(c => c.idCurso == id);
@@ -35,7 +33,6 @@ namespace ChronosApi.Services.Curso
                 throw new NotFoundException("Curso não encontrado.");
             }
 
-       
             curso.nomeCurso = cursoAtualizado.nomeCurso;
             curso.descricaoCurso = cursoAtualizado.descricaoCurso;
             curso.cargaHorariaCurso = cursoAtualizado.cargaHorariaCurso;
@@ -46,7 +43,6 @@ namespace ChronosApi.Services.Curso
             await _context.SaveChangesAsync();
         }
 
-       
         public async Task DeleteAsync(int id)
         {
             var curso = await _context.TB_CURSO.FirstOrDefaultAsync(c => c.idCurso == id);
@@ -59,13 +55,11 @@ namespace ChronosApi.Services.Curso
             await _context.SaveChangesAsync();
         }
 
-       
         public async Task<bool> CursoExisteAsync(int id)
         {
             return await _context.TB_CURSO.AnyAsync(c => c.idCurso == id);
         }
 
-        
         public async Task CreateAsync(CursoModel novoCurso)
         {
            
@@ -73,7 +67,6 @@ namespace ChronosApi.Services.Curso
             await _context.SaveChangesAsync();
         }
 
-     
         public async Task<IEnumerable<CursoModel>> GetAllAsync()
         {
             return await _context.TB_CURSO.ToListAsync();
@@ -81,23 +74,17 @@ namespace ChronosApi.Services.Curso
 
         public async Task<IEnumerable<CursoModel>> GetCursosByCorporacaoAsync(int idCorporacao)
         {
-            return await _context.TB_CURSO
-                .Where(c => c.idCorporacao == idCorporacao)
-                .ToListAsync();
+            return await _context.TB_CURSO.Where(c => c.idCorporacao == idCorporacao).ToListAsync();
         }
 
         public async Task<IEnumerable<CursoModel>> GetCursosByNomeAsync(string nomeCurso)
         {
-            return await _context.TB_CURSO
-                .Where(c => c.nomeCurso.Contains(nomeCurso))
-                .ToListAsync();
+            return await _context.TB_CURSO.Where(c => c.nomeCurso.Contains(nomeCurso)).ToListAsync();
         }
 
         public async Task<int> ContarCursosPorCorporacaoAsync(int idCorporacao)
         {
             return await _context.TB_CURSO.CountAsync(c => c.idCorporacao == idCorporacao);
         }
-
-
     }
 }

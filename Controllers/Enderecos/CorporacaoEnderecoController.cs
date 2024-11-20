@@ -1,11 +1,8 @@
-﻿using ChronosApi.Data;
-using ChronosApi.Models.Enderecos;
+﻿using ChronosApi.Models.Enderecos;
 using ChronosApi.Repository.CorporacaoEndereco;
 using ChronosApi.Services.CorporacaoEndereco;
 using ChronosApi.Services.Exceptions;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Controllers.Enderecos
 {
@@ -14,7 +11,6 @@ namespace ChronosApi.Controllers.Enderecos
     [Route("api/[Controller]")]
     public class CorporacaoEnderecoController : ControllerBase
     {
-
         private readonly ICorporacaoEnderecoService _corporacaoEnderecoService;
         private readonly ICorporacaoEnderecoRepository _corporacaoEnderecoRepository;
 
@@ -25,7 +21,6 @@ namespace ChronosApi.Controllers.Enderecos
         }
 
         #region GET
-
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -34,6 +29,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var enderecos = await _corporacaoEnderecoService.GetAllCorporacoesEnderecosAsync();
+
                 return Ok(enderecos);
             }
             catch (Exception ex)
@@ -50,6 +46,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var endereco = await _corporacaoEnderecoService.GetCorporacaoEnderecoAsync(id);
+
                 return Ok(endereco);
             }
             catch (NotFoundException ex)
@@ -71,11 +68,9 @@ namespace ChronosApi.Controllers.Enderecos
         {
             try
             {
-                // Verifica se a corporação e o logradouro existem
                 await _corporacaoEnderecoService.CreateCorporacaoEnderecoAsync(endereco);
-
-                // Adiciona o novo endereço ao repositório
                 var novoEndereco = await _corporacaoEnderecoRepository.AddCorporacaoEnderecoAsync(endereco);
+
                 return CreatedAtAction(nameof(GetByIdCorporacaoEndereco), new { id = novoEndereco.idCorporacaoEndereco }, novoEndereco);
             }
             catch (NotFoundException ex)
@@ -99,7 +94,6 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var existingEndereco = await _corporacaoEnderecoService.UpdateCorporacaoEnderecoAsync(id, updatedEndereco);
-
                 await _corporacaoEnderecoRepository.UpdateCorporacaoEnderecoAsync(existingEndereco);
 
                 return Ok(existingEndereco);
@@ -130,6 +124,7 @@ namespace ChronosApi.Controllers.Enderecos
                 }
 
                 await _corporacaoEnderecoRepository.DeleteCorporacaoEnderecoAsync(existingEndereco);
+
                 return Ok("Endereço deletado com sucesso!");
             }
             catch (NotFoundException ex)

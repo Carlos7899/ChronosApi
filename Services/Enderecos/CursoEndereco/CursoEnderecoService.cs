@@ -8,6 +8,7 @@ namespace ChronosApi.Services.Enderecos.CursoEndereco
     public class CursoEnderecoService : ICursoEnderecoService
     {
         private readonly DataContext _context;
+
         public CursoEnderecoService(DataContext context)
         {
             _context = context;
@@ -62,7 +63,7 @@ namespace ChronosApi.Services.Enderecos.CursoEndereco
             var existingEndereco = await _context.TB_CURSO_ENDERECO.FirstOrDefaultAsync(e => e.idCursoEndereco == id);
             if (existingEndereco == null)
             {
-                throw new NotFoundException("endereco não encontrada.");
+                throw new NotFoundException("Endereco não encontrado.");
             }
         }
     }

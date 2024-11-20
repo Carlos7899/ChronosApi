@@ -27,6 +27,7 @@ namespace ChronosApi.Repository.Publicacao
         {
             await _context.TB_PUBLICACAO.AddAsync(publicacao);
             await _context.SaveChangesAsync();
+
             return publicacao;
         }
 
@@ -47,36 +48,38 @@ namespace ChronosApi.Repository.Publicacao
 
             _context.Entry(publicacao).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
             return publicacao;
         }
 
         public async Task<PublicacaoModel?> DeleteAsync(int id)
         {
             var publicacao = await GetIdAsync(id);
-            if (publicacao == null) return null;
+            if (publicacao == null) 
+                return null;
 
             _context.TB_PUBLICACAO.Remove(publicacao);
             await _context.SaveChangesAsync();
+
             return publicacao;
         }
 
         public async Task<bool> AtualizarNumeroViews(int id)
         {
             var publicacao = await GetIdAsync(id);
-            if (publicacao == null) return false;
+            if (publicacao == null) 
+                return false;
 
             publicacao.numeroVisualizacoes++;
             _context.Entry(publicacao).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
             return true;
         }
 
         public async Task<List<PublicacaoModel>> GetByCorporacaoAsync(int idCorporacao)
         {
-            return await _context.TB_PUBLICACAO
-               .Where(p => p.idCorporacao == idCorporacao)
-              .ToListAsync();
+            return await _context.TB_PUBLICACAO.Where(p => p.idCorporacao == idCorporacao).ToListAsync();
         }
-
     }
 }

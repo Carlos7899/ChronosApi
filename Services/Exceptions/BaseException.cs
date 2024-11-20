@@ -26,4 +26,4 @@ namespace ChronosApi.Services.Exceptions
             };
         }
     }
-}   
+}

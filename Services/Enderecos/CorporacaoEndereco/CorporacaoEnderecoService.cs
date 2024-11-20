@@ -8,6 +8,7 @@ namespace ChronosApi.Services.CorporacaoEndereco
     public class CorporacaoEnderecoService : ICorporacaoEnderecoService
     {
         private readonly DataContext _context;
+
         public CorporacaoEnderecoService(DataContext context)
         {
             _context = context;

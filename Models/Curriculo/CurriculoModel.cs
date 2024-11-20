@@ -14,18 +14,19 @@ namespace ChronosApi.Models.Curriculo
 
         [EmailAddress]
         [MaxLength(150)]
-        public string emailCurriculo { get; set; }
-        public string telefoneCurriculo { get; set; }
-        public string habilidadesCurriculo { get; set; }
-        public string descricaoCurriculo { get; set; }
-
+        public string emailCurriculo { get; set; } = string.Empty;
+        public string telefoneCurriculo { get; set; } = string.Empty;
+        public string habilidadesCurriculo { get; set; } = string.Empty;
+        public string descricaoCurriculo { get; set; } = string.Empty;
 
         [JsonIgnore]
         [NotMapped]
         public  EgressoModel? Egresso { get; set; }
+
         [JsonIgnore]
         [NotMapped]
         public List<ExperienciaModel>? ExperienciasProfissionais { get; set; }
+
         [JsonIgnore]
         [NotMapped]
         public List<FormacaoModel>? FormacoesAcademicas { get; set; }

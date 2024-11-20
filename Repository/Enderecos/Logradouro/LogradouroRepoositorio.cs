@@ -30,13 +30,13 @@ namespace ChronosApi.Repository.Logradouro
             logradouro.idLogradouro = 0;
             await _context.TB_LOGRADOURO.AddAsync(logradouro);
             await _context.SaveChangesAsync();
+
             return logradouro;
         }
 
         public async Task<ActionResult<LogradouroModel>> PutAsync(int id, LogradouroModel updatedLogradouro)
         {
             var logradouro = await _context.TB_LOGRADOURO.FindAsync(id);
-
             if (logradouro == null)
             {
                 return new NotFoundResult();
@@ -54,7 +54,6 @@ namespace ChronosApi.Repository.Logradouro
             return logradouro;
         }
 
-
         public async Task<ActionResult<LogradouroModel>> DeleteAsync(int id)
         {
             var logradouro = await _context.TB_LOGRADOURO.FindAsync(id);
@@ -65,6 +64,7 @@ namespace ChronosApi.Repository.Logradouro
 
             _context.TB_LOGRADOURO.Remove(logradouro);
             await _context.SaveChangesAsync();
+
             return logradouro;
         }
     }

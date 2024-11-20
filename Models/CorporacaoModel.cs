@@ -1,5 +1,4 @@
-﻿using ChronosApi.Models.Enderecos;
-using ChronosApi.Models.Enums;
+﻿using ChronosApi.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -10,7 +9,6 @@ namespace ChronosApi.Models
     {
         [Key]
         public int idCorporacao { get; set; }
-
         public TipoCorporacao tipoCorporacao { get; set; }
         public string nomeCorporacao { get; set; } = string.Empty;
         public string emailCorporacao { get; set; } = string.Empty;
@@ -18,8 +16,6 @@ namespace ChronosApi.Models
         public string descricaoCorporacao { get; set; } = string.Empty;
         public string cnpjCorporacao { get; set; } = string.Empty;
         public byte[]? fotoPerfilCorporacao { get; set; }
-
-
         public byte[]? PasswordHash { get; set; }
         public byte[]? PasswordSalt { get; set; }
         public DateTime? DataAcesso { get; set; }
@@ -29,8 +25,6 @@ namespace ChronosApi.Models
 
         [NotMapped]
         public string? Token { get; set; }
-
-
 
         [JsonIgnore]
         [NotMapped]

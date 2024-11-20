@@ -25,6 +25,7 @@ namespace ChronosApi.Controllers
             try
             {
                 var candidaturas = await _candidaturaService.GetAllAsync();
+
                 return Ok(candidaturas);
             }
             catch (Exception ex)
@@ -41,6 +42,7 @@ namespace ChronosApi.Controllers
             try
             {
                 var candidatura = await _candidaturaService.GetAsync(id);
+
                 return Ok(candidatura);
             }
             catch (NotFoundException)
@@ -65,6 +67,7 @@ namespace ChronosApi.Controllers
                 {
                     return NotFound("Nenhuma candidatura encontrada para este egresso.");
                 }
+
                 return Ok(candidaturas);
             }
             catch (Exception)
@@ -83,8 +86,9 @@ namespace ChronosApi.Controllers
                 var candidaturas = await _candidaturaService.GetByVagaAsync(idVaga);
                 if (candidaturas == null || !candidaturas.Any())
                 {
-                    return NotFound("Nenhuma candidatura encontrada para esta vaga.");
+                    return NotFound("Nenhuma candidatura encontrada para essa vaga.");
                 }
+
                 return Ok(candidaturas);
             }
             catch (Exception)
@@ -103,8 +107,9 @@ namespace ChronosApi.Controllers
                 var candidaturas = await _candidaturaService.GetRecentCandidaturasByVagaAsync(idVaga);
                 if (candidaturas == null || !candidaturas.Any())
                 {
-                    return NotFound("Nenhuma candidatura encontrada para esta vaga.");
+                    return NotFound("Nenhuma candidatura encontrada para essa vaga.");
                 }
+
                 return Ok(candidaturas);
             }
             catch (Exception)
@@ -112,8 +117,6 @@ namespace ChronosApi.Controllers
                 return StatusCode(500);
             }
         }
-
-
         #endregion
 
         #region COUNT
@@ -125,6 +128,7 @@ namespace ChronosApi.Controllers
             try
             {
                 int count = await _candidaturaService.CountCandidaturasByEgressoAsync(idEgresso);
+
                 return Ok(count);
             }
             catch (Exception)
@@ -141,6 +145,7 @@ namespace ChronosApi.Controllers
             try
             {
                 int count = await _candidaturaService.CountCandidaturasByVagaAsync(idVaga);
+
                 return Ok(count);
             }
             catch (Exception)
@@ -148,7 +153,6 @@ namespace ChronosApi.Controllers
                 return StatusCode(500);
             }
         }
-
         #endregion
 
         #region CREATE
@@ -160,6 +164,7 @@ namespace ChronosApi.Controllers
             try
             {
                 var novaCandidatura = await _candidaturaService.CreateAsync(candidatura);
+
                 return CreatedAtAction(nameof(Get), new { id = novaCandidatura.idCandidatura }, novaCandidatura);
             }
             catch (Exception ex)
@@ -178,6 +183,7 @@ namespace ChronosApi.Controllers
             try
             {
                 await _candidaturaService.UpdateAsync(id, updatedCandidatura);
+
                 return Ok("Candidatura atualizada com sucesso!");
             }
             catch (NotFoundException)
@@ -200,6 +206,7 @@ namespace ChronosApi.Controllers
             try
             {
                 await _candidaturaService.DeleteAsync(id);
+
                 return Ok("Candidatura deletada com sucesso!");
             }
             catch (NotFoundException)

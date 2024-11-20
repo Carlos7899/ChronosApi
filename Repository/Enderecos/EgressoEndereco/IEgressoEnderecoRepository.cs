@@ -1,5 +1,4 @@
 ﻿using ChronosApi.Models.Enderecos;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ChronosApi.Repository.Enderecos.EgressoEndereco
 {
@@ -11,6 +10,5 @@ namespace ChronosApi.Repository.Enderecos.EgressoEndereco
         Task<EgressoEnderecoModel> AddEgressoEnderecoAsync(EgressoEnderecoModel endereco);
         Task<EgressoEnderecoModel> UpdateEgressoEnderecoAsync(EgressoEnderecoModel endereco);
         Task DeleteEgressoEnderecoAsync(EgressoEnderecoModel endereco);
-
     }
 }

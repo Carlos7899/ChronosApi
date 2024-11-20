@@ -14,7 +14,6 @@ namespace ChronosApi.Services.Curriculo.Curriculo
             _context = context;
         }
 
-        
         public async Task<CurriculoModel> GetAsync(int id)
         {
             var curriculo = await _context.TB_CURRICULO.FirstOrDefaultAsync(c => c.idCurriculo == id);
@@ -22,9 +21,9 @@ namespace ChronosApi.Services.Curriculo.Curriculo
             {
                 throw new NotFoundException("Currículo não encontrado.");
             }
+
             return curriculo;
         }
-
         
         public async Task PutAsync(int id, CurriculoModel curriculoAtualizado)
         {
@@ -34,7 +33,6 @@ namespace ChronosApi.Services.Curriculo.Curriculo
                 throw new NotFoundException("Currículo não encontrado.");
             }
 
-         
             curriculo.emailCurriculo = curriculoAtualizado.emailCurriculo;
             curriculo.telefoneCurriculo = curriculoAtualizado.telefoneCurriculo;
             curriculo.habilidadesCurriculo = curriculoAtualizado.habilidadesCurriculo;
@@ -43,7 +41,6 @@ namespace ChronosApi.Services.Curriculo.Curriculo
             await _context.SaveChangesAsync();
         }
 
-      
         public async Task DeleteAsync(int id)
         {
             var curriculo = await _context.TB_CURRICULO.FirstOrDefaultAsync(c => c.idCurriculo == id);
@@ -56,13 +53,11 @@ namespace ChronosApi.Services.Curriculo.Curriculo
             await _context.SaveChangesAsync();
         }
 
-       
         public async Task<bool> CurriculoExisteAsync(int id)
         {
             return await _context.TB_CURRICULO.AnyAsync(c => c.idCurriculo == id);
         }
 
-      
         public async Task CreateAsync(CurriculoModel novoCurriculo)
         {
             if (novoCurriculo == null)
@@ -72,7 +67,7 @@ namespace ChronosApi.Services.Curriculo.Curriculo
 
             if (string.IsNullOrWhiteSpace(novoCurriculo.emailCurriculo))
             {
-                throw new ArgumentException("O e-mail do currículo não pode estar vazio.", nameof(novoCurriculo.emailCurriculo));
+                throw new ArgumentException("O email do currículo não pode estar vazio.", nameof(novoCurriculo.emailCurriculo));
             }
 
             if (string.IsNullOrWhiteSpace(novoCurriculo.telefoneCurriculo))
@@ -94,20 +89,20 @@ namespace ChronosApi.Services.Curriculo.Curriculo
             await _context.SaveChangesAsync();
         }
 
-       
         public async Task<IEnumerable<CurriculoModel>> GetAllAsync()
         {
             return await _context.TB_CURRICULO.ToListAsync();
         }
 
-
         public async Task<CurriculoModel> GetCurriculoByEgressoAsync(int idEgresso)
         {
-            // Retorna o primeiro currículo encontrado para o egresso ou null se não houver nenhum.
-            return await _context.TB_CURRICULO
-                .Where(c => c.idEgresso == idEgresso)
-                .FirstOrDefaultAsync(); // Use FirstOrDefaultAsync para obter um único currículo
-        }
+            var curriculo = await _context.TB_CURRICULO.Where(c => c.idEgresso == idEgresso).FirstOrDefaultAsync();
+            if (curriculo == null)
+            {
+                throw new NullReferenceException("Currículo não encontrado para o egresso informado.");
+            }
 
+            return curriculo;
+        }
     }
 }

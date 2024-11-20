@@ -1,6 +1,4 @@
-﻿
-using ChronosApi.Data;
-using ChronosApi.Models;
+﻿using ChronosApi.Data;
 using ChronosApi.Models.Enderecos;
 using ChronosApi.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
@@ -23,8 +21,7 @@ namespace ChronosApi.Services.EgressoEndereco
 
         public async Task<EgressoEnderecoModel> GetEgressoEnderecoAsync(int id)
         {
-            var endereco = await _context.TB_EGRESSO_ENDERECO.Include(e => e.Logradouro)
-                .FirstOrDefaultAsync(e => e.idEgressoEndereco == id);
+            var endereco = await _context.TB_EGRESSO_ENDERECO.Include(e => e.Logradouro).FirstOrDefaultAsync(e => e.idEgressoEndereco == id);
 
             if (endereco == null)
             {

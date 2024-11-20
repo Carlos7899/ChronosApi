@@ -22,11 +22,9 @@ namespace ChronosApi.Data
         public DbSet<VagaModel> TB_VAGA { get; set; }
 
         #region Curriculo
-
         public DbSet<CurriculoModel> TB_CURRICULO { get; set; }
         public DbSet<ExperienciaModel> TB_EXPERIENCIA { get; set; }
         public DbSet<FormacaoModel> TB_FORMACAO { get; set; }
-
         #endregion
 
         #region Enderecos
@@ -43,7 +41,6 @@ namespace ChronosApi.Data
         {
 
             byte[] passwordHash, passwordSalt;
-
             Criptografia.CriarPasswordHash("123456", out passwordHash, out passwordSalt);
 
             var adminUser = new EgressoModel
@@ -57,9 +54,10 @@ namespace ChronosApi.Data
                 PasswordSalt = passwordSalt,
                 DataAcesso = DateTime.Now
             };
-            modelBuilder.Entity<EgressoModel>().HasData(adminUser);
 
             #region Egresso
+            modelBuilder.Entity<EgressoModel>().HasData(adminUser);
+            
             modelBuilder.Entity<EgressoModel>().HasData
             (
                 new EgressoModel() 
@@ -69,7 +67,7 @@ namespace ChronosApi.Data
                     emailEgresso = "ops.gmail",
                     numeroEgresso = "8922",
                     cpfEgresso = "222",
-                    tipoEgresso = TipoEgresso.fisico,
+                    tipoEgresso = TipoEgresso.Fisico,
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
                     DataAcesso = DateTime.Now
@@ -124,7 +122,6 @@ namespace ChronosApi.Data
                 .WithMany() 
                 .HasForeignKey(c => c.idVaga)
                 .OnDelete(DeleteBehavior.Cascade);
-
             #endregion
 
             #region Comentario
@@ -135,7 +132,7 @@ namespace ChronosApi.Data
                     idComentario = 1,
                     idEgresso = 1,
                     idPublicacao = 1,
-                    comentarioPublicacao = "Minha empresa esta contratando auxiliares na cozinha para trabalharem"
+                    comentarioPublicacao = "Minha empresa está contratando auxiliares na cozinha para trabalharem."
                 }
             );
 
@@ -181,7 +178,7 @@ namespace ChronosApi.Data
                 {
                     idPublicacao = 1, 
                     idCorporacao = 1, 
-                    títuloPublicacao = "Publicacao", 
+                    títuloPublicacao = "Publicação", 
                     conteudoPublicacao = "Conteúdo top", 
                     avaliacaoPublicacao = 1
                 }
@@ -242,44 +239,43 @@ namespace ChronosApi.Data
                 .WithOne(f => f.Curriculo)
                 .HasForeignKey(f => f.idCurriculo)
                 .OnDelete(DeleteBehavior.Cascade);
-
-
-
             #endregion
 
             #region Experiencia
-                    modelBuilder.Entity<ExperienciaModel>().HasData
-                    (
-                        new ExperienciaModel
-                        {
-                            idExperiencia = 1,
-                            idCurriculo = 1,
-                            cargoExperiencia = "Desenvolvedor Júnior",
-                            empresaExperiencia = "Empresa XYZ",
-                            dataInicioExperiencia = new DateTime(2022, 01, 01),
-                            dataFimExperiencia = new DateTime(2023, 01, 01),
-                            Descricao = "Desenvolvimento de aplicações web."
-                        }
-                    );
-                    modelBuilder.Entity<ExperienciaModel>()
+            modelBuilder.Entity<ExperienciaModel>().HasData
+            (
+                new ExperienciaModel
+                {
+                    idExperiencia = 1,
+                    idCurriculo = 1,
+                    cargoExperiencia = "Desenvolvedor Júnior",
+                    empresaExperiencia = "Empresa XYZ",
+                    dataInicioExperiencia = new DateTime(2022, 01, 01),
+                    dataFimExperiencia = new DateTime(2023, 01, 01),
+                    descricao = "Desenvolvimento de aplicações WEB."
+                }
+            );
+
+            modelBuilder.Entity<ExperienciaModel>()
                        .HasOne<CurriculoModel>()
                        .WithMany(c => c.ExperienciasProfissionais)
                        .HasForeignKey(e => e.idCurriculo);
-                    #endregion
+            #endregion
 
             #region Formacao
-                    modelBuilder.Entity<FormacaoModel>().HasData
-                    (
-                        new FormacaoModel
-                        {
-                            idFormacao = 1,
-                            idCurriculo = 1, 
-                            cursoFormacao = "Análise e Desenvolvimento de Sistemas",
-                            instituicaoFormacao = "Universidade ABC",
-                            dataConclusaoFormacao = new DateTime(2021, 12, 01)
-                        }
-                    );
-                    modelBuilder.Entity<FormacaoModel>()
+            modelBuilder.Entity<FormacaoModel>().HasData
+            (
+                new FormacaoModel
+                {
+                    idFormacao = 1,
+                    idCurriculo = 1,
+                    cursoFormacao = "Análise e Desenvolvimento de Sistemas",
+                    instituicaoFormacao = "Universidade ABC",
+                    dataConclusaoFormacao = new DateTime(2021, 12, 01)
+                }
+            );
+
+            modelBuilder.Entity<FormacaoModel>()
                      .HasOne<CurriculoModel>()
                      .WithMany(c => c.FormacoesAcademicas)
                      .HasForeignKey(e => e.idCurriculo);
@@ -328,7 +324,6 @@ namespace ChronosApi.Data
                    tipoLogradouro = TipoLogradouro.Publico,
                    ufLogradouro = "364"
                }
-
             );
             #endregion
 
@@ -383,15 +378,16 @@ namespace ChronosApi.Data
             #region VagaEndereco
             modelBuilder.Entity<VagaEnderecoModel>().HasData
             (
-                new VagaEnderecoModel() 
+                new VagaEnderecoModel()
                 {
-                    idVagaEndereco = 1, 
+                    idVagaEndereco = 1,
                     idLogradouro = 3,
                     idVaga = 1,
-                    complementoVagaEndereco = "", 
-                    numeroVagaEndereco = "899" 
+                    complementoVagaEndereco = "",
+                    numeroVagaEndereco = "899"
                 }
             );
+
             modelBuilder.Entity<VagaEnderecoModel>()
              .HasOne(ve => ve.vaga)
              .WithOne()
@@ -402,8 +398,6 @@ namespace ChronosApi.Data
              .HasOne(ve => ve.logradouro)
              .WithOne()
              .HasForeignKey<VagaEnderecoModel>(ve => ve.idLogradouro);
-
-
             #endregion
 
             #region EgressoEndereco
@@ -420,18 +414,17 @@ namespace ChronosApi.Data
             );
 
             modelBuilder.Entity<EgressoEnderecoModel>()
-             .HasOne(ee => ee.Egresso) // Um endereço pertence a um egresso
-             .WithOne() // Um egresso tem um endereço
+             .HasOne(ee => ee.Egresso)
+             .WithOne()
              .HasForeignKey<EgressoEnderecoModel>(ee => ee.idEgresso);
 
             modelBuilder.Entity<EgressoEnderecoModel>()
-             .HasOne(ee => ee.Logradouro) // Um endereço pertence a um logradouro
-             .WithOne() // Um logradouro pode ter um endereços
+             .HasOne(ee => ee.Logradouro)
+             .WithOne()
              .HasForeignKey<EgressoEnderecoModel>(ee => ee.idLogradouro);
             #endregion
 
             #endregion
-
         }
     }
 }

@@ -27,9 +27,5 @@ namespace ChronosApi.Models
         [DataType(DataType.Date)]
         public DateTime dataFimCurso { get; set; }
         public int? limiteVagas { get; set; } 
-
-
-
-
     }
 }

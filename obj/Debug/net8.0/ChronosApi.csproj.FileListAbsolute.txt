@@ -1680,3 +1680,9 @@ D:\bagunça\DSIII - Dangoto e Carlos\TCC\APIIIIIIIIII\ChronosApi\obj\Debug\net8.
 D:\bagunça\DSIII - Dangoto e Carlos\TCC\APIIIIIIIIII\ChronosApi\obj\Debug\net8.0\ChronosApi.pdb
 D:\bagunça\DSIII - Dangoto e Carlos\TCC\APIIIIIIIIII\ChronosApi\obj\Debug\net8.0\ChronosApi.genruntimeconfig.cache
 D:\bagunça\DSIII - Dangoto e Carlos\TCC\APIIIIIIIIII\ChronosApi\obj\Debug\net8.0\ref\ChronosApi.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Pichau\ChronosApi\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

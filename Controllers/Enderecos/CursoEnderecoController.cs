@@ -1,7 +1,5 @@
 ﻿using ChronosApi.Models.Enderecos;
-using ChronosApi.Repository.CorporacaoEndereco;
 using ChronosApi.Repository.Enderecos.CursoEndereco;
-using ChronosApi.Services.CorporacaoEndereco;
 using ChronosApi.Services.Enderecos.CursoEndereco;
 using ChronosApi.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +21,6 @@ namespace ChronosApi.Controllers.Enderecos
         }
 
         #region GET
-
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -32,6 +29,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var enderecos = await _cursoEnderecoService.GetAllCursosEnderecosAsync();
+
                 return Ok(enderecos);
             }
             catch (Exception ex)
@@ -48,6 +46,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var endereco = await _cursoEnderecoService.GetCursoEnderecoAsync(id);
+
                 return Ok(endereco);
             }
             catch (NotFoundException ex)
@@ -70,8 +69,8 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 await _cursoEnderecoService.CreateCursoEnderecoAsync(endereco);
-
                 var novoEndereco = await _cursoEnderecoRepository.AddCursoEnderecoAsync(endereco);
+
                 return CreatedAtAction(nameof(GetByIdCursoEndereco), new { id = novoEndereco.idCursoEndereco }, novoEndereco);
             }
             catch (NotFoundException ex)
@@ -95,7 +94,6 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var existingEndereco = await _cursoEnderecoService.UpdateCursoEnderecoAsync(id, updatedEndereco);
-
                 await _cursoEnderecoRepository.UpdateCursoEnderecoAsync(existingEndereco);
 
                 return Ok(existingEndereco);
@@ -126,6 +124,7 @@ namespace ChronosApi.Controllers.Enderecos
                 }
 
                 await _cursoEnderecoRepository.DeleteCursoEnderecoAsync(existingEndereco);
+
                 return Ok("Endereço deletado com sucesso!");
             }
             catch (NotFoundException ex)

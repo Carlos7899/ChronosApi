@@ -14,11 +14,9 @@ namespace ChronosApi.Models.Enderecos
 
         [ForeignKey("idLogradouro")]
         public int idLogradouro { get; set; }
-
         public string numeroCursoEndereco { get; set; } = string.Empty;
         public string complementoCursoEndereco { get; set; } = string.Empty;
        
-
         [JsonIgnore]
         [NotMapped]
         public LogradouroModel? logradouro { get; set; }

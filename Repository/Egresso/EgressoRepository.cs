@@ -9,6 +9,7 @@ namespace ChronosApi.Repository.Egresso
     public class EgressoRepository : IEgressoRepository
     {
         private readonly DataContext _context;
+
         public EgressoRepository(DataContext context)
         {
             _context = context;
@@ -17,12 +18,14 @@ namespace ChronosApi.Repository.Egresso
         public async Task<List<EgressoModel>> GetAllAsync()
         {
             var egresso = await _context.TB_EGRESSO.ToListAsync();
+
             return egresso;
         }
 
         public async Task<ActionResult<EgressoModel?>> GetIdAsync(int id)
         {
             var egresso = await _context.TB_EGRESSO.FirstOrDefaultAsync(e => e.idEgresso == id);
+
             return egresso;
         }
 
@@ -31,6 +34,7 @@ namespace ChronosApi.Repository.Egresso
             egresso.idEgresso = 0;
             _context.TB_EGRESSO.Add(egresso);
             await _context.SaveChangesAsync();
+
             return egresso;
         }
 
@@ -52,6 +56,7 @@ namespace ChronosApi.Repository.Egresso
             _context.Entry(egresso).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
+
             return egresso;
         }
             
@@ -82,7 +87,6 @@ namespace ChronosApi.Repository.Egresso
                 PasswordSalt = salt
             };
 
-
             await _context.TB_EGRESSO.AddAsync(egresso);
             await _context.SaveChangesAsync();
         }
@@ -93,13 +97,11 @@ namespace ChronosApi.Repository.Egresso
 
             if (usuario != null)
             {
-
                 bool senhaValida = Criptografia.VerificarPasswordHash(passwordString, usuario.PasswordHash, usuario.PasswordSalt);
 
                 if (senhaValida)
                 {
-
-                    usuario.DataAcesso = System.DateTime.Now;
+                    usuario.DataAcesso = DateTime.Now;
                     _context.TB_EGRESSO.Update(usuario);
                     await _context.SaveChangesAsync();
 
@@ -136,6 +138,5 @@ namespace ChronosApi.Repository.Egresso
             var corporacoes = await GetAllAsync();
             return corporacoes.Any(c => c.emailEgresso.ToLower() == email.ToLower());
         }
-
     }
 }

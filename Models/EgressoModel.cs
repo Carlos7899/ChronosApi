@@ -18,12 +18,10 @@ namespace ChronosApi.Models
         public string numeroEgresso { get; set; } = string.Empty;
         public string cpfEgresso { get; set; } = string.Empty;
         public byte[]? fotoPerfilEgresso { get; set; }
-
         public byte[]? PasswordHash { get; set; }
         public byte[]? PasswordSalt { get; set; }
         public DateTime? DataAcesso { get; set; }
 
- 
         [NotMapped]
         public string PasswordString { get; set; } = string.Empty;
 

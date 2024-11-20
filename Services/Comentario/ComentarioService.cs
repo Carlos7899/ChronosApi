@@ -33,20 +33,17 @@ namespace ChronosApi.Services.Comentario
             {
                 throw new NotFoundException("Comentário não encontrado.");
             }
-
           
             existingComentario.comentarioPublicacao = comentarioAtualizado.comentarioPublicacao;
-
             _context.TB_COMENTARIOS.Update(existingComentario);
             await _context.SaveChangesAsync();
         }
 
         public async Task<List<ComentarioModel>> ObterComentariosPorPublicacaoAsync(int idPublicacao)
         {
-            return await _context.TB_COMENTARIOS
-                .Where(c => c.idPublicacao == idPublicacao)
-                .ToListAsync();
+            return await _context.TB_COMENTARIOS.Where(c => c.idPublicacao == idPublicacao).ToListAsync();
         }
+
         public async Task<ComentarioModel?> ObterComentarioPorIdAsync(int idComentario)
         {
             return await _context.TB_COMENTARIOS.FirstOrDefaultAsync(c => c.idComentario == idComentario);
@@ -72,6 +69,5 @@ namespace ChronosApi.Services.Comentario
 
             return "Válido";
         }
-
     }
 }

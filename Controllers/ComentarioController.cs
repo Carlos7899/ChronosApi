@@ -10,69 +10,70 @@ namespace ChronosApi.Controllers
     [Route("api/[controller]")]
      public class ComentarioController : ControllerBase
      {
-            private readonly IComentarioService _comentarioService;
-            private readonly IComentarioRepository _comentarioRepository;
+        private readonly IComentarioService _comentarioService;
+        private readonly IComentarioRepository _comentarioRepository;
 
-            public ComentarioController(IComentarioService comentarioService, IComentarioRepository comentarioRepository)
-            {
-                _comentarioService = comentarioService;
-                _comentarioRepository = comentarioRepository;
-            }
+        public ComentarioController(IComentarioService comentarioService, IComentarioRepository comentarioRepository)
+        {
+            _comentarioService = comentarioService;
+            _comentarioRepository = comentarioRepository;
+        }
 
         #region GET
-            [HttpGet("GetAll")]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            public async Task<ActionResult<List<ComentarioModel>>> GetAll()
+        [HttpGet("GetAll")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<ComentarioModel>>> GetAll()
+        {
+            try
             {
-                try
-                {
-                    var comentarios = await _comentarioRepository.GetAllAsync();
-                    return StatusCode(200, comentarios);
-                }
-                catch (System.Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
-            }
+                var comentarios = await _comentarioRepository.GetAllAsync();
 
-            [HttpGet("GetById/{id}")]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            public async Task<ActionResult<ComentarioModel>> Get(int id)
-            {
-                try
-                {
-                var comentario = await _comentarioRepository.GetByIdAsync(id);   
-                    if (comentario == null)
-                    {
-                        return NotFound("Comentário não encontrado.");
-                    }
-                    return Ok(comentario);
-                }
-                catch (System.Exception)
-                {
-                    return StatusCode(500);
-                }
+                return StatusCode(200, comentarios);
             }
-            #endregion
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetById/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<ComentarioModel>> Get(int id)
+        {
+            try
+            {
+            var comentario = await _comentarioRepository.GetByIdAsync(id);   
+            if (comentario == null)
+                return NotFound("Comentário não encontrado.");
+                
+            return Ok(comentario);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+        #endregion
 
         #region CREATE
-            [HttpPost("Post")]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            [ProducesResponseType(StatusCodes.Status201Created)]
-            public async Task<ActionResult<ComentarioModel>> Post([FromBody] ComentarioModel comentario)
+        [HttpPost("Post")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<ComentarioModel>> Post([FromBody] ComentarioModel comentario)
+        {
+            try
             {
-                try
-                {
-                    await _comentarioService.AdicionarComentarioAsync(comentario);
-                    return StatusCode(201, comentario);
-                }
-                catch (System.Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                await _comentarioService.AdicionarComentarioAsync(comentario);
+
+                return StatusCode(201, comentario);
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         #endregion
 
         #region UPDATE
@@ -82,17 +83,17 @@ namespace ChronosApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(int id, [FromBody] ComentarioModel comentarioAtualizado)
         {
-
             try
             {
                 await _comentarioService.AtualizarComentarioAsync(id, comentarioAtualizado);
+
                 return Ok("Comentário atualizado com sucesso!");
             }
             catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -101,28 +102,26 @@ namespace ChronosApi.Controllers
 
         #region DELETE
         [HttpDelete("Delete/{id}")]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            public async Task<ActionResult> Delete(int id)
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
             {
-                try
-                {
-                    var comentarioExists = await _comentarioRepository.GetByIdAsync(id);
+                var comentarioExists = await _comentarioRepository.GetByIdAsync(id);
                 if (comentarioExists == null)
-                    {
-                        return NotFound("Comentário não encontrado.");
-                    }
+                    return NotFound("Comentário não encontrado.");
 
-                    await _comentarioRepository.DeleteAsync(id);
-                    return Ok("Comentário deletado com sucesso!");
-                }
-                catch (System.Exception)
-                {
-                    return StatusCode(500);
-                }
+                await _comentarioRepository.DeleteAsync(id);
+                return Ok("Comentário deletado com sucesso!");
             }
-            #endregion
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+        #endregion
      }
  }
 

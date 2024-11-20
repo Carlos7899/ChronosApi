@@ -4,57 +4,57 @@ using ChronosApi.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChronosApi.Controllers
-{
- 
+{ 
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CursoController : ControllerBase
+    {
+        private readonly ICursoService _cursoService;
 
-        [ApiController]
-        [Route("api/[controller]")]
-        public class CursoController : ControllerBase
+        public CursoController(ICursoService cursoService)
         {
-            private readonly ICursoService _cursoService;
+            _cursoService = cursoService;
+        }
 
-            public CursoController(ICursoService cursoService)
+        #region GET
+        [HttpGet("GetAll")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<CursoModel>>> GetAll()
+        {
+            try
             {
-                _cursoService = cursoService;
-              
-            }
+                var cursos = await _cursoService.GetAllAsync();
 
-            #region GET
-            [HttpGet("GetAll")]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            public async Task<ActionResult<IEnumerable<CursoModel>>> GetAll()
-            {
-                try
-                {
-                    var cursos = await _cursoService.GetAllAsync();
-                    return Ok(cursos);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                return Ok(cursos);
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
-            [HttpGet("GetbyId/{id}")]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            public async Task<ActionResult<CursoModel>> Get(int id)
+        [HttpGet("GetbyId/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<CursoModel>> Get(int id)
+        {
+            try
             {
-                try
-                {
-                    var curso = await _cursoService.GetAsync(id);
-                    return Ok(curso);
-                }
-                catch (NotFoundException)
-                {
-                    return NotFound("Curso não encontrado.");
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                var curso = await _cursoService.GetAsync(id);
+
+                return Ok(curso);
             }
+            catch (NotFoundException)
+            {
+                return NotFound("Curso não encontrado.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("GetByNome/{nomeCurso}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -63,6 +63,7 @@ namespace ChronosApi.Controllers
             try
             {
                 var cursos = await _cursoService.GetCursosByNomeAsync(nomeCurso);
+
                 return Ok(cursos);
             }
             catch (Exception ex)
@@ -79,6 +80,7 @@ namespace ChronosApi.Controllers
             try
             {
                 var cursos = await _cursoService.GetCursosByCorporacaoAsync(idCorporacao);
+
                 return Ok(cursos);
             }
             catch (Exception ex)
@@ -88,90 +90,92 @@ namespace ChronosApi.Controllers
         }
         #endregion
 
-            #region CREATE
-            [HttpPost("POST")]
-            [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-            [ProducesResponseType(StatusCodes.Status201Created)]
-            public async Task<ActionResult<CursoModel>> Post([FromBody] CursoModel novoCurso)
+        #region CREATE
+        [HttpPost("POST")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<CursoModel>> Post([FromBody] CursoModel novoCurso)
+        {
+            try
             {
-                try
-                {
-                    await _cursoService.CreateAsync(novoCurso);
-                    return CreatedAtAction(nameof(Get), new { id = novoCurso.idCurso }, novoCurso);
-                }
-                catch (ConflictException ex)
-                {
-                    return Conflict(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
-            }
-            #endregion
+                await _cursoService.CreateAsync(novoCurso);
 
-            #region UPDATE
-            [HttpPut("Put/{id}")]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            public async Task<ActionResult> Put(int id, [FromBody] CursoModel cursoAtualizado)
-            {
-                try
-                {
-                    await _cursoService.PutAsync(id, cursoAtualizado);
-                    return Ok("Curso atualizado com sucesso!");
-                }
-                catch (NotFoundException)
-                {
-                    return NotFound("Curso não encontrado.");
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                return CreatedAtAction(nameof(Get), new { id = novoCurso.idCurso }, novoCurso);
             }
-            #endregion
-
-            #region DELETE
-            [HttpDelete("Delete/{id}")]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            public async Task<ActionResult> Delete(int id)
+            catch (ConflictException ex)
             {
-                try
-                {
-                    await _cursoService.DeleteAsync(id);
-                    return Ok("Curso deletado com sucesso!");
-                }
-                catch (NotFoundException)
-                {
-                    return NotFound("Curso não encontrado.");
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                return Conflict(ex.Message);
             }
-            #endregion
-   
-            #region count
-            [HttpGet("ContarPorCorporacao/{idCorporacao}")]
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            public async Task<ActionResult<int>> ContarPorCorporacao(int idCorporacao)
+            catch (Exception ex)
             {
-                try
-                {
-                    var count = await _cursoService.ContarCursosPorCorporacaoAsync(idCorporacao);
-                    return Ok(count);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                return BadRequest(ex.Message);
             }
-            #endregion
-
         }
-    }
+        #endregion
 
+        #region UPDATE
+        [HttpPut("Put/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> Put(int id, [FromBody] CursoModel cursoAtualizado)
+            {
+            try
+            {
+                await _cursoService.PutAsync(id, cursoAtualizado);
+
+                return Ok("Curso atualizado com sucesso!");
+            }
+            catch (NotFoundException)
+            {
+                return NotFound("Curso não encontrado.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
+
+        #region DELETE
+        [HttpDelete("Delete/{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
+            {
+                await _cursoService.DeleteAsync(id);
+
+                return Ok("Curso deletado com sucesso!");
+            }
+            catch (NotFoundException)
+            {
+                return NotFound("Curso não encontrado.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
+   
+        #region COUNT
+        [HttpGet("ContarPorCorporacao/{idCorporacao}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<int>> ContarPorCorporacao(int idCorporacao)
+        {
+            try
+            {
+                var count = await _cursoService.ContarCursosPorCorporacaoAsync(idCorporacao);
+
+                return Ok(count);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
+    }
+}

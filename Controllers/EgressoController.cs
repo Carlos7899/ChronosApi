@@ -39,15 +39,13 @@ namespace ChronosApi.Controllers
             try
             {
                 var egressos = await _egressoRepository.GetAllAsync();
+
                 return StatusCode(200, egressos);
-
             }
-
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-
         }
 
         [HttpGet("GetbyId/{id}")]
@@ -58,14 +56,12 @@ namespace ChronosApi.Controllers
             try
             {
                 var egresso = await _egressoRepository.GetIdAsync(id);
-
                 await _egressoService.GetAsync(id);
 
                 return Ok(egresso);
 
             }
-
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
 
@@ -73,8 +69,8 @@ namespace ChronosApi.Controllers
         }
         #endregion
 
-        //Não é necessario, basta registrar e depois update, possivelmente vou remover
         #region CREATE
+        // Não é necessario, basta registrar e depois update, possivelmente será removido
         [HttpPost("POST")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -83,13 +79,12 @@ namespace ChronosApi.Controllers
             try
             {
                 var novoegresso = await _egressoRepository.PostAsync(egresso);
+
                 return StatusCode(201, novoegresso);
             }
-
             catch (Exception)
             {
                 return StatusCode(500);
-
             }
         }
         #endregion
@@ -110,7 +105,6 @@ namespace ChronosApi.Controllers
                 }
 
                 var updatedEgresso = await _egressoRepository.PutAsync(id, egresso);
-
                 if (updatedEgresso == null)
                 {
                     return Conflict("Não foi possível atualizar o egresso.");
@@ -118,12 +112,11 @@ namespace ChronosApi.Controllers
 
                 return Ok("Dados do Egresso atualizados com sucesso!");
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
         }
-
         #endregion
 
         #region DELETE
@@ -131,7 +124,6 @@ namespace ChronosApi.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-
         public async Task<ActionResult> Delete(int id)
         {
             try
@@ -139,10 +131,10 @@ namespace ChronosApi.Controllers
                 await _egressoService.DeleteAsync(id);
                 await _egressoRepository.DeleteAsync(id);
 
-                return Ok("Egresso Deletado com sucesso!");
+                return Ok("Egresso deletado com sucesso!");
 
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -162,13 +154,11 @@ namespace ChronosApi.Controllers
 
             try
             {
-             
                 if (await _egressoRepository.EgressoExisteEmailAsync(model.emailEgresso))
                 {
-                    return BadRequest("Egresso já registrada.");
+                    return BadRequest("Egresso já registrado.");
                 }
 
-           
                 await _egressoRepository.RegistrarEgressoAsync(model.emailEgresso, model.PasswordString);
 
                 return Ok("Registro realizado com sucesso.");
@@ -225,7 +215,6 @@ namespace ChronosApi.Controllers
             }
         }
 
-
         private string CriarToken(EgressoModel usuario)
         {
             List<Claim> claims = new List<Claim>
@@ -233,8 +222,8 @@ namespace ChronosApi.Controllers
                 new Claim(ClaimTypes.NameIdentifier, usuario.idEgresso.ToString()),
                 new Claim(ClaimTypes.Email, usuario.emailEgresso),
             };
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
 
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
@@ -243,8 +232,10 @@ namespace ChronosApi.Controllers
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = creds
             };
+
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+
             return tokenHandler.WriteToken(token);
         }
         #endregion
@@ -260,12 +251,11 @@ namespace ChronosApi.Controllers
 
                 return Ok(200);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
         #endregion
-
     }
 }

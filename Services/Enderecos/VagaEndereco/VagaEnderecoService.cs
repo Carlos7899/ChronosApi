@@ -1,6 +1,5 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models.Enderecos;
-using ChronosApi.Services.CorporacaoEndereco;
 using ChronosApi.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +8,7 @@ namespace ChronosApi.Services.Enderecos.VagaEndereco
     public class VagaEnderecoService : IVagaEnderecoService
     {
         private readonly DataContext _context;
+
         public VagaEnderecoService(DataContext context)
         {
             _context = context;
@@ -22,7 +22,6 @@ namespace ChronosApi.Services.Enderecos.VagaEndereco
         public async Task<VagaEnderecoModel> GetVagaEnderecoAsync(int id)
         {
             var endereco = await _context.TB_VAGA_ENDERECO.Include(e => e.logradouro).FirstOrDefaultAsync(e => e.idVagaEndereco == id);
-
             if (endereco == null)
             {
                 throw new NotFoundException("Endereço não encontrado.");

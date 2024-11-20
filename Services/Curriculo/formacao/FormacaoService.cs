@@ -32,9 +32,7 @@ namespace ChronosApi.Services.Formacao
 
         public async Task<IEnumerable<FormacaoModel>> GetFormacoesByCurriculoAsync(int idCurriculo)
         {
-            return await _context.TB_FORMACAO
-                .Where(f => f.idCurriculo == idCurriculo)
-                .ToListAsync();
+            return await _context.TB_FORMACAO.Where(f => f.idCurriculo == idCurriculo).ToListAsync();
         }
 
         public async Task CreateAsync(FormacaoModel novaFormacao)
@@ -71,7 +69,6 @@ namespace ChronosApi.Services.Formacao
             {
                 throw new NotFoundException("Formação não encontrada.");
             }
-
             
             formacao.cursoFormacao = formacaoAtualizada.cursoFormacao;
             formacao.instituicaoFormacao = formacaoAtualizada.instituicaoFormacao;

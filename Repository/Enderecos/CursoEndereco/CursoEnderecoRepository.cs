@@ -1,6 +1,5 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models.Enderecos;
-using ChronosApi.Repository.CorporacaoEndereco;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Repository.Enderecos.CursoEndereco
@@ -8,6 +7,7 @@ namespace ChronosApi.Repository.Enderecos.CursoEndereco
     public class CursoEnderecoRepository : ICursoEnderecoRepository
     {
         private readonly DataContext _context;
+
         public CursoEnderecoRepository(DataContext context)
         {
             _context = context;
@@ -32,6 +32,7 @@ namespace ChronosApi.Repository.Enderecos.CursoEndereco
         {
             _context.TB_CURSO_ENDERECO.Add(endereco);
             await _context.SaveChangesAsync();
+
             return endereco;
         }
 
@@ -39,6 +40,7 @@ namespace ChronosApi.Repository.Enderecos.CursoEndereco
         {
             _context.Entry(endereco).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
             return endereco;
         }
 

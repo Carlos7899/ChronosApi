@@ -1,7 +1,5 @@
 ﻿using ChronosApi.Models.Enderecos;
-using ChronosApi.Repository.CorporacaoEndereco;
 using ChronosApi.Repository.Enderecos.VagaEndereco;
-using ChronosApi.Services.CorporacaoEndereco;
 using ChronosApi.Services.Enderecos.VagaEndereco;
 using ChronosApi.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +11,6 @@ namespace ChronosApi.Controllers.Enderecos
     [Route("api/[Controller]")]
     public class VagaEnderecoController : ControllerBase
     {
-
         private readonly IVagaEnderecoService _vagaEnderecoService;
         private readonly IVagaEnderecoRepository _vagaEnderecoRepository;
 
@@ -24,7 +21,6 @@ namespace ChronosApi.Controllers.Enderecos
         }
 
         #region GET
-
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -33,6 +29,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var enderecos = await _vagaEnderecoService.GetAllVagasEnderecosAsync();
+
                 return Ok(enderecos);
             }
             catch (Exception ex)
@@ -49,6 +46,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var endereco = await _vagaEnderecoService.GetVagaEnderecoAsync(id);
+
                 return Ok(endereco);
             }
             catch (NotFoundException ex)
@@ -72,8 +70,8 @@ namespace ChronosApi.Controllers.Enderecos
             {
              
                 await _vagaEnderecoService.CreateVagaEnderecoAsync(endereco);
-
                 var novoEndereco = await _vagaEnderecoRepository.AddVagaEnderecoAsync(endereco);
+
                 return CreatedAtAction(nameof(GetByIdVagaEndereco), new { id = novoEndereco.idVagaEndereco }, novoEndereco);
             }
             catch (NotFoundException ex)
@@ -97,7 +95,6 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var existingEndereco = await _vagaEnderecoService.UpdateVagaEnderecoAsync(id, updatedEndereco);
-
                 await _vagaEnderecoRepository.UpdateVagaEnderecoAsync(existingEndereco);
 
                 return Ok(existingEndereco);
@@ -128,6 +125,7 @@ namespace ChronosApi.Controllers.Enderecos
                 }
 
                 await _vagaEnderecoRepository.DeleteVagaEnderecoAsync(existingEndereco);
+
                 return Ok("Endereço deletado com sucesso!");
             }
             catch (NotFoundException ex)

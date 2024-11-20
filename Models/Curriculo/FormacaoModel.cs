@@ -8,16 +8,15 @@ namespace ChronosApi.Models.Curriculo
     {
         [Key]
         public int idFormacao { get; set; }
+
         [ForeignKey("idCurriculo")]
         public int idCurriculo { get; set; }
-        public string cursoFormacao { get; set; }
-        public string instituicaoFormacao { get; set; }
+        public string cursoFormacao { get; set; } = string.Empty;
+        public string instituicaoFormacao { get; set; } = string.Empty;
         public DateTime dataConclusaoFormacao { get; set; }
-
 
         [NotMapped]
         [JsonIgnore]
         public CurriculoModel? Curriculo { get; set; }
-
     }
 }

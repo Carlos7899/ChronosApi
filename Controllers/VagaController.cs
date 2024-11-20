@@ -32,6 +32,7 @@ namespace ChronosApi.Controllers
             try
             {
                 var vagas = await _vagaRepository.GetAllAsync();
+
                 return Ok(vagas);
             }
             catch (Exception ex)
@@ -53,6 +54,7 @@ namespace ChronosApi.Controllers
                 {
                     return NotFound("Vaga não encontrada.");
                 }
+
                 return Ok(vaga);
             }
             catch (Exception ex)
@@ -69,6 +71,7 @@ namespace ChronosApi.Controllers
             try
             {
                 var vagas = await _vagaService.GetVagasPorCorporacaoAsync(idCorporacao);
+
                 return Ok(vagas);
             }
             catch (NotFoundException ex)
@@ -91,6 +94,7 @@ namespace ChronosApi.Controllers
             {
                 return NotFound("Nenhuma vaga encontrada para a data especificada.");
             }
+
             return Ok(vagas);
         }
 
@@ -120,8 +124,6 @@ namespace ChronosApi.Controllers
                 return StatusCode(500, "Ocorreu um erro ao buscar as vagas: " + ex.Message);
             }
         }
-
-
         #endregion
 
         #region CREATE
@@ -131,30 +133,25 @@ namespace ChronosApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<VagaModel>> Post([FromBody] VagaModel vaga)
         {
-       
             if (vaga == null)
-            {
                 return BadRequest("O objeto vaga não pode ser nulo.");
-            }
+
             if (string.IsNullOrWhiteSpace(vaga.nomeVaga))
-            {
                 return BadRequest("O campo nome da Vaga é obrigatório.");
-            }
 
             if (vaga.idCorporacao <= 0) 
-            {
                 return BadRequest("O campo idCorporacao é obrigatório.");
-            }
 
             try
             {
                 var novavaga = await _vagaRepository.PostAsync(vaga);
+
                 return CreatedAtAction(nameof(Post), new { id = novavaga.idVaga }, novavaga); 
             }
             catch (Exception ex)
             {
-                
                 Console.WriteLine($"Erro ao criar vaga: {ex.Message}");
+
                 return StatusCode(500, "Ocorreu um erro ao tentar criar a vaga."); 
             }
         }
@@ -175,6 +172,7 @@ namespace ChronosApi.Controllers
                 }
 
                 var updatedVaga = await _vagaRepository.PutAsync(id, vaga);
+
                 return Ok(updatedVaga);
             }
             catch (Exception ex)

@@ -22,7 +22,6 @@ namespace ChronosApi.Controllers.Enderecos
 
 
         // CRUD pronto
-
         #region GET
         [HttpGet("GetAll")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -32,6 +31,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var logradouros = await _logradouroRepository.GetAllAsync();
+
                 return Ok(logradouros);
             }
             catch (Exception ex)
@@ -52,6 +52,7 @@ namespace ChronosApi.Controllers.Enderecos
                 {
                     return NotFound("Logradouro não encontrado.");
                 }
+
                 return Ok(logradouro);
             }
             catch (Exception ex)
@@ -70,6 +71,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var novoLogradouro = await _logradouroRepository.PostAsync(logradouro);
+
                 return StatusCode(201, novoLogradouro);
             }
             catch (Exception ex)
@@ -94,6 +96,7 @@ namespace ChronosApi.Controllers.Enderecos
                 }
 
                 var updatedLogradouro = await _logradouroRepository.PutAsync(id, logradouro);
+
                 return Ok(updatedLogradouro);
             }
             catch (Exception ex)
@@ -118,6 +121,7 @@ namespace ChronosApi.Controllers.Enderecos
                 }
 
                 await _logradouroRepository.DeleteAsync(id);
+
                 return Ok("Logradouro deletado com sucesso!");
             }
             catch (Exception ex)

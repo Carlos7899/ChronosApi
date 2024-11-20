@@ -32,7 +32,7 @@ namespace ChronosApi.Controllers
                 var publicacoes = await _publicacaoRepository.GetAllAsync();
                 return Ok(publicacoes);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
@@ -53,7 +53,7 @@ namespace ChronosApi.Controllers
                 }
                 return Ok(publicacao);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
@@ -69,7 +69,6 @@ namespace ChronosApi.Controllers
         {
             try
             {
-               
                 if (!await _publicacaoService.CorporacaoExists(publicacao.idCorporacao))
                 {
                     return BadRequest("Corporação não encontrada.");
@@ -78,7 +77,7 @@ namespace ChronosApi.Controllers
                 var novaPublicacao = await _publicacaoRepository.PostAsync(publicacao);
                 return CreatedAtAction(nameof(Get), new { id = novaPublicacao.idPublicacao }, novaPublicacao);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
@@ -94,7 +93,6 @@ namespace ChronosApi.Controllers
         {
             try
             {
-         
                 if (!await _publicacaoService.CorporacaoExists(publicacao.idCorporacao))
                 {
                     return BadRequest("Corporação não encontrada.");
@@ -132,7 +130,7 @@ namespace ChronosApi.Controllers
 
                 return Ok("Publicação deletada com sucesso!");
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
@@ -156,7 +154,7 @@ namespace ChronosApi.Controllers
 
                 return NoContent(); 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
@@ -181,12 +179,11 @@ namespace ChronosApi.Controllers
 
                 return Ok(publicacoes);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
         #endregion
-
     }
 }

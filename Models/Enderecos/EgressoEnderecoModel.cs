@@ -24,7 +24,5 @@ namespace ChronosApi.Models.Enderecos
         [NotMapped]
         [JsonIgnore]
         public LogradouroModel? Logradouro { get; set; }
-
-
     }
 }

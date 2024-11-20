@@ -1,10 +1,5 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using ChronosApi.Data;
+﻿using ChronosApi.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 public class VagaCleanupService : IHostedService, IDisposable
 {

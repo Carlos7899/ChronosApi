@@ -4,7 +4,6 @@ using ChronosApi.Services.Corporacao;
 using ChronosApi.Services.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -16,7 +15,6 @@ namespace ChronosApi.Controllers
     [Route("api/[controller]")]
     public class CorporacaoController : ControllerBase
     {
-  
         private readonly ICorporacaoRepository _corporacaoRepository;
         private readonly ICorporacaoService _corporacaoService;
         private readonly IConfiguration _configuration;
@@ -37,15 +35,14 @@ namespace ChronosApi.Controllers
             try
             {
                 var corporacoes = await _corporacaoRepository.GetAllAsync();
-                return StatusCode(200, corporacoes);
 
+                return StatusCode(200, corporacoes);
             }
 
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-
         }
 
         [HttpGet("GetbyId/{id}")]
@@ -56,23 +53,20 @@ namespace ChronosApi.Controllers
             try
             {
                 var egresso = await _corporacaoRepository.GetIdAsync(id);
-
                 await _corporacaoService.GetAsync(id);
 
                 return Ok(egresso);
-
             }
 
             catch (Exception)
             {
                 return StatusCode(500);
-
             }
         }
         #endregion
 
-        //Nao e´ necessario, basta registrar e depois update, possivelmente vou remover
         #region CREATE
+        // Não é necessario, basta registrar e depois update, possivelmente será removido
         [HttpPost("POST")]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -81,16 +75,14 @@ namespace ChronosApi.Controllers
             try
             {
                 var novoegresso = await _corporacaoRepository.PostAsync(corporacao);
-                return StatusCode(201, novoegresso);
 
+                return StatusCode(201, novoegresso);
             }
 
             catch (Exception)
             {
                 return StatusCode(500);
-
             }
-
         }
         #endregion
 
@@ -106,11 +98,10 @@ namespace ChronosApi.Controllers
                 var egressoExists = await _corporacaoService.CorporacaoExisteAsync(id);
                 if (!egressoExists)
                 {
-                    return NotFound("corporacao não encontrado.");
+                    return NotFound("Corporção não encontrado.");
                 }
 
                 var updatedEgresso = await _corporacaoRepository.PutAsync(id, corporacao);
-
                 if (updatedEgresso == null)
                 {
                     return Conflict("Não foi possível atualizar o egresso.");
@@ -123,12 +114,10 @@ namespace ChronosApi.Controllers
                 return StatusCode(500);
             }
         }
-
         #endregion
 
         #region DELETE
         [HttpDelete("Delete/{id}")]
-
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -140,8 +129,7 @@ namespace ChronosApi.Controllers
                 await _corporacaoService.DeleteAsync(id);
                 await _corporacaoRepository.DeleteAsync(id);
 
-                return Ok("Egresso Deletado com sucesso!");
-
+                return Ok("Egresso deletado com sucesso!");
             }
             catch (Exception)
             {
@@ -163,13 +151,11 @@ namespace ChronosApi.Controllers
 
             try
             {
-                // Verifica se a corporação já existe
                 if (await _corporacaoRepository.CorporacaoExisteEmailAsync(model.emailCorporacao))
                 {
                     return BadRequest("Corporação já registrada.");
                 }
 
-                // Registrar a nova corporação
                 await _corporacaoRepository.RegistrarCorporacaoAsync(model.emailCorporacao, model.PasswordString);
 
                 return Ok("Registro realizado com sucesso.");
@@ -203,7 +189,6 @@ namespace ChronosApi.Controllers
                     throw new Exception("Corporação não encontrada.");
                 }
 
-                // Verifica se a senha está correta
                 if (!Criptografia.VerificarPasswordHash(credenciais.PasswordString, corporacaoEncontrada.PasswordHash, corporacaoEncontrada.PasswordSalt))
                 {
                     throw new Exception("Senha incorreta.");
@@ -212,10 +197,8 @@ namespace ChronosApi.Controllers
                 corporacaoEncontrada.DataAcesso = DateTime.Now;
                 await _corporacaoRepository.PutAsync(corporacaoEncontrada.idCorporacao, corporacaoEncontrada);
 
-                // Cria o token
                 string token = CriarToken(corporacaoEncontrada);
 
-                // Retorna o token e o ID da corporação
                 return Ok(new
                 {
                     Token = token,
@@ -228,9 +211,6 @@ namespace ChronosApi.Controllers
             }
         }
        
-
-
-
         private string CriarToken(CorporacaoModel usuario)
         {
             List<Claim> claims = new List<Claim>
@@ -240,8 +220,8 @@ namespace ChronosApi.Controllers
                 new Claim(ClaimTypes.Name, usuario.nomeCorporacao),
                  
             };
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
 
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("configuracaoToken:Chave").Value ?? ""));
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
@@ -250,8 +230,10 @@ namespace ChronosApi.Controllers
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = creds
             };
+
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+
             return tokenHandler.WriteToken(token);
         }
         #endregion

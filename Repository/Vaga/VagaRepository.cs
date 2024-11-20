@@ -25,17 +25,17 @@ namespace ChronosApi.Repository.Vaga
 
         public async Task<VagaModel> PostAsync(VagaModel vaga)
         {
-           
             await _context.TB_VAGA.AddAsync(vaga); 
             await _context.SaveChangesAsync(); 
             return vaga; 
         }
 
-
         public async Task<VagaModel?> PutAsync(int id, VagaModel updatedVaga)
         {
             var vaga = await GetIdAsync(id);
-            if (vaga == null) return null;
+            if (vaga == null) 
+                
+                return null;
 
             vaga.nomeVaga = updatedVaga.nomeVaga;
             vaga.nomeVaga = updatedVaga.nomeVaga;
@@ -47,16 +47,19 @@ namespace ChronosApi.Repository.Vaga
 
             _context.Entry(vaga).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
             return vaga;
         }
 
         public async Task<VagaModel?> DeleteAsync(int id)
         {
             var vaga = await GetIdAsync(id);
-            if (vaga == null) return null;
+            if (vaga == null) 
+                return null;
 
             _context.TB_VAGA.Remove(vaga);
             await _context.SaveChangesAsync();
+
             return vaga;
         }
     }

@@ -9,6 +9,7 @@ namespace ChronosApi.Repository.Corporacao
     public class CorporacaoRepository : ICorporacaoRepository
     {
         private readonly DataContext _context;
+
         public CorporacaoRepository(DataContext context)
         {
             _context = context;
@@ -17,12 +18,14 @@ namespace ChronosApi.Repository.Corporacao
         public async Task<List<CorporacaoModel>> GetAllAsync()
         {
             var corporacao = await _context.TB_CORPORACAO.ToListAsync();
+
             return corporacao;
         }
 
         public async Task<ActionResult<CorporacaoModel?>> GetIdAsync(int id)
         {
             var corporacao = await _context.TB_CORPORACAO.FirstOrDefaultAsync(c => c.idCorporacao == id);
+
             return corporacao;
         }
 
@@ -31,6 +34,7 @@ namespace ChronosApi.Repository.Corporacao
             corporacao.idCorporacao = 0;
             _context.TB_CORPORACAO.Add(corporacao);
             await _context.SaveChangesAsync();
+
             return corporacao;
         }
 
@@ -53,6 +57,7 @@ namespace ChronosApi.Repository.Corporacao
             _context.Entry(corporacao).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
+
             return corporacao;
         }
 
@@ -93,7 +98,6 @@ namespace ChronosApi.Repository.Corporacao
 
             if (usuario != null)
             {
-
                 bool senhaValida = Criptografia.VerificarPasswordHash(passwordString, usuario.PasswordHash, usuario.PasswordSalt);
 
                 if (senhaValida)
@@ -130,9 +134,11 @@ namespace ChronosApi.Repository.Corporacao
 
             await _context.SaveChangesAsync();
         }
+
         public async Task<bool> CorporacaoExisteEmailAsync(string email)
         {
             var corporacoes = await GetAllAsync();
+
             return corporacoes.Any(c => c.emailCorporacao.ToLower() == email.ToLower());
         }
     }

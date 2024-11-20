@@ -2,7 +2,7 @@
 {
     public enum TipoEgresso
     {
-        juridico,
-        fisico
+        Juridico,
+        Fisico
     }
 }

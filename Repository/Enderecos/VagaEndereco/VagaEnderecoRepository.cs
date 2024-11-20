@@ -1,6 +1,5 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models.Enderecos;
-using ChronosApi.Repository.CorporacaoEndereco;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Repository.Enderecos.VagaEndereco
@@ -8,11 +7,11 @@ namespace ChronosApi.Repository.Enderecos.VagaEndereco
     public class VagaEnderecoRepository : IVagaEnderecoRepository
     {
         private readonly DataContext _context;
+
         public VagaEnderecoRepository(DataContext context)
         {
             _context = context;
         }
-
 
         public async Task<VagaEnderecoModel?> GetVagaEnderecoByIdAsync(int id)
         {
@@ -33,6 +32,7 @@ namespace ChronosApi.Repository.Enderecos.VagaEndereco
         {
             _context.TB_VAGA_ENDERECO.Add(endereco);
             await _context.SaveChangesAsync();
+
             return endereco;
         }
 
@@ -40,6 +40,7 @@ namespace ChronosApi.Repository.Enderecos.VagaEndereco
         {
             _context.Entry(endereco).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
             return endereco;
         }
 

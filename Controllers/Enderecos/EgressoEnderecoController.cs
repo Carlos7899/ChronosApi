@@ -1,5 +1,4 @@
-﻿using ChronosApi.Models;
-using ChronosApi.Models.Enderecos;
+﻿using ChronosApi.Models.Enderecos;
 using ChronosApi.Repository.Enderecos.EgressoEndereco;
 using ChronosApi.Services.EgressoEndereco;
 using ChronosApi.Services.Exceptions;
@@ -30,6 +29,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var enderecos = await _egressoEnderecoService.GetAllEgressosEnderecosAsync();
+
                 return Ok(enderecos);
             }
             catch (Exception ex)
@@ -46,6 +46,7 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var endereco = await _egressoEnderecoService.GetEgressoEnderecoAsync(id);
+
                 return Ok(endereco);
             }
             catch (NotFoundException ex)
@@ -67,11 +68,9 @@ namespace ChronosApi.Controllers.Enderecos
         {
             try
             {
-                // Verifica se o egresso e o logradouro existem
                 await _egressoEnderecoService.CreateEgressoEnderecoAsync(endereco);
-
-                // Adiciona o novo endereço ao repositório
                 var novoEndereco = await _egressoEnderecoRepository.AddEgressoEnderecoAsync(endereco);
+
                 return CreatedAtAction(nameof(GetByIdEgressoEndereco), new { id = novoEndereco.idEgressoEndereco }, novoEndereco);
             }
             catch (NotFoundException ex)
@@ -95,7 +94,6 @@ namespace ChronosApi.Controllers.Enderecos
             try
             {
                 var existingEndereco = await _egressoEnderecoService.UpdateEgressoEnderecoAsync(id, updatedEndereco);
-
                 await _egressoEnderecoRepository.UpdateEgressoEnderecoAsync(existingEndereco);
 
                 return Ok(existingEndereco);
@@ -126,6 +124,7 @@ namespace ChronosApi.Controllers.Enderecos
                 }
 
                 await _egressoEnderecoRepository.DeleteEgressoEnderecoAsync(existingEndereco);
+
                 return Ok("Endereço deletado com sucesso!");
             }
             catch (NotFoundException ex)

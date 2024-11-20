@@ -6,8 +6,8 @@ namespace ChronosApi.Repository.Enderecos.EgressoEndereco
 {
     public class EgressoEnderecoRepository : IEgressoEnderecoRepository
     {
-
         private readonly DataContext _context;
+
         public EgressoEnderecoRepository(DataContext context)
         {
             _context = context;
@@ -15,8 +15,7 @@ namespace ChronosApi.Repository.Enderecos.EgressoEndereco
 
         public async Task<EgressoEnderecoModel?> GetEgressoEnderecoByIdAsync(int id)
         {
-            return await _context.TB_EGRESSO_ENDERECO.Include(e => e.Logradouro)
-                .FirstOrDefaultAsync(e => e.idEgressoEndereco == id);
+            return await _context.TB_EGRESSO_ENDERECO.Include(e => e.Logradouro).FirstOrDefaultAsync(e => e.idEgressoEndereco == id);
         }
 
         public async Task<bool> EgressoExistsAsync(int idEgresso)
@@ -33,6 +32,7 @@ namespace ChronosApi.Repository.Enderecos.EgressoEndereco
         {
             _context.TB_EGRESSO_ENDERECO.Add(endereco);
             await _context.SaveChangesAsync();
+
             return endereco;
         }
 
@@ -40,6 +40,7 @@ namespace ChronosApi.Repository.Enderecos.EgressoEndereco
         {
             _context.Entry(endereco).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
             return endereco;
         }
 

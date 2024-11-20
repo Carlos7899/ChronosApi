@@ -7,6 +7,7 @@ namespace ChronosApi.Services.Logradouro
     public class LogradouroService : ILogradouroService
     {
         private readonly DataContext _context;
+
         public LogradouroService(DataContext context)
         {
             _context = context;

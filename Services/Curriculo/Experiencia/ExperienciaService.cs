@@ -21,6 +21,7 @@ namespace ChronosApi.Services.Curriculo.Experiencia
             {
                 throw new NotFoundException("Experiência não encontrada.");
             }
+
             return experiencia;
         }
 
@@ -36,7 +37,7 @@ namespace ChronosApi.Services.Curriculo.Experiencia
             experiencia.cargoExperiencia = experienciaAtualizada.cargoExperiencia;
             experiencia.dataInicioExperiencia = experienciaAtualizada.dataInicioExperiencia;
             experiencia.dataFimExperiencia = experienciaAtualizada.dataFimExperiencia;
-            experiencia.Descricao = experienciaAtualizada.Descricao;
+            experiencia.descricao = experienciaAtualizada.descricao;
 
             await _context.SaveChangesAsync();
         }
@@ -60,7 +61,6 @@ namespace ChronosApi.Services.Curriculo.Experiencia
 
         public async Task CreateAsync(ExperienciaModel novaExperiencia)
         {
-       
             await _context.TB_EXPERIENCIA.AddAsync(novaExperiencia);
             await _context.SaveChangesAsync();
         }
@@ -72,9 +72,7 @@ namespace ChronosApi.Services.Curriculo.Experiencia
 
         public async Task<IEnumerable<ExperienciaModel>> GetExperienciasByCurriculoAsync(int idCurriculo)
         {
-            return await _context.TB_EXPERIENCIA
-                .Where(e => e.idCurriculo == idCurriculo)
-                .ToListAsync();
+            return await _context.TB_EXPERIENCIA.Where(e => e.idCurriculo == idCurriculo).ToListAsync();
         }
     }
 }

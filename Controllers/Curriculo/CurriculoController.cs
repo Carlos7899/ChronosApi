@@ -25,6 +25,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var curriculos = await _curriculoService.GetAllAsync();
+
                 return Ok(curriculos);
             }
             catch (Exception ex)
@@ -41,6 +42,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var curriculo = await _curriculoService.GetAsync(id);
+
                 return Ok(curriculo);
             }
             catch (NotFoundException)
@@ -61,6 +63,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var curriculos = await _curriculoService.GetCurriculoByEgressoAsync(idEgresso);
+
                 return Ok(curriculos);
             }
             catch (Exception ex)
@@ -79,6 +82,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 await _curriculoService.CreateAsync(novoCurriculo);
+
                 return CreatedAtAction(nameof(Get), new { id = novoCurriculo.idCurriculo }, novoCurriculo);
             }
             catch (Exception ex)
@@ -97,6 +101,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 await _curriculoService.PutAsync(id, curriculoAtualizado);
+
                 return Ok("Currículo atualizado com sucesso!");
             }
             catch (NotFoundException)
@@ -119,6 +124,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 await _curriculoService.DeleteAsync(id);
+
                 return Ok("Currículo deletado com sucesso!");
             }
             catch (NotFoundException)

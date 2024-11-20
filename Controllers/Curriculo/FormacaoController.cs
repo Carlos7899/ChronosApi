@@ -25,6 +25,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var formacoes = await _formacaoService.GetAllAsync();
+
                 return Ok(formacoes);
             }
             catch (Exception ex)
@@ -41,6 +42,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var formacao = await _formacaoService.GetAsync(id);
+
                 return Ok(formacao);
             }
             catch (NotFoundException)
@@ -61,6 +63,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 var formacoes = await _formacaoService.GetFormacoesByCurriculoAsync(idCurriculo);
+
                 return Ok(formacoes);
             }
             catch (Exception ex)
@@ -79,6 +82,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 await _formacaoService.CreateAsync(novaFormacao);
+
                 return CreatedAtAction(nameof(Get), new { id = novaFormacao.idFormacao }, novaFormacao);
             }
             catch (Exception ex)
@@ -97,6 +101,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 await _formacaoService.PutAsync(id, formacaoAtualizada);
+
                 return Ok("Formação atualizada com sucesso!");
             }
             catch (NotFoundException)
@@ -119,6 +124,7 @@ namespace ChronosApi.Controllers.Curriculo
             try
             {
                 await _formacaoService.DeleteAsync(id);
+
                 return Ok("Formação deletada com sucesso!");
             }
             catch (NotFoundException)

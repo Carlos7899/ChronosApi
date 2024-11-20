@@ -4,7 +4,6 @@ namespace ChronosApi.Services.Curso
 {
     public interface ICursoService
     {
-
         Task CreateAsync(CursoModel novoCurso);
         Task<CursoModel> GetAsync(int id);
         Task PutAsync(int id, CursoModel cursoAtualizado);
