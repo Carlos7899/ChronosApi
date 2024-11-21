@@ -101,6 +101,7 @@ namespace ChronosApi.Data
                     idCandidatura = 1,
                     idEgresso = 1,
                     idVaga = 1,
+                    idCorporacao = 1,
                     dataIncricao = DateTime.Now,
                     Status = StatusCandidatura.EmAnalise, 
                     DataAtualizacao = null,
@@ -115,13 +116,19 @@ namespace ChronosApi.Data
                 .HasOne<EgressoModel>() 
                 .WithMany() 
                 .HasForeignKey(c => c.idEgresso)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<CandidaturaModel>()
                 .HasOne<VagaModel>() 
                 .WithMany() 
                 .HasForeignKey(c => c.idVaga)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CandidaturaModel>()
+                .HasOne<CorporacaoModel>()
+                .WithMany(c => c.Candidaturas)
+                .HasForeignKey(c => c.idCorporacao)
+                .OnDelete(DeleteBehavior.Restrict);
             #endregion
 
             #region Comentario

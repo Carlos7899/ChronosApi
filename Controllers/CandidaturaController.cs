@@ -76,6 +76,27 @@ namespace ChronosApi.Controllers
             }
         }
 
+        [HttpGet("GetByCorporacao/{idCorporacao}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<CandidaturaModel>>> GetByCorporacao(int idCorporacao)
+        {
+            try
+            {
+                var candidaturas = await _candidaturaService.GetByCorporacaoAsync(idCorporacao);
+                if (candidaturas == null || !candidaturas.Any())
+                {
+                    return NotFound("Nenhuma candidatura encontrada para esta corporação.");
+                }
+
+                return Ok(candidaturas);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
         [HttpGet("GetByVaga/{idVaga}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

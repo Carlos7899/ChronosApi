@@ -14,6 +14,10 @@ namespace ChronosApi.Models
 
         [ForeignKey("idVaga")]
         public int idVaga { get; set; }
+
+        [ForeignKey("idCorporacao")]
+        public int idCorporacao { get; set; }
+
         public DateTime dataIncricao { get; set; }
         public StatusCandidatura Status { get; set; } 
         public DateTime? DataAtualizacao { get; set; }

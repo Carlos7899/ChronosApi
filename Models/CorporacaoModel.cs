@@ -33,5 +33,9 @@ namespace ChronosApi.Models
         [JsonIgnore]
         [NotMapped]
         public ICollection<CursoModel>? Cursos { get; set; }
+
+        [JsonIgnore]
+        [NotMapped]
+        public ICollection<CandidaturaModel>? Candidaturas { get; set; }
     }
 }

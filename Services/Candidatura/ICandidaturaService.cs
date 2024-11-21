@@ -15,5 +15,6 @@ namespace ChronosApi.Services.Candidatura
         Task<List<CandidaturaModel>> GetRecentCandidaturasByVagaAsync(int idVaga);
         Task<int> CountCandidaturasByEgressoAsync(int idEgresso);
         Task<int> CountCandidaturasByVagaAsync(int idVaga);
+        Task<List<CandidaturaModel>> GetByCorporacaoAsync(int idCorporacao);
     }
 }
