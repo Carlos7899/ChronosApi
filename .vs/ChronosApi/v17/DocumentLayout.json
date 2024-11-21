@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "D:\\ChronosApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|d:\\chronosapi\\services\\curso\\cursocleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:services\\curso\\cursocleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|d:\\chronosapi\\services\\vaga\\vagacleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:services\\vaga\\vagacleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|d:\\chronosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|d:\\chronosapi\\models\\cursomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\cursomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|d:\\chronosapi\\services\\vaga\\ivagaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:services\\vaga\\ivagaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|d:\\chronosapi\\models\\enums\\statuscandidatura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\enums\\statuscandidatura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,10 +51,6 @@
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:models\\candidaturamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|d:\\chronosapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|d:\\chronosapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{C0672A2F-B8FD-432B-8A85-CCE3E2DEC34E}|ChronosApi.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
@@ -51,12 +67,64 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CursoCleanupService.cs",
+              "DocumentMoniker": "D:\\ChronosApi\\Services\\Curso\\CursoCleanupService.cs",
+              "RelativeDocumentMoniker": "Services\\Curso\\CursoCleanupService.cs",
+              "ToolTip": "D:\\ChronosApi\\Services\\Curso\\CursoCleanupService.cs",
+              "RelativeToolTip": "Services\\Curso\\CursoCleanupService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T23:35:22.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CursoModel.cs",
+              "DocumentMoniker": "D:\\ChronosApi\\Models\\CursoModel.cs",
+              "RelativeDocumentMoniker": "Models\\CursoModel.cs",
+              "ToolTip": "D:\\ChronosApi\\Models\\CursoModel.cs",
+              "RelativeToolTip": "Models\\CursoModel.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAkwBUAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T23:34:29.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VagaCleanupService.cs",
+              "DocumentMoniker": "D:\\ChronosApi\\Services\\Vaga\\VagaCleanupService.cs",
+              "RelativeDocumentMoniker": "Services\\Vaga\\VagaCleanupService.cs",
+              "ToolTip": "D:\\ChronosApi\\Services\\Vaga\\VagaCleanupService.cs",
+              "RelativeToolTip": "Services\\Vaga\\VagaCleanupService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T23:30:02.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IVagaService.cs",
+              "DocumentMoniker": "D:\\ChronosApi\\Services\\Vaga\\IVagaService.cs",
+              "RelativeDocumentMoniker": "Services\\Vaga\\IVagaService.cs",
+              "ToolTip": "D:\\ChronosApi\\Services\\Vaga\\IVagaService.cs",
+              "RelativeToolTip": "Services\\Vaga\\IVagaService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T23:29:59.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "StatusCandidatura.cs",
               "DocumentMoniker": "D:\\ChronosApi\\Models\\Enums\\StatusCandidatura.cs",
               "RelativeDocumentMoniker": "Models\\Enums\\StatusCandidatura.cs",
               "ToolTip": "D:\\ChronosApi\\Models\\Enums\\StatusCandidatura.cs",
               "RelativeToolTip": "Models\\Enums\\StatusCandidatura.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAARAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-21T23:16:22.17Z",
               "EditorCaption": ""
@@ -64,6 +132,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ChronosApi\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\ChronosApi\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAkwE8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T22:19:52.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "CandidaturaController.cs",
               "DocumentMoniker": "D:\\ChronosApi\\Controllers\\CandidaturaController.cs",
               "RelativeDocumentMoniker": "Controllers\\CandidaturaController.cs",
@@ -71,12 +152,11 @@
               "RelativeToolTip": "Controllers\\CandidaturaController.cs",
               "ViewState": "AQIAAE4AAAAAAAAAAAAkwGEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T23:00:29.315Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T23:00:29.315Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "CorporacaoModel.cs",
               "DocumentMoniker": "D:\\ChronosApi\\Models\\CorporacaoModel.cs",
               "RelativeDocumentMoniker": "Models\\CorporacaoModel.cs",
@@ -84,12 +164,11 @@
               "RelativeToolTip": "Models\\CorporacaoModel.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAkwCIAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T22:48:54.61Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T22:48:54.61Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "DataContext.cs",
               "DocumentMoniker": "D:\\ChronosApi\\Data\\DataContext.cs",
               "RelativeDocumentMoniker": "Data\\DataContext.cs",
@@ -97,12 +176,11 @@
               "RelativeToolTip": "Data\\DataContext.cs",
               "ViewState": "AQIAAGcAAAAAAAAAAAAkwIEAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T22:42:26.854Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T22:42:26.854Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "CandidaturaModel.cs",
               "DocumentMoniker": "D:\\ChronosApi\\Models\\CandidaturaModel.cs",
               "RelativeDocumentMoniker": "Models\\CandidaturaModel.cs",
@@ -110,12 +188,11 @@
               "RelativeToolTip": "Models\\CandidaturaModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T22:41:21.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T22:41:21.617Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "ICandidaturaService.cs",
               "DocumentMoniker": "D:\\ChronosApi\\Services\\Candidatura\\ICandidaturaService.cs",
               "RelativeDocumentMoniker": "Services\\Candidatura\\ICandidaturaService.cs",
@@ -123,12 +200,11 @@
               "RelativeToolTip": "Services\\Candidatura\\ICandidaturaService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T22:40:52.972Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T22:40:52.972Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "CandidaturaService.cs",
               "DocumentMoniker": "D:\\ChronosApi\\Services\\Candidatura\\CandidaturaService.cs",
               "RelativeDocumentMoniker": "Services\\Candidatura\\CandidaturaService.cs",
@@ -136,12 +212,11 @@
               "RelativeToolTip": "Services\\Candidatura\\CandidaturaService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAF0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T22:40:48.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T22:40:48.071Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\ChronosApi\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -149,21 +224,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-21T22:26:23.132Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\ChronosApi\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\ChronosApi\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAkwHEAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T22:19:52.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T22:26:23.132Z"
             }
           ]
         }

@@ -76,6 +76,8 @@ builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
 builder.Services.AddScoped<ICandidaturaService, CandidaturaService>();
 
 builder.Services.AddScoped<ICursoService, CursoService>();
+builder.Services.AddHostedService<CursoCleanupService>();
+
 
 #region Curriculo
 
