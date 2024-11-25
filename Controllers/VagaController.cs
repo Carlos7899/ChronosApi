@@ -84,6 +84,27 @@ namespace ChronosApi.Controllers
             }
         }
 
+        [HttpGet("GetCorporacaoByVagaId/{idVaga}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetCorporacaoByVagaId(int idVaga)
+        {
+            try
+            {
+                var idCorporacao = await _vagaService.GetCorporacaoIdByVagaAsync(idVaga);
+                if (idCorporacao == 0) 
+                    return NotFound("Vaga não encontrada.");
+
+                return Ok(idCorporacao);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Erro ao obter o idCorporacao: " + ex.Message);
+            }
+        }
+
+
+
         [HttpGet("GetPorDataCriacao/{dataCriacao}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

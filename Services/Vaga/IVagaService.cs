@@ -11,5 +11,6 @@ namespace ChronosApi.Services.Vaga
         public Task<List<VagaModel>> GetVagasPorCorporacaoAsync(int idCorporacao);
         public Task<List<VagaModel>> GetVagasPorDataCriacaoAsync(DateTime dataCriacao);
         public Task<List<VagaModel>> GetVagasPorNomeAsync(string nome);
+        public Task<int> GetCorporacaoIdByVagaAsync(int idVaga);
     }
 }

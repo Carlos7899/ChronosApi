@@ -25,6 +25,19 @@ namespace ChronosApi.Services.Vaga
             }
         }
 
+        public async Task<int> GetCorporacaoIdByVagaAsync(int idVaga)
+        {
+            var vaga = await _context.TB_VAGA
+                .AsNoTracking()
+                .FirstOrDefaultAsync(v => v.idVaga == idVaga);
+
+            if (vaga == null)
+                return 0; 
+
+            return vaga.idCorporacao;
+        }
+
+
         public async Task PutAsync(int id)
         {
             var vaga = await _context.TB_VAGA.FirstOrDefaultAsync((VagaModel v) => v.idVaga == id);
