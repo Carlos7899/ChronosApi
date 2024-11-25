@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ChronosApi.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialComponent : Migration
+    public partial class IntialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -294,7 +294,7 @@ namespace ChronosApi.Migrations
                     idVaga = table.Column<int>(type: "int", nullable: false),
                     idCorporacao = table.Column<int>(type: "int", nullable: false),
                     dataIncricao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: true),
                     DataAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Notas = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Feedback = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -411,15 +411,15 @@ namespace ChronosApi.Migrations
             migrationBuilder.InsertData(
                 table: "TB_CORPORACAO",
                 columns: new[] { "idCorporacao", "DataAcesso", "PasswordHash", "PasswordSalt", "cnpjCorporacao", "descricaoCorporacao", "emailCorporacao", "fotoPerfilCorporacao", "nomeCorporacao", "numeroCorporacao", "tipoCorporacao" },
-                values: new object[] { 1, new DateTime(2024, 11, 21, 20, 12, 15, 482, DateTimeKind.Local).AddTicks(9064), new byte[] { 87, 44, 255, 159, 30, 197, 178, 158, 19, 145, 129, 199, 174, 255, 133, 198, 71, 63, 109, 142, 122, 197, 48, 65, 34, 203, 18, 107, 6, 123, 15, 185, 88, 47, 222, 208, 85, 89, 42, 173, 174, 133, 198, 9, 114, 204, 119, 255, 152, 133, 205, 43, 109, 35, 199, 33, 61, 164, 178, 52, 25, 216, 152, 81 }, new byte[] { 162, 227, 239, 142, 7, 239, 64, 130, 235, 8, 229, 117, 189, 145, 108, 49, 52, 218, 131, 105, 46, 163, 236, 234, 136, 226, 101, 35, 26, 105, 11, 88, 254, 39, 216, 35, 89, 95, 130, 26, 191, 200, 11, 77, 180, 72, 233, 155, 122, 14, 145, 46, 108, 119, 150, 16, 144, 34, 105, 207, 124, 121, 70, 247, 24, 10, 194, 147, 118, 152, 44, 247, 186, 243, 204, 131, 146, 84, 150, 95, 79, 57, 217, 142, 81, 225, 117, 66, 146, 86, 130, 41, 237, 61, 75, 48, 246, 51, 171, 205, 189, 30, 136, 237, 59, 145, 107, 160, 184, 134, 160, 46, 132, 90, 34, 171, 96, 229, 245, 107, 39, 123, 62, 131, 220, 1, 157, 38 }, "12.345.678/0001-99", "Exemplo de corporação", "contato@exemplo.com", null, "Corporação Exemplo", "12345678", 0 });
+                values: new object[] { 1, new DateTime(2024, 11, 25, 14, 19, 14, 69, DateTimeKind.Local).AddTicks(8014), new byte[] { 0, 116, 97, 160, 200, 151, 232, 89, 86, 172, 28, 36, 159, 131, 60, 150, 191, 149, 78, 154, 179, 41, 139, 237, 85, 51, 46, 19, 179, 87, 44, 244, 139, 135, 53, 153, 168, 142, 123, 139, 153, 17, 180, 74, 215, 132, 57, 232, 50, 254, 247, 186, 180, 126, 56, 191, 23, 87, 0, 148, 223, 16, 202, 97 }, new byte[] { 25, 79, 213, 188, 73, 165, 168, 123, 69, 251, 162, 113, 200, 61, 11, 176, 74, 162, 169, 144, 191, 230, 153, 138, 96, 191, 36, 238, 155, 208, 227, 91, 198, 5, 163, 152, 168, 82, 184, 68, 121, 110, 197, 171, 31, 179, 73, 3, 177, 146, 107, 28, 201, 90, 95, 104, 232, 174, 2, 158, 18, 171, 233, 29, 161, 195, 235, 1, 171, 60, 133, 41, 169, 202, 255, 78, 173, 156, 77, 42, 239, 1, 160, 146, 74, 155, 181, 175, 9, 131, 193, 138, 30, 150, 77, 97, 176, 43, 115, 15, 239, 248, 220, 127, 181, 167, 126, 243, 151, 45, 113, 181, 148, 196, 229, 178, 11, 24, 210, 63, 30, 54, 141, 240, 41, 207, 75, 115 }, "12.345.678/0001-99", "Exemplo de corporação", "contato@exemplo.com", null, "Corporação Exemplo", "12345678", 0 });
 
             migrationBuilder.InsertData(
                 table: "TB_EGRESSO",
                 columns: new[] { "idEgresso", "DataAcesso", "PasswordHash", "PasswordSalt", "cpfEgresso", "emailEgresso", "fotoPerfilEgresso", "nomeEgresso", "numeroEgresso", "tipoEgresso" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 21, 20, 12, 15, 482, DateTimeKind.Local).AddTicks(9015), new byte[] { 87, 44, 255, 159, 30, 197, 178, 158, 19, 145, 129, 199, 174, 255, 133, 198, 71, 63, 109, 142, 122, 197, 48, 65, 34, 203, 18, 107, 6, 123, 15, 185, 88, 47, 222, 208, 85, 89, 42, 173, 174, 133, 198, 9, 114, 204, 119, 255, 152, 133, 205, 43, 109, 35, 199, 33, 61, 164, 178, 52, 25, 216, 152, 81 }, new byte[] { 162, 227, 239, 142, 7, 239, 64, 130, 235, 8, 229, 117, 189, 145, 108, 49, 52, 218, 131, 105, 46, 163, 236, 234, 136, 226, 101, 35, 26, 105, 11, 88, 254, 39, 216, 35, 89, 95, 130, 26, 191, 200, 11, 77, 180, 72, 233, 155, 122, 14, 145, 46, 108, 119, 150, 16, 144, 34, 105, 207, 124, 121, 70, 247, 24, 10, 194, 147, 118, 152, 44, 247, 186, 243, 204, 131, 146, 84, 150, 95, 79, 57, 217, 142, 81, 225, 117, 66, 146, 86, 130, 41, 237, 61, 75, 48, 246, 51, 171, 205, 189, 30, 136, 237, 59, 145, 107, 160, 184, 134, 160, 46, 132, 90, 34, 171, 96, 229, 245, 107, 39, 123, 62, 131, 220, 1, 157, 38 }, "222", "ops.gmail", null, "Pedro", "8922", 1 },
-                    { 3, new DateTime(2024, 11, 21, 20, 12, 15, 482, DateTimeKind.Local).AddTicks(8759), new byte[] { 87, 44, 255, 159, 30, 197, 178, 158, 19, 145, 129, 199, 174, 255, 133, 198, 71, 63, 109, 142, 122, 197, 48, 65, 34, 203, 18, 107, 6, 123, 15, 185, 88, 47, 222, 208, 85, 89, 42, 173, 174, 133, 198, 9, 114, 204, 119, 255, 152, 133, 205, 43, 109, 35, 199, 33, 61, 164, 178, 52, 25, 216, 152, 81 }, new byte[] { 162, 227, 239, 142, 7, 239, 64, 130, 235, 8, 229, 117, 189, 145, 108, 49, 52, 218, 131, 105, 46, 163, 236, 234, 136, 226, 101, 35, 26, 105, 11, 88, 254, 39, 216, 35, 89, 95, 130, 26, 191, 200, 11, 77, 180, 72, 233, 155, 122, 14, 145, 46, 108, 119, 150, 16, 144, 34, 105, 207, 124, 121, 70, 247, 24, 10, 194, 147, 118, 152, 44, 247, 186, 243, 204, 131, 146, 84, 150, 95, 79, 57, 217, 142, 81, 225, 117, 66, 146, 86, 130, 41, 237, 61, 75, 48, 246, 51, 171, 205, 189, 30, 136, 237, 59, 145, 107, 160, 184, 134, 160, 46, 132, 90, 34, 171, 96, 229, 245, 107, 39, 123, 62, 131, 220, 1, 157, 38 }, "22222222222", "admin@example.com", null, "Admin", "40028922", 0 }
+                    { 1, new DateTime(2024, 11, 25, 14, 19, 14, 69, DateTimeKind.Local).AddTicks(7990), new byte[] { 0, 116, 97, 160, 200, 151, 232, 89, 86, 172, 28, 36, 159, 131, 60, 150, 191, 149, 78, 154, 179, 41, 139, 237, 85, 51, 46, 19, 179, 87, 44, 244, 139, 135, 53, 153, 168, 142, 123, 139, 153, 17, 180, 74, 215, 132, 57, 232, 50, 254, 247, 186, 180, 126, 56, 191, 23, 87, 0, 148, 223, 16, 202, 97 }, new byte[] { 25, 79, 213, 188, 73, 165, 168, 123, 69, 251, 162, 113, 200, 61, 11, 176, 74, 162, 169, 144, 191, 230, 153, 138, 96, 191, 36, 238, 155, 208, 227, 91, 198, 5, 163, 152, 168, 82, 184, 68, 121, 110, 197, 171, 31, 179, 73, 3, 177, 146, 107, 28, 201, 90, 95, 104, 232, 174, 2, 158, 18, 171, 233, 29, 161, 195, 235, 1, 171, 60, 133, 41, 169, 202, 255, 78, 173, 156, 77, 42, 239, 1, 160, 146, 74, 155, 181, 175, 9, 131, 193, 138, 30, 150, 77, 97, 176, 43, 115, 15, 239, 248, 220, 127, 181, 167, 126, 243, 151, 45, 113, 181, 148, 196, 229, 178, 11, 24, 210, 63, 30, 54, 141, 240, 41, 207, 75, 115 }, "222", "ops.gmail", null, "Pedro", "8922", 1 },
+                    { 3, new DateTime(2024, 11, 25, 14, 19, 14, 69, DateTimeKind.Local).AddTicks(7866), new byte[] { 0, 116, 97, 160, 200, 151, 232, 89, 86, 172, 28, 36, 159, 131, 60, 150, 191, 149, 78, 154, 179, 41, 139, 237, 85, 51, 46, 19, 179, 87, 44, 244, 139, 135, 53, 153, 168, 142, 123, 139, 153, 17, 180, 74, 215, 132, 57, 232, 50, 254, 247, 186, 180, 126, 56, 191, 23, 87, 0, 148, 223, 16, 202, 97 }, new byte[] { 25, 79, 213, 188, 73, 165, 168, 123, 69, 251, 162, 113, 200, 61, 11, 176, 74, 162, 169, 144, 191, 230, 153, 138, 96, 191, 36, 238, 155, 208, 227, 91, 198, 5, 163, 152, 168, 82, 184, 68, 121, 110, 197, 171, 31, 179, 73, 3, 177, 146, 107, 28, 201, 90, 95, 104, 232, 174, 2, 158, 18, 171, 233, 29, 161, 195, 235, 1, 171, 60, 133, 41, 169, 202, 255, 78, 173, 156, 77, 42, 239, 1, 160, 146, 74, 155, 181, 175, 9, 131, 193, 138, 30, 150, 77, 97, 176, 43, 115, 15, 239, 248, 220, 127, 181, 167, 126, 243, 151, 45, 113, 181, 148, 196, 229, 178, 11, 24, 210, 63, 30, 54, 141, 240, 41, 207, 75, 115 }, "22222222222", "admin@example.com", null, "Admin", "40028922", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -436,7 +436,7 @@ namespace ChronosApi.Migrations
             migrationBuilder.InsertData(
                 table: "TB_PUBLICACAO",
                 columns: new[] { "idPublicacao", "avaliacaoPublicacao", "conteudoPublicacao", "dataCriacaoPublicacao", "idCorporacao", "imagemPublicacao", "numeroVisualizacoes", "títuloPublicacao" },
-                values: new object[] { 1, 1, "Conteúdo top", new DateTime(2024, 11, 21, 23, 12, 15, 490, DateTimeKind.Utc).AddTicks(725), 1, null, null, "Publicação" });
+                values: new object[] { 1, 1, "Conteúdo top", new DateTime(2024, 11, 25, 17, 19, 14, 72, DateTimeKind.Utc).AddTicks(193), 1, null, null, "Publicação" });
 
             migrationBuilder.InsertData(
                 table: "TB_COMENTARIOS",
@@ -456,7 +456,7 @@ namespace ChronosApi.Migrations
             migrationBuilder.InsertData(
                 table: "TB_CURSO",
                 columns: new[] { "idCurso", "cargaHorariaCurso", "dataFimCurso", "dataInicioCurso", "descricaoCurso", "idCorporacao", "limiteVagas", "nomeCurso" },
-                values: new object[] { 1, 40, new DateTime(2025, 2, 21, 20, 12, 15, 489, DateTimeKind.Local).AddTicks(501), new DateTime(2024, 11, 21, 20, 12, 15, 489, DateTimeKind.Local).AddTicks(423), "Curso especializado no aprendizado de hardwares e códigos", 1, null, "Desenvolvimento de Sistemas" });
+                values: new object[] { 1, 40, new DateTime(2025, 2, 25, 14, 19, 14, 71, DateTimeKind.Local).AddTicks(5886), new DateTime(2024, 11, 25, 14, 19, 14, 71, DateTimeKind.Local).AddTicks(5881), "Curso especializado no aprendizado de hardwares e códigos", 1, null, "Desenvolvimento de Sistemas" });
 
             migrationBuilder.InsertData(
                 table: "TB_EGRESSO_ENDERECO",
@@ -466,12 +466,12 @@ namespace ChronosApi.Migrations
             migrationBuilder.InsertData(
                 table: "TB_VAGA",
                 columns: new[] { "idVaga", "DataCriacao", "DataVencimento", "beneficiosVaga", "cidadeVaga", "descricaoVaga", "idCorporacao", "nomeVaga", "responsabilidadesVaga", "salarioVaga" },
-                values: new object[] { 1, new DateTime(2024, 11, 21, 23, 12, 15, 490, DateTimeKind.Utc).AddTicks(771), new DateTime(2024, 12, 21, 23, 12, 15, 490, DateTimeKind.Utc).AddTicks(771), "", "", "Vaga júnior desenvolvedor", 1, "Desenvolvedor Júnior", "", "" });
+                values: new object[] { 1, new DateTime(2024, 11, 25, 17, 19, 14, 72, DateTimeKind.Utc).AddTicks(224), new DateTime(2024, 12, 25, 17, 19, 14, 72, DateTimeKind.Utc).AddTicks(225), "", "", "Vaga júnior desenvolvedor", 1, "Desenvolvedor Júnior", "", "" });
 
             migrationBuilder.InsertData(
                 table: "TB_CANDIDATURA",
                 columns: new[] { "idCandidatura", "DataAtualizacao", "Feedback", "Notas", "Status", "dataIncricao", "idCorporacao", "idEgresso", "idVaga" },
-                values: new object[] { 1, null, null, null, 3, new DateTime(2024, 11, 21, 20, 12, 15, 482, DateTimeKind.Local).AddTicks(9103), 1, 1, 1 });
+                values: new object[] { 1, null, null, null, 3, new DateTime(2024, 11, 25, 14, 19, 14, 69, DateTimeKind.Local).AddTicks(8030), 1, 1, 1 });
 
             migrationBuilder.InsertData(
                 table: "TB_CURSO_ENDERECO",

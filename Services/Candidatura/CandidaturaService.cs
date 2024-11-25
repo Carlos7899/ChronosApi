@@ -1,6 +1,7 @@
 ﻿using ChronosApi.Data;
 using ChronosApi.Models;
 using ChronosApi.Services.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChronosApi.Services.Candidatura
@@ -18,11 +19,9 @@ namespace ChronosApi.Services.Candidatura
 
         public async Task<CandidaturaModel> GetAsync(int id)
         {
-            var candidatura = await _context.TB_CANDIDATURA.FirstOrDefaultAsync(c => c.idCandidatura == id);
+            var candidatura = await _context.TB_CANDIDATURA.FindAsync(id);
             if (candidatura == null)
-            {
                 throw new NotFoundException("Candidatura não encontrada.");
-            }
 
             return candidatura;
         }
@@ -34,17 +33,9 @@ namespace ChronosApi.Services.Candidatura
 
         public async Task<List<CandidaturaModel>> GetByEgressoAsync(int idEgresso)
         {
-            return await _context.TB_CANDIDATURA.Where(c => c.idEgresso == idEgresso).ToListAsync();
-        }
-
-        public async Task<List<CandidaturaModel>> GetByVagaAsync(int idVaga)
-        {
-            return await _context.TB_CANDIDATURA.Where(c => c.idVaga == idVaga).ToListAsync();
-        }
-
-        public async Task<List<CandidaturaModel>> GetRecentCandidaturasByVagaAsync(int idVaga)
-        {
-            return await _context.TB_CANDIDATURA.Where(c => c.idVaga == idVaga).OrderByDescending(c => c.dataIncricao).ToListAsync();
+            return await _context.TB_CANDIDATURA
+                .Where(c => c.idEgresso == idEgresso)
+                .ToListAsync();
         }
 
         public async Task<List<CandidaturaModel>> GetByCorporacaoAsync(int idCorporacao)
@@ -60,29 +51,14 @@ namespace ChronosApi.Services.Candidatura
 
         public async Task<CandidaturaModel> CreateAsync(CandidaturaModel candidatura)
         {
-            var vagaExists = await _context.TB_VAGA.AnyAsync(v => v.idVaga == candidatura.idVaga);
-            if (!vagaExists)
-            {
-                throw new NotFoundException("Vaga não encontrada.");
-            }
+            await ValidateEgressoAndVagaExist(candidatura.idEgresso, candidatura.idVaga, candidatura.idCorporacao);
 
-            var egressoExists = await _context.TB_EGRESSO.AnyAsync(e => e.idEgresso == candidatura.idEgresso);
-            if (!egressoExists)
-            {
-                throw new NotFoundException("Egresso não encontrado.");
-            }
-
-            var candidaturaExists = await _context.TB_CANDIDATURA.AnyAsync(c => c.idEgresso == candidatura.idEgresso && c.idVaga == candidatura.idVaga);
+            var candidaturaExists = await _context.TB_CANDIDATURA
+                .AnyAsync(c => c.idEgresso == candidatura.idEgresso && c.idVaga == candidatura.idVaga);
             if (candidaturaExists)
-            {
-                throw new ConflictException("Candidatura já existente para esta vaga.");
-            }
+                throw new ConflictException("O egresso já se candidatou a esta vaga.");
 
-            var corpExists = await _context.TB_CORPORACAO.AnyAsync(c => c.idCorporacao == candidatura.idCorporacao);
-            if (!corpExists)
-            {
-                throw new NotFoundException("Corporação não encontrada.");
-            }
+            candidatura.dataIncricao = DateTime.Now;
 
             _context.TB_CANDIDATURA.Add(candidatura);
             await _context.SaveChangesAsync();
@@ -96,28 +72,19 @@ namespace ChronosApi.Services.Candidatura
 
         public async Task UpdateAsync(int id, CandidaturaModel updatedCandidatura)
         {
-            var candidatura = await _context.TB_CANDIDATURA.FirstOrDefaultAsync(c => c.idCandidatura == id);
-            if (candidatura == null)
-            {
-                throw new NotFoundException("Candidatura não encontrada.");
-            }
+            // Carrega a candidatura do banco
+            var candidatura = await GetAsync(id);
+            // Atualiza os campos que são permitidos alterar (status, feedback, etc.)
+            candidatura.Status = updatedCandidatura.Status ?? candidatura.Status; // Permite manter o status anterior se o valor for nulo
+            candidatura.Notas = updatedCandidatura.Notas ?? candidatura.Notas;  // Permite manter as notas anteriores se o valor for nulo
+            candidatura.Feedback = updatedCandidatura.Feedback ?? candidatura.Feedback;  // Permite manter o feedback anterior se o valor for nulo
+            candidatura.DataAtualizacao = DateTime.Now; // Atualiza a data de atualização para o momento atual
 
-       
-            var corpExists = await _context.TB_CORPORACAO.AnyAsync(c => c.idCorporacao == candidatura.idCorporacao);
-            if (!corpExists)
-            {
-                throw new NotFoundException("Corporação associada à candidatura não encontrada.");
-            }
-
-          
-            candidatura.Status = updatedCandidatura.Status;
-            candidatura.DataAtualizacao = DateTime.Now;
-            candidatura.Notas = updatedCandidatura.Notas;
-            candidatura.Feedback = updatedCandidatura.Feedback;
-
+            // Atualiza a candidatura no banco de dados
             _context.TB_CANDIDATURA.Update(candidatura);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); // Salva as mudanças
         }
+
 
         #endregion
 
@@ -125,11 +92,7 @@ namespace ChronosApi.Services.Candidatura
 
         public async Task DeleteAsync(int id)
         {
-            var candidatura = await _context.TB_CANDIDATURA.FirstOrDefaultAsync(c => c.idCandidatura == id);
-            if (candidatura == null)
-            {
-                throw new NotFoundException("Candidatura não encontrada.");
-            }
+            var candidatura = await GetAsync(id);
 
             _context.TB_CANDIDATURA.Remove(candidatura);
             await _context.SaveChangesAsync();
@@ -137,21 +100,21 @@ namespace ChronosApi.Services.Candidatura
 
         #endregion
 
-        #region EXISTENCE CHECK
+        #region AUXILIAR METHODS
 
-        public async Task<bool> CandidaturaExistsAsync(int id)
+        private async Task ValidateEgressoAndVagaExist(int idEgresso, int idVaga, int idCorporacao)
         {
-            return await _context.TB_CANDIDATURA.AnyAsync(c => c.idCandidatura == id);
-        }
+            var egressoExists = await _context.TB_EGRESSO.AnyAsync(e => e.idEgresso == idEgresso);
+            if (!egressoExists)
+                throw new NotFoundException("Egresso não encontrado.");
 
-        public async Task<int> CountCandidaturasByEgressoAsync(int idEgresso)
-        {
-            return await _context.TB_CANDIDATURA.CountAsync(c => c.idEgresso == idEgresso);
-        }
+            var vagaExists = await _context.TB_VAGA.AnyAsync(v => v.idVaga == idVaga);
+            if (!vagaExists)
+                throw new NotFoundException("Vaga não encontrada.");
 
-        public async Task<int> CountCandidaturasByVagaAsync(int idVaga)
-        {
-            return await _context.TB_CANDIDATURA.CountAsync(c => c.idVaga == idVaga);
+            var corpExists = await _context.TB_CORPORACAO.AnyAsync(c => c.idCorporacao == idCorporacao);
+            if (!corpExists)
+                throw new NotFoundException("Corporação não encontrada.");
         }
 
         #endregion

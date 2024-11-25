@@ -1,61 +1,58 @@
 [
   {
     "ContainingType": "ChronosApi.Controllers.CandidaturaController",
-    "Method": "CountByEgresso",
-    "RelativePath": "api/Candidatura/CountByEgresso/{idEgresso}",
-    "HttpMethod": "GET",
+    "Method": "Post",
+    "RelativePath": "api/Candidatura",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "idEgresso",
-        "Type": "System.Int32",
+        "Name": "candidatura",
+        "Type": "ChronosApi.Models.CandidaturaModel",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Int32",
+        "Type": "ChronosApi.Models.CandidaturaModel",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
-        "StatusCode": 200
+        "StatusCode": 201
       },
       {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 500
       }
     ]
   },
   {
     "ContainingType": "ChronosApi.Controllers.CandidaturaController",
-    "Method": "CountByVaga",
-    "RelativePath": "api/Candidatura/CountByVaga/{idVaga}",
-    "HttpMethod": "GET",
+    "Method": "Put",
+    "RelativePath": "api/Candidatura/{id}",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "idVaga",
+        "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "candidaturaAtualizada",
+        "Type": "ChronosApi.Models.CandidaturaModel",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Int32",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       },
       {
@@ -72,7 +69,7 @@
   {
     "ContainingType": "ChronosApi.Controllers.CandidaturaController",
     "Method": "Delete",
-    "RelativePath": "api/Candidatura/Delete/{id}",
+    "RelativePath": "api/Candidatura/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -85,6 +82,11 @@
     ],
     "ReturnTypes": [
       {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
         "MediaTypes": [
           "text/plain",
@@ -92,11 +94,6 @@
           "text/json"
         ],
         "StatusCode": 404
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
       }
     ]
   },
@@ -122,6 +119,41 @@
           "text/json"
         ],
         "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ChronosApi.Controllers.CandidaturaController",
+    "Method": "GetByCorporacao",
+    "RelativePath": "api/Candidatura/GetByCorporacao/{idCorporacao}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idCorporacao",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[ChronosApi.Models.CandidaturaModel, ChronosApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
       }
     ]
   },
@@ -162,8 +194,8 @@
   },
   {
     "ContainingType": "ChronosApi.Controllers.CandidaturaController",
-    "Method": "Get",
-    "RelativePath": "api/Candidatura/GetbyId/{id}",
+    "Method": "GetById",
+    "RelativePath": "api/Candidatura/GetById/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -191,143 +223,6 @@
           "application/json",
           "text/json"
         ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ChronosApi.Controllers.CandidaturaController",
-    "Method": "GetByVaga",
-    "RelativePath": "api/Candidatura/GetByVaga/{idVaga}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "idVaga",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[ChronosApi.Models.CandidaturaModel, ChronosApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ]
-  },
-  {
-    "ContainingType": "ChronosApi.Controllers.CandidaturaController",
-    "Method": "GetRecentByVaga",
-    "RelativePath": "api/Candidatura/GetRecentByVaga/{idVaga}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "idVaga",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[ChronosApi.Models.CandidaturaModel, ChronosApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      }
-    ]
-  },
-  {
-    "ContainingType": "ChronosApi.Controllers.CandidaturaController",
-    "Method": "Post",
-    "RelativePath": "api/Candidatura/POST",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "candidatura",
-        "Type": "ChronosApi.Models.CandidaturaModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 500
-      },
-      {
-        "Type": "ChronosApi.Models.CandidaturaModel",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 201
-      }
-    ]
-  },
-  {
-    "ContainingType": "ChronosApi.Controllers.CandidaturaController",
-    "Method": "Put",
-    "RelativePath": "api/Candidatura/Put/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "updatedCandidatura",
-        "Type": "ChronosApi.Models.CandidaturaModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
         "StatusCode": 200
       }
     ]
